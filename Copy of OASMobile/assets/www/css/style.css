@@ -1,0 +1,111 @@
+body{
+    margin: 0px;
+    padding: 0px;
+}
+
+.header{
+    width: 100%;
+    background: #f45110;
+    min-height: 50px;
+}
+.logo{
+    display: inline-block;
+    float: left;
+}
+
+.logo img{
+    width: 30px;
+    height: 30px;
+}
+
+.app_title{
+    color: white;
+    width: 300px;
+    margin: 0px auto;
+    text-align: center;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/*******************start content index.html**********************/
+.content{
+    width: 100%;
+    position: relative;
+}
+
+.me{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    background: url("../images/me.png") no-repeat center;
+    top: 150px;
+    left: 12%;
+}
+
+.partner{
+    width: 50px;
+    height: 50px;
+    background-color: red;
+    border-radius: 50px;
+    position: absolute;
+    top: 150px;
+    left: 55%;
+}
+
+.lace{
+    width: 50px;
+    height: 50px;
+    background-color: #800080;
+    border-radius: 50px;
+    position: absolute;
+    top: 250px;
+    left: 65%;
+}
+
+.soap{
+    width: 50px;
+    height: 50px;
+    background-color: #190ef9;
+    border-radius: 50px;
+    position: absolute;
+    top: 360px;
+    left: 50%;
+}
+
+.parents{
+    width: 50px;
+    height: 50px;
+    background-color: #f3811c;
+    border-radius: 50px;
+    position: absolute;
+    top: 50px;
+    left: 35%;
+}
+
+.children{
+    width: 50px;
+    height: 50px;
+    background-color: green;
+    border-radius: 50px;
+    position: absolute;
+    top: 350px;
+    left: 15%;
+}
+
+/*******************end content index.html**********************/
+
+.relation-node{
+    color: white;
+    font-weight: bold;
+    padding: 3px 3px;
+    text-align: center;
+    width: 60px;
+    height: 60px;
+}
+
+.relation-node div{
+    margin-top: 20px;
+}
+
