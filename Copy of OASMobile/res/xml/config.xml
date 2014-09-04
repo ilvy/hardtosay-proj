@@ -104,10 +104,11 @@
     <plugin name="Device" value="org.apache.cordova.Device" /> -->
     <!-- Deprecated plugins element. Remove in 3.0 -->
     <plugins>
-        <plugin name="docPlugin" value="com.example.oasmobile.docPlugin"/>
-        <plugin name="CheckUpdate" value="com.example.oasmobile.CheckUpdate"/>
-        <plugin name="ShowMsg" value="com.example.oasmobile.ShowMsg"/>
-        <plugin name="SetAlias" value="com.example.oasmobile.SetAlias"/>
+        <plugin name="docPlugin" value="com.example.hardtosay.docPlugin"/>
+        <plugin name="CheckUpdate" value="com.example.hardtosay.CheckUpdate"/>
+        <plugin name="ShowMsg" value="com.example.hardtosay.ShowMsg"/>
+        <plugin name="SetAlias" value="com.example.hardtosay.SetAlias"/>
+        <plugin name="PluginTest" value="com.example.hardtosay.PluginTest"/>
     </plugins>
    
 </widget>

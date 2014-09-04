@@ -56,6 +56,8 @@ import org.apache.cordova.DroidGap;
 import org.apache.cordova.api.LOG;
 
 import android.content.Context;
+import android.content.Intent;
+import android.drm.ProcessedData;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
@@ -82,6 +84,11 @@ public class MainActivity extends DroidGap {
 		super.loadUrl("file:///android_asset/www/index.html", 1500);
 	}
 
+	protected void onNewIntent(Intent intent){
+		super.onNewIntent(intent);
+		setIntent(intent);
+		super.loadUrl("file:///android_asset/www/index.html");
+	}
 	// 获得MAC地址
 	public String getLocalMacAddress() {
 		WifiManager wifiMgr = (WifiManager) getSystemService(Context.WIFI_SERVICE);
@@ -100,4 +107,6 @@ public class MainActivity extends DroidGap {
 		}
 		return super.onKeyDown(keyCode, event);
 	}
+	
+	
 }

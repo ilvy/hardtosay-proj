@@ -49,7 +49,6 @@ public class docPlugin  extends CordovaPlugin {
 
         }else {
                 callbackContext.error("获取Mac地址失败");
-
         }
 	}
 	

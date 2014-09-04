@@ -43,6 +43,10 @@ public class MyReceiver extends BroadcastReceiver {
 //        	i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //        	context.startActivity(i);
         	if(!isRunningForeground(context)){
+        		Log.d(TAG,"后台运行");
+        		showCustomInfo(context,bundle);
+        	}else{
+        		Log.d(TAG,"前台运行");
         		showCustomInfo(context,bundle);
         	}
         	
@@ -58,7 +62,7 @@ public class MyReceiver extends BroadcastReceiver {
             
             
         	//打开自定义的Activity
-        	Intent i = new Intent(context, TestActivity.class);
+        	Intent i = new Intent(context, MainActivity.class);
         	i.putExtras(bundle);
         	i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         	context.startActivity(i);

@@ -13,6 +13,12 @@
         <div class="app_title">
             难开的口
         </div>
+        <div style="position:absolute;right:0px;top:10px;padding: 3px 8px;background: #cdcdcd;display: inline-block;">
+            <a href="login.html" style="">
+                登录
+            </a>
+        </div>
+
     </header>
     <section class="content">
         <div class="me relation-node">
@@ -41,8 +47,23 @@
 
     </footer>
 </body>
+<!--<script src="./js/phoneGap/cordova.js"></script>-->
 <script src="./js/libs/jquery.js"></script>
 
 <script src="./js/draw.js"></script>
 <script src="./js/index.js"></script>
+<script>
+    $(function(){
+        document.addEventListener("deviceready", onDeviceReady, false);
+    });
+    function onDeviceReady(){
+//        alert(cordova.exec);
+        cordova.exec(function(success){
+            alert(success);
+        },function(failed){
+            alert("failed:"+failed)
+        },"PluginTest","testPlugin",[]);
+    }
+
+</script>
 </html>

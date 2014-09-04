@@ -32,5 +32,6 @@ public class TestActivity extends DroidGap {
         	((MainApplication)getApplication()).setContent(content);       	
         }
         super.loadUrl("file:///android_asset/www/index.html");
+//        cordovaWebView.sendJavascript();
     }
 }
