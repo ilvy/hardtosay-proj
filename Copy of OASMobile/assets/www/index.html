@@ -52,18 +52,27 @@
 
 <script src="./js/draw.js"></script>
 <script src="./js/index.js"></script>
+<script src="./js/libs/socket.io.js"></script>
+<!--<script src="https://cdn.socket.io/socket.io-1.1.0.js"></script>-->
+<script src="./js/socket/socketManager.js"></script>
 <script>
+//    $(function(){
+//        document.addEventListener("deviceready", onDeviceReady, false);
+//    });
+//    function onDeviceReady(){
+////        alert(cordova.exec);
+//        cordova.exec(function(success){
+//            alert(success);
+//        },function(failed){
+//            alert("failed:"+failed)
+//        },"PluginTest","testPlugin",[]);
+//    }
     $(function(){
-        document.addEventListener("deviceready", onDeviceReady, false);
+        var socket = new Socket('http://localhost',5000);
+        $(document).bind("click",function(){
+            socket.sendMessage("testEvent",{msg:"test msg"});
+        })
     });
-    function onDeviceReady(){
-//        alert(cordova.exec);
-        cordova.exec(function(success){
-            alert(success);
-        },function(failed){
-            alert("failed:"+failed)
-        },"PluginTest","testPlugin",[]);
-    }
 
 </script>
 </html>

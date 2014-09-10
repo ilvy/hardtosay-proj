@@ -108,5 +108,4 @@ public class MainActivity extends DroidGap {
 		return super.onKeyDown(keyCode, event);
 	}
 	
-	
 }
