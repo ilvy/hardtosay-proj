@@ -3,6 +3,7 @@
  */
 $(function(){
     drawSvgLines();
+    addListener();
 });
 
 /**
@@ -45,8 +46,6 @@ function drawSvgLines(){
     svgBrush.drawing("polyline",styleObj,svg,[posOfme,posOfchildren]);
 }
 
-
-
 /**
  *
  * @param selector
@@ -57,4 +56,14 @@ function getPos(selector){
     pos.x = $(selector).position().left+$(selector).width() / 2;
     pos.y = $(selector).position().top+$(selector).height() / 2;
     return pos;
+}
+
+function addListener(){
+//    $(".content").on(touchEvent.touchstart,'.partner',function(event){
+//        $(this).path({
+//            radius: 100, //半径
+//            radian: 90, //弧度
+//            duration: 200//动画时间
+//        });
+//    })
 }
