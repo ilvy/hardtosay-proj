@@ -141,7 +141,7 @@
     }
     
     settings = predefineAngle(settings);
-	  var radius = el.width() / 3,
+	  var radius = 60;//el.width() / 3,
       fields = el.find(".item"),
       container = el,
       width = container.innerWidth(),
@@ -197,7 +197,7 @@
             settings.angle = [180,380]
             break;
           case 'NE':
-            settings.angle = [270,380]
+            settings.angle = [270,420]
             break;
           case 'E':
             settings.angle = [270,470]
