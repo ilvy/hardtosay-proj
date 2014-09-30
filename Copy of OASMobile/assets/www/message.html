@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>message</title>
+    <meta charset="utf-8">
+    <script src="./js/libs/jquery.js"></script>
+    <style>
+        #content{
+            font-weight: lighter;
+            text-shadow: 1px 1px 1px #CDCDCD,-1px 1px 1px #cdcdcd,1px -1px 1px #cdcdcd,-1px -1px 1px #cdcdcd;
+            min-height: 300px;
+            min-width: 200px;
+            margin: 300px auto;
+        }
+        #content{
+            font-family: "microsoft yahei";
+            display: block;
+            font-size: 16px;
+            /*color: #f1ebe5;*/
+            color: #000000;
+            text-shadow: 0 2px 3px #c4b59d,0px -3px 1px #fff;
+            font-weight: bold;
+            text-align: center;
+            /*background: linear-gradient(to bottom,#ece4d9 0%,#e9dfd1 100%);*/
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+
+    </div>
+</body>
+<script>
+    var content = "人生像一道风景，真正快乐的人，是那种在走弯路时也不忘享受风景的人。" +
+            "人生，永远不可复制，痛苦也只是一种撕心裂肺的体验，让人更加坚强，更加珍惜；" +
+            "岁月，永远不会回头，放弃也只是一种无可奈何的选择，让心更加明朗，更加执着；" +
+            "生命，永远不能重启，活着也是一种简单的幸福，尽管艰难，尽管有泪，也有日出，也有月落。" +
+            "快乐，其实就在身边，在路上，在心里！" +
+            "人生像蒲公英，看似自由，却身不由己。" +
+            "有些事，猝不及防，不管你在不在乎；有些人，并非所想，不管你明不明白；" +
+            "有些路，必须得走，不管你愿不愿意。不怕事，不惹事，不避事，做好自己，用真心面对一切；" +
+            "少埋怨，少指责，少发火，学会沉静，用微笑考量一切；多体察，多包容，多思索，尽心尽力，虽缺憾但无悔。" +
+            "像蒲公英一样美丽，虽轻盈，但并不卑微，它有自己的生命，也有自己的世界！";
+    function showText(){
+        var len = content.length;
+        var contentArray = content.split("");
+        var str = "";
+        var i = 0;
+        var interval = setInterval(function(){
+            str += contentArray[i];
+            $("#content").html(str);
+            i++;
+            if(i == len){
+                clearInterval(interval);
+            }
+        },200);
+    }
+    $(function(){
+        showText();
+    })
+</script>
+</html>
