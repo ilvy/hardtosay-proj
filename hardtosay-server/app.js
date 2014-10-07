@@ -8,6 +8,7 @@ var routes = require('./routes');
 var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
+var socketServer = require("./socket/socket");
 
 var app = express();
 
@@ -28,13 +29,14 @@ if ('development' == app.get('env')) {
 }
 
 var server = http.createServer(app);
-var io = require('socket.io')(server);
-io.on("connection",function(socket){
-    console.log("a user connected");
-    socket.on("testEvent",function(data){
-        console.log(data.msg);
-    });
-})
+//var io = require('socket.io')(server);
+//io.on("connection",function(socket){
+//    console.log("a user connected");
+//    socket.on("testEvent",function(data){
+//        console.log(data.msg);
+//    });
+//})
+socketServer(server);
 
 server.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

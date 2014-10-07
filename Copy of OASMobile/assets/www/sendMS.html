@@ -5,24 +5,67 @@
     <meta charset="utf-8"/>
     <link href="./css/font-awesome.min2.css" rel="stylesheet"/>
     <link href="css/style.css" rel="stylesheet"/>
+    <link href="./css/wheelmenu.css" rel="stylesheet"/>
     <style>
-        .ms-content{
+        .message-block{
             width: 80%;
             height: 300px;
-            margin: 10px auto;
             border: 1px solid #CDCDCD;
             background-color: #ffffff;
             overflow-y: auto;
             border-radius: 5px;
+            position: relative;
+        }
+        .msg-list .message-block:last-child{
+            margin-bottom: 60px;
+        }
+        .ms-content{
+            width: 100%;
+            height: 100%;
+        }
+
+        .left{
+            margin-top: 10px;
+            margin-left: 20px;
             box-shadow: 1px 1px 3px #cdcdcd;
+        }
+        .right{
+            margin-top: 10px;
+            margin-left: 50px;
+            box-shadow: -1px 1px 3px #cdcdcd;
         }
         .add-ms-btn{
             width: 48px;
             height: 48px;
             font-size: 48px;
             text-align: center;
+            /*border: 1px solid #CDCDCD;*/
+            color: #e81515;
+            position: fixed;
+            bottom: 10px;
+        }
+        .spare-input{
+            display: none;
+        }
+        .cancel-edit{
+            width: 16px;
+            height: 16px;
+            position: absolute;
+            right: 5px;
+            top: 5px;
+        }
+        #send-btn{
+            width: 48px;
+            height: 48px;
+            font-size: 24px;
+            text-align: center;
             border: 1px solid #CDCDCD;
             color: #e81515;
+            position: fixed;
+            bottom: 10px;
+            border-radius: 48px;
+            background-color: #cecece;
+            display: none;
         }
     </style>
 </head>
@@ -42,11 +85,85 @@
 
     </header>
 
-    <div class="ms-content" contenteditable="true">
+    <section id="msg-list" class="msg-list">
+        <div class="message-block left">
+            <div class="ms-content" contenteditable="true">
 
+            </div>
+        </div>
+        <div class="message-block right">
+            <div class="ms-content" contenteditable="true">
+
+            </div>
+        </div>
+    </section>
+    <div class="message-block left spare-input">
+        <div class="ms-content" contenteditable="true">
+        </div>
+        <!--<a class="cancel-edit" contenteditable="false">-->
+            <!--<span class="icon-remove-circle"></span>-->
+        <!--</a>-->
     </div>
-    <div class="add-ms-btn">
+
+
+    <div id="add-ms-btn" class="add-ms-btn" href="#wheel">
         <span class="icon-plus-sign-alt"></span>
     </div>
+    <ul id="wheel"  data-angle="N">
+        <li class="item" data-action="appology"><a>道歉</a></li>
+        <li class="item" data-action="complain"><a>吐槽</a></li>
+    </ul>
+    <div id="send-btn">
+        发送
+    </div>
 </body>
+<script src="./js/libs/jquery.js"></script>
+<script src="./js/plugins/wheel-menu-master/jquery.wheelmenu.js"></script>
+<script>
+    var wW = $(window).width(),wH = $(window).height();
+    $(function(){
+        $("#add-ms-btn").css({
+            left:(wW - $("#add-ms-btn").width()) / 2
+        });
+        $("#send-btn").css({
+            left:(wW - $("#send-btn").width()) / 2
+        });
+        $("#add-ms-btn").wheelmenu({
+            trigger: "click",
+            animation: "fly",
+            animationSpeed: "fast"
+        });
+        $("#wheel").on("click",".item",function(){
+            var $this = $(this);
+            var action = $this.data("action");
+            $(".spare-input").data("action",action).removeClass("spare-input").appendTo($(".msg-list"));
+            $('<div class="message-block spare-input left"><div class="ms-content" contenteditable="true"></div></div>').appendTo($("body"));
+            $("html,body").animate({
+                scrollTop:$("body").height()
+            },1000);
+            $("#add-ms-btn").click().css("display","none");
+            $("#send-btn").css("display","block");
+        });
+        /*
+         *发送消息
+         */
+        $("#send-btn").on("click",function(){
+            var $content = $("#msg-list .message-block:last .ms-content");
+            var paras = $content.contents().filter(function(){
+                return this.nodeType == 3;
+            }).text();
+            $content.find("> div").each(function(){
+                //TODO 过滤用户输入非法字符
+                paras += "\n"+$(this).html();
+            });
+            //alert(paras);
+            $("#add-ms-btn").css("display","block");
+            $("#send-btn").css("display","none");
+            $content.addClass("msg-display").attr("contenteditable",false);
+        });
+        $("#msg-list").on("click",".msg-display",function(){
+            window.location.href = "receiveMsg.html";
+        });
+    });
+</script>
 </html>

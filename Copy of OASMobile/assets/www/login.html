@@ -31,18 +31,27 @@
 
     </footer>
 </body>
-<script src="./js/phoneGap/cordova.js"></script>
+<!--<script src="./js/phoneGap/cordova.js"></script>-->
+<script src="./js/libs/jquery.js"></script>
+<script src="./js/libs/socket.io.js"></script>
+<script src="./js/socket/socketManager.js"></script>
 <script>
+    var socket = new Socket("127.0.0.1",5000);
+    socket.onEvent();
+
     document.getElementById("loginBtn").addEventListener("click",function(){
         var username = document.getElementById("username").value;
         alert(username);
-        if(username){
-            cordova.exec(function(success){
-                alert(success);
-            },function(failed){
-                alert(failed);
-            },"SetAlias","setAlias",username);
-        }
+        var user = {};
+        user.name = username;
+        socket.sendMessage("login",{user:user});
+//        if(username){
+//            cordova.exec(function(success){
+//                alert(success);
+//            },function(failed){
+//                alert(failed);
+//            },"SetAlias","setAlias",username);
+//        }
 
 //        window.location.href = "index.html";
     })
