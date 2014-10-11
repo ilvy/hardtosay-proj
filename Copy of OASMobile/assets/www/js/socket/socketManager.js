@@ -17,6 +17,6 @@ Socket.prototype.sendMessage = function(event,msgObj){
 
 Socket.prototype.onEvent = function(){
     this.socket.on("login",function(data){
-
+        console.log(data);
     });
 }

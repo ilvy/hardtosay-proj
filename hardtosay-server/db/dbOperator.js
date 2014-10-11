@@ -63,15 +63,15 @@ function select(table_name,position,callback){
 
         }else{
             var collection = db.collection(table_name);
-            collection.find(position)
+            collection.find(position).toArray(function(err,docs){
+                if(err){
+                    console.log("find err:"+err);
+                }else{
+                    callback(err,docs);
+                }
+            });
         }
-    }).toArray(function(err,docs){
-            if(err){
-                console.log("find err:"+err);
-            }else{
-                callback(err,docs);
-            }
-        });
+    });
 }
 
 exports.save = save;

@@ -44,7 +44,7 @@
         alert(username);
         var user = {};
         user.name = username;
-        socket.sendMessage("login",{user:user});
+        socket.sendMessage("login",{user:user,protocal:"login"});
 //        if(username){
 //            cordova.exec(function(success){
 //                alert(success);
