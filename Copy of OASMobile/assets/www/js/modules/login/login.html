@@ -44,16 +44,8 @@
         alert(username);
         var user = {};
         user.name = username;
-        socket.sendMessage("login",{user:user,protocal:"login"});
-//        if(username){
-//            cordova.exec(function(success){
-//                alert(success);
-//            },function(failed){
-//                alert(failed);
-//            },"SetAlias","setAlias",username);
-//        }
+        socket.sendMessage("login",{user:user});
 
-//        window.location.href = "relative.html";
     })
 </script>
 </html>
