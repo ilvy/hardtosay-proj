@@ -29,7 +29,7 @@ body{
     font-weight: bold;
 }
 
-/*******************start content index.html**********************/
+/*******************start content relative.html**********************/
 .content{
     width: 100%;
     position: relative;
@@ -95,7 +95,7 @@ body{
     left: 15%;
 }
 
-/*******************end content index.html**********************/
+/*******************end content relative.html**********************/
 
 .relation-node{
     color: white;
@@ -115,3 +115,84 @@ body{
     margin-top: 20px;
 }
 
+
+/***********************start message.html****************************/
+.message-block{
+    width: 80%;
+    height: 300px;
+    border: 1px solid #CDCDCD;
+    background-color: #ffffff;
+    overflow-y: auto;
+    border-radius: 5px;
+    position: relative;
+}
+.msg-list .message-block:last-child{
+    margin-bottom: 60px;
+}
+.ms-content{
+    width: 100%;
+    height: 100%;
+}
+
+.left{
+    margin-top: 10px;
+    margin-left: 20px;
+    box-shadow: 1px 1px 3px #cdcdcd;
+}
+.right{
+    margin-top: 10px;
+    margin-left: 50px;
+    box-shadow: -1px 1px 3px #cdcdcd;
+}
+.add-ms-btn{
+    width: 48px;
+    height: 48px;
+    font-size: 48px;
+    text-align: center;
+    /*border: 1px solid #CDCDCD;*/
+    color: #e81515;
+    position: fixed;
+    bottom: 10px;
+}
+.spare-input{
+    display: none;
+}
+.cancel-edit{
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+#send-btn{
+    width: 48px;
+    height: 48px;
+    font-size: 24px;
+    text-align: center;
+    border: 1px solid #CDCDCD;
+    color: #e81515;
+    position: fixed;
+    bottom: 10px;
+    border-radius: 48px;
+    background-color: #cecece;
+    display: none;
+}
+/***********************end message.html****************************/
+
+/************start detailmsg.html**************/
+.msg-detail{
+    width: 100%;
+    height: 300px;
+    margin: 10px auto;
+    border: 1px solid #CDCDCD;
+    background-color: #ffffff;
+    overflow-y: auto;
+    box-shadow: 1px 1px 3px #cdcdcd;
+}
+.receive-btn-group input{
+    background-color: white;
+    border: 1px solid #cdcdcd;
+    padding: 3px 8px;
+    font-size: 16px;
+}
+/************end detailmsg.html**************/

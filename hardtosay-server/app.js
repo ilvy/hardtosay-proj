@@ -22,7 +22,7 @@ app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
-
+routes(app);
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
@@ -37,6 +37,7 @@ var server = http.createServer(app);
 //    });
 //})
 socketServer(server);
+
 
 server.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
