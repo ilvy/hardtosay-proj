@@ -74,6 +74,10 @@ function login(socket){
     });
 }
 
+function addRelation(socket){
+    socket.on()
+}
+
 function appology(socket){
     socket.on(protocolConfig.APPOLOGY,function(data){
         console.log(data);

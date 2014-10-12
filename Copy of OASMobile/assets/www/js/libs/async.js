@@ -77,7 +77,7 @@ function loadScript(scriptName, callback) {
 /* ~ END: LOAD SCRIPTS */
 
 /*模块根路径*/
-var root = "./js/";
+var root = "js/";
 
 /*
  *  Each hash corresponding to template,
