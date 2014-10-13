@@ -13,12 +13,14 @@ function Session(){
 
 /**
  * 管理用户session权限
- * @param user
+ * @param userName
  * @param auth
  */
-Session.prototype.authority = function(user,auth){
+Session.prototype.authority = function(userName,auth){
     if(arguments.length == 2){
-
+        this.authorities[userName] = auth;
+    }else if(arguments.length == 1){
+        return this.authorities[userName];
     }
 }
 

@@ -5,7 +5,7 @@
 var protocolConfig = require("../../socket/protocolConfig"),
     dbOperator = require("../../db/dbOperator"),
     async = require("async"),
-    response = require("../../socket/response").response,
+    response = require("../response"),
     session = require("../../socket/session").session;
 
 /**
@@ -23,13 +23,10 @@ exports.login = function(req,res){
                 return;
             }else{
                 if(results[0] && results[0].length > 0){
-                    session.authority(user,{});
-                    response.addSocket(user.name,socket);
-                    response.success(user.name,data.protocal,{
-                        flag:1,msg:"login success"
-                    });
+                    session.authority(user.name,user);//session记录用户登录信息
+                    response.success(res,"login success",{});
                 }else{
-
+                    response.failed(res,"login failed",{});
                 }
             }
 

@@ -9,11 +9,12 @@ function Response(){
     this.sockets = {};
 }
 
-Response.prototype.addSocket = function(userName,socket){
+Response.prototype.socket = function(userName,socket){
     if(!this.sockets[userName]){
         this.sockets[userName] = [];
     }
     this.sockets[userName].push(socket);
+    return this.sockets[userName];
 }
 
 Response.prototype.removeSocket = function(userName,socket){
@@ -26,6 +27,13 @@ Response.prototype.removeSocket = function(userName,socket){
             objSockets.splice(i,i+1);
             break;
         }
+    }
+}
+
+Response.prototype.send = function(userName,emit_type,results){
+    var objSockets = this.sockets[userName];
+    for(var i = 0; i < objSockets.length; i++){
+        objSockets[i].emit(emit_type,results);
     }
 }
 

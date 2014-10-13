@@ -2,8 +2,13 @@
  * Created by Administrator on 14-9-10.
  */
 
-function Socket(host,port){
+
+function Socket(host,port,cb){
     this.socket = this.connect(host,port);
+    this.onConnect(cb);
+    this.onError();
+    this.onFailed();
+    this.onLogin();
 }
 
 Socket.prototype.connect = function(host,port){
@@ -11,9 +16,36 @@ Socket.prototype.connect = function(host,port){
     return socket;
 }
 
+/**
+ * socket 建立连接监听，建立连接后，发送用户socket登录请求
+ * @param cb：发送用户socket登录请求函数
+ */
+Socket.prototype.onConnect = function(cb){
+    this.socket.on("connect",function(data){
+        console.log("connect:"+data);
+    })
+    if(cb){
+        cb(this.socket);
+    }
+}
+
+Socket.prototype.onError = function(){
+    this.socket.on("error",function(data){
+        console.log("error:"+data);
+    });
+}
+
+Socket.prototype.onFailed = function(){
+    this.socket.on("connect_failed",function(data){
+        console.log("failed:"+data);
+    })
+}
+
 Socket.prototype.sendMessage = function(event,msgObj){
     this.socket.emit(event,msgObj);
 }
+
+var socket;
 
 //Socket.prototype.onEvent = function(){
 //    this.socket.on("login",function(data){

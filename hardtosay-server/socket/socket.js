@@ -5,7 +5,9 @@
 var protocolConfig = require("./protocolConfig"),
     dbOperator = require("../db/dbOperator"),
     async = require("async"),
-    response = require("./response").response;
+    response = require("./response").response,
+    session = require("./session").session,
+    pushMessage = require("../JPush/JPush").pushMessage;
 var io,
     online_users = {};
 
@@ -13,7 +15,7 @@ function SocketServer(server){
     io = require("socket.io")(server);
     io.on("connection",function(socket){
         console.log("new connection");
-        login(socket)
+        socketLogin(socket);
         appology(socket);
     });
 }
@@ -50,42 +52,67 @@ function register(socket){
  * 用户登录
  * @param socket
  */
-function login(socket){
+function socketLogin(socket){
     socket.on(protocolConfig.LOGIN,function(data){
         var user = data.user;
-        if(user){
-            var funs = [isExistUser(data)];
-            async.series(funs,function(err,results){
-                if(err){
-                    return;
-                }else{
-                    if(results[0] && results[0].length > 0){
-                        response.addSocket(user.name,socket);
-                        response.success(user.name,data.protocal,{
-                            flag:1,msg:"login success"
-                        });
-                    }else{
-
-                    }
-                }
-
+        var userName = user.name,auth;
+        if(!(auth = session.authority(userName))){//session无登录记录
+            response.send(userName,protocolConfig.LOGIN,{
+                flag:0,
+                msg:"socket 登录失败!"
             });
+            return;
         }
+        response.socket(userName,socket);
+        response.send(userName,protocolConfig.LOGIN,{
+            flag:1,
+            msg:"socket 登录成功!"
+        });
     });
 }
 
-function addRelation(socket){
-    socket.on()
-}
-
+/**
+ *
+ * @param socket
+ */
 function appology(socket){
     socket.on(protocolConfig.APPOLOGY,function(data){
         console.log(data);
+        var sender = data.sender;
+        var userName = data.name,auth;
+        if(!(auth = session.authority(userName))){//session无登录记录
+            return;
+        }
         var msgObj = {type:protocolConfig.APPOLOGY};
-        msgObj.sender = data.from;
-        msgObj.receiver = data.to;
+        msgObj.sender = data.sender;
+        msgObj.receiver = data.receiver;
         msgObj.message = data.msg;
         msgObj.time = new Date();
+        //从session中查询目标用户是否已经登录，若未登录，存于数据库，并推送，若已经登录，直接发送消息即可
+        //1、从session中查询目标用户
+        var receiverAuth = session.authority(msgObj.receiver);
+        if(!receiverAuth){
+            //1、存数据
+            dbOperator.save("message",msgObj,function(err,results){
+                if(err){
+                    console.log(err);
+                }else{
+                    //2、推送
+                    pushMessage("android",msgObj.receiver,msgObj.message,"推送消息");
+                }
+            });
+        }else{
+            //1、存数据
+            dbOperator.save("message",msgObj,function(err,results){
+                if(err){
+                    console.log(err);
+                }else{
+                    //2、直接发送给接收用户
+                    var receiveSocket = response.socket(msgObj.receiver);
+                    receiveSocket.emit(protocolConfig.APPOLOGY,msgObj);
+                }
+            })
+        }
     });
 }
 
@@ -101,5 +128,6 @@ var isExistUser = function(data){
     }
 
 };
+
 
 module.exports = SocketServer;
