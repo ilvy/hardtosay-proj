@@ -10,10 +10,15 @@ function Response(){
 }
 
 Response.prototype.socket = function(userName,socket){
-    if(!this.sockets[userName]){
-        this.sockets[userName] = [];
+//    if(!this.sockets[userName]){
+    if(arguments.length == 2){
+        this.sockets[userName] = socket;
     }
-    this.sockets[userName].push(socket);
+    //[];
+//    }
+//    if(!isExistSocket(this.sockets[userName],socket)){
+//        this.sockets[userName].push(socket);
+//    }
     return this.sockets[userName];
 }
 
@@ -31,10 +36,11 @@ Response.prototype.removeSocket = function(userName,socket){
 }
 
 Response.prototype.send = function(userName,emit_type,results){
-    var objSockets = this.sockets[userName];
-    for(var i = 0; i < objSockets.length; i++){
-        objSockets[i].emit(emit_type,results);
-    }
+    var objSockets = typeof userName == 'string'?this.sockets[userName]:userName;
+    objSockets.emit(emit_type,results);
+//    for(var i = 0; i < objSockets.length; i++){
+//        objSockets[i].emit(emit_type,results);
+//    }
 }
 
 Response.prototype.success = function(userName,emit_type,results){
@@ -49,6 +55,21 @@ Response.prototype.failed = function(userName,emit_type,results){
     for(var i = 0; i < objSockets.length; i++){
         objSockets[i].emit(emit_type,results);
     }
+}
+
+/**
+ * 判断该用户的是否存在同一个socket
+ * @param userName
+ * @param socket
+ * @returns {boolean}
+ */
+function isExistSocket(sockets,socket){
+    for(var i = 0; i < sockets.length; i++){
+        if(socket == sockets[i]){
+            return true;
+        }
+    }
+    return false;
 }
 
 exports.response = new Response();

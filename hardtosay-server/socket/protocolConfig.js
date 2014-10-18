@@ -5,4 +5,5 @@
 exports.REGISTER = "register";
 exports.LOGIN = "login";
 
-exports.APPOLOGY = 'appology';
+exports.APOLOGY = 'apology';
+exports.MESSAGE = 'message';

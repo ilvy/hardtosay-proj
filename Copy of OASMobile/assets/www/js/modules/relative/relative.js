@@ -1,27 +1,51 @@
 /**
  * Created by Administrator on 14-10-10.
  */
-define("modules/relative/relative",['util','superObject','draw'],function(){
+define("modules/relative/relative",['util','superObject','draw','touchUtil'],function(){
 
     var relative = superObject.extend({
-        initialize:function(html){
+        data:{},
+        humansData:{},
+        initialize:function(html,data){
             $("#content").html(html);
+            this.data = JSON.parse(util.$ls("humansData"));
+            this.dealHumansData();
             var _this = this;
             $(function(){
                 _this.drawSvgLines();
             });
             this.addListener();
-
         },
         addListener:function(){
-            $(".main-btn").wheelmenu({
-                trigger: "click",
-                animation: "fly",
-                animationSpeed: "fast"
+//            $(".main-btn").wheelmenu({
+//                trigger: "click",
+//                animation: "fly",
+//                animationSpeed: "fast"
+//            });
+//            $(document).on("click",'.relation-node',function(event){
+//                changeHash("#message");
+//            });
+            var _this = this;
+            $(".relation-node").touch(touchEvent.click,function(event){
+                var category = event.$this.data("cate_en");
+                var data = _this.humansData[category];
+                util.$ls("humanspage",data);
+                changeHash("#humans",data);
             });
-            $(document).on("click",'.relation-node',function(event){
-                changeHash("#message");
-            });
+            $(".relation-node").touch(touchEvent.longtouch,function(event){
+                changeHash("#addRelation",{category:event.$this.data("category")});
+            })
+        },
+        dealHumansData:function(){
+            var data = this.data;
+            this.humansData = {};
+            for(var i = 0; i < data.length; i++){
+                var relative = data[i]["relative"];
+                if(!this.humansData[relative]){
+                    this.humansData[relative] = [];
+                }
+                this.humansData[relative].push(data[i]);
+            }
         },
         /**
          * 画svg
@@ -75,7 +99,7 @@ define("modules/relative/relative",['util','superObject','draw'],function(){
             return pos;
         }
     });
-    return function(html){
-        new relative(html);
+    return function(html,data){
+        new relative(html,data);
     }
 });
