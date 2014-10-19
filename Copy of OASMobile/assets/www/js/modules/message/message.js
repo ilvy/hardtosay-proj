@@ -1,19 +1,22 @@
 /**
  * Created by Administrator on 14-10-11.
  */
-define("modules/message/message",['util','superObject'],function(){
+define("modules/message/message",['util','superObject','socketManager'],function(){
 
     var message = superObject.extend({
-
-        initialize:function(html){
+        data:{},
+        initialize:function(html,data){
             $("#content").html(html);
+            this.data = JSON.parse(util.$ls("message"));//data;
             this.initHeader();
             this.addListener();
+            this.renderMessage();
         },
         initHeader:function(){
-            $(".app_title").html("开口...");
+            $(".app_title").html(this.data.name);
         },
         addListener:function(){
+            var _this = this;
             $(function(){
                 $("#add-ms-btn").css({
                     left:(wW - $("#add-ms-btn").width()) / 2
@@ -30,7 +33,7 @@ define("modules/message/message",['util','superObject'],function(){
                     var $this = $(this);
                     var action = $this.data("action");
                     $(".spare-input").data("action",action).removeClass("spare-input").appendTo($(".msg-list"));
-                    $('<div class="message-block spare-input left"><div class="ms-content" contenteditable="true"></div></div>').appendTo($("body"));
+                    $('<div class="message-block spare-input right"><div class="ms-content" contenteditable="true"></div></div>').appendTo($("body"));
                     $("html,body").animate({
                         scrollTop:$("body").height()
                     },1000);
@@ -42,14 +45,18 @@ define("modules/message/message",['util','superObject'],function(){
                  */
                 $("#send-btn").on("click",function(){
                     var $content = $("#msg-list .message-block:last .ms-content");
-                    var paras = $content.contents().filter(function(){
+                    var contents = $content.contents().filter(function(){
                         return this.nodeType == 3;
                     }).text();
                     $content.find("> div").each(function(){
                         //TODO 过滤用户输入非法字符
-                        paras += "\n"+$(this).html();
+                        contents += "\n"+$(this).html();
                     });
-                    //alert(paras);
+                    socket.sendMessage(protocolConfig.apology,{
+                        sender:"test1",
+                        receiver:_this.data.name,
+                        message:contents
+                    });
                     $("#add-ms-btn").css("display","block");
                     $("#send-btn").css("display","none");
                     $content.addClass("msg-display").attr("contenteditable",false);
@@ -58,9 +65,19 @@ define("modules/message/message",['util','superObject'],function(){
                     changeHash("#detailmsg");
                 });
             })
+        },
+        renderMessage:function(){
+            var data = this.data;
+            var msglistStr = '';
+            for(var i = 0; i < data.length; i++){
+                var record = data[i];
+                msglistStr += ' <div class="message-block left" style="height:initial;"><div class="ms-content msg-display" data-type="'+record["type"]+'">' +
+                    (record['message']?record['message']:"")+'</div></div>';
+            }
+            $("#msg-list").html(msglistStr);
         }
     });
-    return function(html){
-        new message(html);
+    return function(html,data){
+        new message(html,data);
     }
 })

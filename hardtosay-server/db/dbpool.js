@@ -9,7 +9,7 @@ var pool = poolModule.Pool({
     name:'mongodb',
     create:function(callback){
         var server_options = {auto_reconnect:false,poolSize:10};
-        var db_options = {safe:true,j:true,w:1,fsync:true};
+        var db_options = {safe:true,w:1,fsync:true};
         var mongoserver = new mongodb.Server('localhost',27017,server_options);
         var db = new mongodb.Db('test',mongoserver,db_options);
         db.open(function(err,db){
@@ -23,7 +23,7 @@ var pool = poolModule.Pool({
     destroy:function(db){
         db.close();
     },
-    max:10,
+    max:5,
     min:2,
     idleTimeoutMillis:15000,
     log:true

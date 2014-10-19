@@ -7,7 +7,9 @@ var protocolConfig = require("./protocolConfig"),
     async = require("async"),
     response = require("./response").response,
     session = require("./session").session,
-    pushMessage = require("../JPush/JPush").pushMessage;
+    pushMessage = require("../JPush/JPush").pushMessage,
+    userOperate = require("../dao/useroperateDao"),
+    messageDao = require("../dao/messageDao");
 var io,
     online_users = {};
 
@@ -16,7 +18,8 @@ function SocketServer(server){
     io.on("connection",function(socket){
         console.log("new connection");
         socketLogin(socket);
-        appology(socket);
+        message(socket);
+        apology(socket);
     });
 }
 
@@ -64,10 +67,17 @@ function socketLogin(socket){
             return;
         }
         response.socket(userName,socket);
-        response.send(userName,protocolConfig.LOGIN,{
-            flag:1,
-            msg:"socket 登录成功!"
-        });
+        userOperate.selectRelatives(userName,function(err,results){
+            if(err){
+                console.log(err);
+            }else{
+                response.send(userName,protocolConfig.LOGIN,{
+                    flag:1,
+                    msg:"socket 登录成功!",
+                    data:results
+                });
+            }
+        })
     });
 }
 
@@ -75,18 +85,49 @@ function socketLogin(socket){
  *
  * @param socket
  */
-function appology(socket){
-    socket.on(protocolConfig.APPOLOGY,function(data){
+function message(socket){
+    socket.on(protocolConfig.MESSAGE,function(data){
+        var relative_id = data.relative_id,sender = data.sender;
+        var position = {
+            receiver:relative_id,
+            sender:sender
+        };
+
+        messageDao.selectMessages(position,function(err,results){
+            if(err){
+                console.log(err);
+                response.send(socket,protocolConfig.MESSAGE,{
+                    flag:0,
+                    msg:"get message failed",
+                    data:err
+                })
+            }else{
+                response.send(socket,protocolConfig.MESSAGE,{
+                    flag:1,
+                    msg:"get message success",
+                    data:results
+                });
+            }
+        })
+    })
+}
+
+/**
+ *
+ * @param socket
+ */
+function apology(socket){
+    socket.on(protocolConfig.APOLOGY,function(data){
         console.log(data);
         var sender = data.sender;
-        var userName = data.name,auth;
+        var userName = sender,auth;
         if(!(auth = session.authority(userName))){//session无登录记录
             return;
         }
-        var msgObj = {type:protocolConfig.APPOLOGY};
+        var msgObj = {type:protocolConfig.APOLOGY};
         msgObj.sender = data.sender;
         msgObj.receiver = data.receiver;
-        msgObj.message = data.msg;
+        msgObj.message = data.message;
         msgObj.time = new Date();
         //从session中查询目标用户是否已经登录，若未登录，存于数据库，并推送，若已经登录，直接发送消息即可
         //1、从session中查询目标用户
@@ -98,7 +139,10 @@ function appology(socket){
                     console.log(err);
                 }else{
                     //2、推送
-                    pushMessage("android",msgObj.receiver,msgObj.message,"推送消息");
+                    pushMessage("android",msgObj.receiver,{
+                        content:msgObj.message,
+                        title:"推送消息"
+                    });
                 }
             });
         }else{
@@ -109,7 +153,10 @@ function appology(socket){
                 }else{
                     //2、直接发送给接收用户
                     var receiveSocket = response.socket(msgObj.receiver);
-                    receiveSocket.emit(protocolConfig.APPOLOGY,msgObj);
+                    if(receiveSocket){
+                        receiveSocket.emit(protocolConfig.APOLOGY,msgObj);
+                    }
+
                 }
             })
         }

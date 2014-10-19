@@ -177,7 +177,7 @@ function loadURL(url) {
                 console.log(url + "模板加载成功");
                 //模板加载成功后加载js,加载完js后执行该js
                 if (typeof callbacks[mn] == "function")
-                    callbacks[mn](data);
+                    callbacks[mn](data,deliverData);
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 //container.html('<h4 style="margin-top:10px; display:block; text-align:left"><i class="fa fa-warning txt-color-orangeDark"></i> Error 404! Page not found.</h4>');
@@ -187,7 +187,7 @@ function loadURL(url) {
     } else {
 //        drawBreadCrumb();
         if (typeof callbacks[mn] == "function")
-            callbacks[mn](templates[url]);
+            callbacks[mn](templates[url],deliverData);
     }
     //直接处理模块对应的回调
 
@@ -218,8 +218,12 @@ function define(moduleName, jsDependences, callback) {
 /*
  *手动变更hash值
 */
-function changeHash(hash) {
+var deliverData;//页面间传参
+function changeHash(hash,data) {
     window.location.hash = hash;
+    if(arguments.length == 2){
+        deliverData = data;
+    }
 }
 
 function convertHashToURL(){

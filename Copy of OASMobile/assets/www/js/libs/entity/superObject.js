@@ -11,8 +11,8 @@
     }
     superObject.extend = function(obj){
         var subObj = null;
-        var Class = function(argu){
-            this.initialize(argu);
+        var Class = function(argu,data){
+            this.initialize.apply(this,arguments);
         };
         Class.prototype = {
             initialize:function(argu){

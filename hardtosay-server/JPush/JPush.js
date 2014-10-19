@@ -35,26 +35,26 @@ exports.broadcast = function(pf,pushMsg){
     );
 }
 
-jpushclient.push().setPlatform("android").setAudience(JPush.alias('Test2')).setMessage("jpush server sdk push","sdk test").send(
-    function(err,res){
-        if(err){
-            console.log(err);
-        }else{
-            console.log('Sendno: ' + res.sendno);
-            console.log('Msg_id: ' + res.msg_id);
-        }
-    }
-);
-jpushclient.push().setPlatform("android").setAudience(JPush.ALL)
-    .setNotification(JPush.android("jpush sdk notification test","notification test"))
-    .setMessage("jpush test content")
-    .send(
-    function(err,res){
-        if(err){
-            console.log("error:"+err.message);
-        }else{
-            console.log('Sendno: ' + res.sendno);
-            console.log('Msg_id: ' + res.msg_id);
-        }
-    }
-);
+//jpushclient.push().setPlatform("android").setAudience(JPush.alias('Test2')).setMessage("jpush server sdk push","sdk test").send(
+//    function(err,res){
+//        if(err){
+//            console.log(err);
+//        }else{
+//            console.log('Sendno: ' + res.sendno);
+//            console.log('Msg_id: ' + res.msg_id);
+//        }
+//    }
+//);
+//jpushclient.push().setPlatform("android").setAudience(JPush.ALL)
+//    .setNotification(JPush.android("jpush sdk notification test","notification test"))
+//    .setMessage("jpush test content")
+//    .send(
+//    function(err,res){
+//        if(err){
+//            console.log("error:"+err.message);
+//        }else{
+//            console.log('Sendno: ' + res.sendno);
+//            console.log('Msg_id: ' + res.msg_id);
+//        }
+//    }
+//);

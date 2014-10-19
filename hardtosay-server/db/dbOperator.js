@@ -45,7 +45,7 @@ function save(table_name,obj,callback){
             collection.insert(obj,function(err,docs){
                 callback(err,docs);
                 console.log(docs);
-                pool.release();
+                pool.release(db);
             });
         }
     });
@@ -69,6 +69,7 @@ function select(table_name,position,callback){
                 }else{
                     callback(err,docs);
                 }
+                pool.release(db);
             });
         }
     });

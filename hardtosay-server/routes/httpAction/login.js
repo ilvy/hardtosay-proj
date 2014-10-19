@@ -6,7 +6,8 @@ var protocolConfig = require("../../socket/protocolConfig"),
     dbOperator = require("../../db/dbOperator"),
     async = require("async"),
     response = require("../response"),
-    session = require("../../socket/session").session;
+    session = require("../../socket/session").session,
+    userOperate = require("../../dao/useroperateDao");
 
 /**
  *
@@ -25,6 +26,7 @@ exports.login = function(req,res){
                 if(results[0] && results[0].length > 0){
                     session.authority(user.name,user);//session记录用户登录信息
                     response.success(res,"login success",{});
+
                 }else{
                     response.failed(res,"login failed",{});
                 }
@@ -33,8 +35,6 @@ exports.login = function(req,res){
         });
     }
 };
-
-
 
 /**
  * 检查用户是否已经存在

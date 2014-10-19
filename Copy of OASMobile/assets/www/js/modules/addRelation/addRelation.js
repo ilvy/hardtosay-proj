@@ -9,10 +9,14 @@
 define("modules/addRelation/addRelation",['util','superObject'],function(){
 
     var addRelation = superObject.extend({
-        initialize:function(html){
+        data:{},
+        initialize:function(html,data){
             $("#content").html(html);
+            this.data = data;
+            this.addListener();
         },
         addListener:function(){
+            $(".app_title").html(this.data.category);
             $("#content").on("click",".add-attention",function(){
 
             })
@@ -21,7 +25,7 @@ define("modules/addRelation/addRelation",['util','superObject'],function(){
 
         }
     });
-    return function(html){
-        new addRelation(html);
+    return function(html,data){
+        new addRelation(html,data);
     }
 });

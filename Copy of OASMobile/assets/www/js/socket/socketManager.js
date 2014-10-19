@@ -9,6 +9,7 @@ function Socket(host,port,cb){
     this.onError();
     this.onFailed();
     this.onLogin();
+//    this.onMessage();
 }
 
 Socket.prototype.connect = function(host,port){
@@ -41,8 +42,11 @@ Socket.prototype.onFailed = function(){
     })
 }
 
-Socket.prototype.sendMessage = function(event,msgObj){
+Socket.prototype.sendMessage = function(event,msgObj,cb){
     this.socket.emit(event,msgObj);
+    if(cb){
+        socket.onMessage(event,cb);
+    }
 }
 
 var socket;
@@ -59,6 +63,10 @@ var socket;
 Socket.prototype.onLogin = function(){
     this.socket.on("login",function(data){
         console.log(data);
+        if(data.flag == 1){
+            changeHash("#relative",data);
+            util.$ls("humansData",data.data);
+        }
     });
 }
 
@@ -74,10 +82,8 @@ Socket.prototype.onAddRelation = function(){
     });
 }
 
-Socket.prototype.onMessage = function(){
-    this.socket.on("message",function(data){
-
-    });
+Socket.prototype.onMessage = function(protocol,cb){
+    this.socket.on(protocol,cb);
 }
 
 Socket.prototype.onReply = function(){
@@ -85,3 +91,8 @@ Socket.prototype.onReply = function(){
 
     });
 }
+
+var protocolConfig = {
+    apology:"apology",
+    message:"message"
+};

@@ -84,153 +84,23 @@ var util = {
         var time1 = date1.getTime(),
             time2 = date2.getTime();
         return (time2-time1) / (24*3600*1000) + 1;
+    },
+    $ls:function(key,value){
+        if(arguments.length == 2){
+            window.localStorage.setItem("hardtosay_"+key,typeof value == 'object'?JSON.stringify(value):value);
+        }else if(arguments.length == 1){
+            var res = window.localStorage.getItem("hardtosay_"+key);
+            return res;
+        }
+
+    },
+    $ss:function(key,value){
+        if(arguments.length == 2){
+            window.sessionStorage.setItem("hardtosay_"+key,typeof value == 'object'?JSON.stringify(value):value);
+        }else if(arguments.length == 1){
+            var res = window.sessionStorage.getItem("hardtosay_"+key);
+            return res;
+        }
     }
 }
 
-$.extend(util.resortTablePlugin.prototype,{
-
-    renderTable:function(){
-        var theadStr = '<tr>';
-        var sortClass='';
-        var tdNum = 0;
-        for(var i in this.dataSource){
-            if(!tdNum){
-                tdNum = this.dataSource[i].length;
-            }
-            sortClass='sorting';
-            theadStr += '<th class="'+sortClass+' sort_th" id="th_'+i+'" role="columnheader" aria-controls="datatable_col_reorder" aria-sort="ascending">'+i+'</th>';
-        }
-        theadStr += '</tr>';
-        $(this.theadSelector).html(theadStr);
-        this.addSortingListener();
-        var tbodyStr = '';
-        for(i = 0; i < tdNum; i++){
-            var p = i % 2 ? "odd":"even";
-            var trStr = '<tr id="tr'+i+'" class="'+p+'">';
-            for(var j in this.dataSource){
-                var width = $("#th_"+j).width();
-                trStr += '<td style="width: '+width+'px">'+this.dataSource[j][i]+'</td>';
-            }
-            trStr += '</tr>';
-            tbodyStr += trStr;
-        }
-        $(this.tbodySelector).html(tbodyStr);
-    },
-    addSortingListener:function(){
-        var that = this;
-        $(function(){
-            $(that.theadSelector+" "+that.sort_thSelector).bind("click",function(){
-                var $this = $(this);
-                var sortType = '';
-                var zbName = $this.attr("id");
-                zbName = zbName.substring(
-                zbName.indexOf("th_")+3);
-                $this.removeClass("sorting");
-                if($this.hasClass("sorting_asc")){
-                    $this.removeClass("sorting_asc").addClass("sorting_desc");
-                    sortType = 'desc';
-                }else{
-                    $this.removeClass("sorting_desc").addClass("sorting_asc");
-                    sortType = 'asc';
-                }
-                that.reSortTable(zbName,sortType);
-            })
-        })
-    },
-    /**
-     * @desc:根据指标名重新排序，
-     * @param zbName：同比，环比
-     */
-    reSortTable:function(zbName,sortType){
-        var sortDatas = this.dataSource[zbName];
-        var len = sortDatas.length;
-        var sortIndexs = this.sortIndexs[zbName];
-
-        if(!this.sortIndexs[zbName]){
-            var copySortDatas = sortDatas.slice();
-//            for(var i = 0; i < len; i++){        //拷贝一份数据进行排序
-//                copySortDatas[i] = sortDatas[i];
-//            }
-            this.sortIndexs[zbName] = [];
-            sortIndexs = this.sortIndexs[zbName];
-            for(var i = 0; i < len; i++){
-                sortIndexs[i] = i;
-            }
-            this.quickSort(sortIndexs,copySortDatas,0,len - 1);
-        }
-
-        this.reRenderTable(sortIndexs,sortType);
-    },
-    reRenderTable:function(sortIndexs,sortType){
-        var len = sortIndexs.length;
-        var tbodyHtml = '';
-        if(sortType == 'asc'){
-            for(var i = 0; i < len; i++){
-                tbodyHtml += $("#tr"+sortIndexs[i])[0].outerHTML;
-            }
-        }else{
-            for(var i = len - 1; i >= 0; i--){
-                tbodyHtml += $("#tr"+sortIndexs[i])[0].outerHTML;
-            }
-        }
-
-        $(this.tbodySelector).html(tbodyHtml);
-    },
-    /**
-     * @desc:快速排序
-     * @param sortIndexs:对原始数组的下标排序
-     * @param array:待排序数组
-     * @param l
-     * @param r
-     */
-    quickSort:function(sortIndexs,array,l,r){
-        if(l >= r){
-            return;
-        }
-        var x = array[l];
-        var si = sortIndexs[l];
-        var i = l,j = r;
-        while(i < j){
-            while(i < j&& this.formatNumber(array[j]) >= this.formatNumber(x)){
-                j--;
-            }
-            if(i < j){
-                array[i] = array[j];
-                sortIndexs[i] = sortIndexs[j];
-                i++;
-            }
-
-            while(i < j&&this.formatNumber(array[i]) <= this.formatNumber(x)){
-                i++;
-            }
-            if(i < j){
-                array[j] = array[i];
-                sortIndexs[j] = sortIndexs[i];
-                j--;
-            }
-
-        }
-        array[i] = x;
-        sortIndexs[i] = si;
-        this.quickSort(sortIndexs,array,l,i-1);
-        this.quickSort(sortIndexs,array,i+1,r);
-    },
-
-    /**
-     * @desc:格式化高位带‘,’的数字
-     * @param bigNum
-     * @returns {*}
-     */
-    formatNumber:function(bigNum){
-        if(bigNum.split('-').length != 1){
-            return bigNum;
-        }
-        var numParts = bigNum.split(",");
-        var resNum = '';
-        var len = numParts.length;
-        for(var i = 0; i < len; i++){
-            resNum += numParts[i];
-        }
-        return Number(resNum);
-    }
-})
