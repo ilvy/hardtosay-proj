@@ -5,11 +5,14 @@
 
 function Socket(host,port,cb){
     this.socket = this.connect(host,port);
+    this.protocols = {};
     this.onConnect(cb);
     this.onError();
     this.onFailed();
     this.onLogin();
 //    this.onMessage();
+    this.onApology();
+    this.onMessageAck();
 }
 
 Socket.prototype.connect = function(host,port){
@@ -68,6 +71,7 @@ Socket.prototype.onLogin = function(){
             util.$ls("humansData",data.data);
         }
     });
+    this.protocols["login"] = protocolConfig.login;
 }
 
 Socket.prototype.onRegister = function(){
@@ -83,16 +87,73 @@ Socket.prototype.onAddRelation = function(){
 }
 
 Socket.prototype.onMessage = function(protocol,cb){
+    if(this.isActiveProtocol(protocol)){
+        return;
+    }
     this.socket.on(protocol,cb);
+    this.protocols[protocol] = protocol;
+}
+
+Socket.prototype.onApology = function(){
+    this.socket.on(protocolConfig.apology,function(data){
+        switch (currentPage){
+            case "relative":
+                break;
+            case "humans":
+                break;
+            case "message":
+                var msglistStr = "";
+                msglistStr += ' <div class="message-block left" style="height:initial;"><div class="ms-content msg-display" data-type="'+data["type"]+'">' +
+                    (data['message']?data['message']:"")+'</div></div>';
+                $("#msg-list").append(msglistStr);
+                break;
+        }
+    })
 }
 
 Socket.prototype.onReply = function(){
-    this.socket.on("reply",function(data){
+    this.socket.on(protocolConfig.reply,function(data){
 
     });
 }
 
+/**
+ * 消息发送成功应答
+ */
+Socket.prototype.onMessageAck = function(){
+    if(this.isActiveProtocol(protocolConfig.message_ack)){
+        return;
+    }
+    this.socket.on(protocolConfig.message_ack,function(data){
+        clearTimeout(data.interval);//移除信息发送失败定时器
+        $('[message_id="'+data.message_id+'"]').siblings("sending").remove();//TODO 移除发送中的标志
+    });
+    this.protocols[protocolConfig.message_ack] = protocolConfig.message_ack;
+}
+
+/**
+ * TODO 查询历史记录
+ */
+
+/**
+ * 该协议是否已经在监听状态
+ * @param protocol
+ * @returns {boolean}
+ */
+Socket.prototype.isActiveProtocol = function(protocol){
+    if(this.protocols[protocol]){
+        return true;
+    }
+    return false;
+}
+
+/**
+ * 协议配置管理
+ */
 var protocolConfig = {
     apology:"apology",
-    message:"message"
+    message:"message",
+    message_ack:"message_ack",
+    reply:"reply"
+
 };

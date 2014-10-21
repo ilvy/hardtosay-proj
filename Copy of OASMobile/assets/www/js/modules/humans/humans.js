@@ -1,12 +1,13 @@
 /**
  * Created by Administrator on 14-10-16.
  */
-define("modules/humans/humans",['util','superObject','socketManager'],function(){
+define("modules/humans/humans",['util','superObject','socketManager','messageManager'],function(){
 
     var humans = superObject.extend({
 
         data:{},
         initialize:function(html,data){
+            currentPage = "humans";
             this.data = JSON.parse(util.$ls("humanspage"));//data;
             $("#content").html(html);
             this.addListener();
@@ -24,10 +25,12 @@ define("modules/humans/humans",['util','superObject','socketManager'],function()
                 //TODO 优化 若无新数据，直接从缓存中读取
                 socket.sendMessage(protocolConfig.message,{
                     sender:util.$ls("host"),
-                    relative_id:relativeId
+                    relative_id:relativeId,
+                    newestTime:msgManager.getNewestTime(relativeId)
                 },function(data){
                     if(data.flag == 1){
-                        util.$ls("message",data.data);
+//                        util.$ls("message",data.data);
+                        msgManager.add(relativeId,data.data);
                         changeHash("#message",relative);
                     }
                 });

@@ -1,19 +1,22 @@
 /**
  * Created by Administrator on 14-10-11.
  */
-define("modules/message/message",['util','superObject','socketManager'],function(){
+define("modules/message/message",['util','superObject','socketManager','messageManager'],function(){
 
     var message = superObject.extend({
         data:{},
+        relative:{},
         initialize:function(html,data){
+            currentPage = "message";
             $("#content").html(html);
-            this.data = JSON.parse(util.$ls("message"));//data;
+            this.data = msgManager.getAll(data.relative_id);//data;
+            this.relative = data;
             this.initHeader();
             this.addListener();
             this.renderMessage();
         },
         initHeader:function(){
-            $(".app_title").html(this.data.name);
+            $(".app_title").html(this.relative.name);
         },
         addListener:function(){
             var _this = this;
@@ -52,14 +55,26 @@ define("modules/message/message",['util','superObject','socketManager'],function
                         //TODO 过滤用户输入非法字符
                         contents += "\n"+$(this).html();
                     });
-                    socket.sendMessage(protocolConfig.apology,{
-                        sender:"test1",
-                        receiver:_this.data.name,
-                        message:contents
-                    });
+                    var message_id = new Date().getTime();//以时间戳标示发出信息，用于服务端应答该信息
+                    var msgObj = {
+                        sender:util.$ls("host"),
+                        receiver:_this.relative.name,
+                        message:contents,
+                        message_id:message_id,
+                        interval:i
+                    };
+                    var i = setTimeout(function(){
+                        $("[message_id='"+message_id+"']").addClass("exlamation").siblings("sending").remove();
+
+                    },15*1000);//设置15s发送失败
+                    socket.sendMessage(protocolConfig.apology,msgObj);
                     $("#add-ms-btn").css("display","block");
                     $("#send-btn").css("display","none");
-                    $content.addClass("msg-display").attr("contenteditable",false);
+                    $content.addClass("msg-display").attr("contenteditable",false).attr("message_id",message_id);
+                    $("#msg-list .message-block:last").css({
+                        height:"initial",
+                        "overflow-y":"initial"
+                    }).append('<span class="icon-spinner icon-spin sending"></span>');
                 });
                 $("#msg-list").on("click",".msg-display",function(){
                     changeHash("#detailmsg");
@@ -71,7 +86,9 @@ define("modules/message/message",['util','superObject','socketManager'],function
             var msglistStr = '';
             for(var i = 0; i < data.length; i++){
                 var record = data[i];
-                msglistStr += ' <div class="message-block left" style="height:initial;"><div class="ms-content msg-display" data-type="'+record["type"]+'">' +
+                var posClass = record["receiver"] == this.relative.name?"right":"left";
+                msglistStr += ' <div class="message-block '+posClass+'" style="height:initial;">' +
+                    '<div class="ms-content msg-display" data-type="'+record["type"]+'" message_id="'+record["message_id"]+'">' +
                     (record['message']?record['message']:"")+'</div></div>';
             }
             $("#msg-list").html(msglistStr);

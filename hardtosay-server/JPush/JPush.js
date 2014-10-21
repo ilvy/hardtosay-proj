@@ -6,16 +6,9 @@ var JPush = require('jpush-sdk');
 
 var jpushclient = JPush.buildClient('f873491f324c8367d5823634','90afa9b6f9891f87b642fdb9');
 
-exports.pushMessage = function(pf,userName,pushMsg){
+exports.pushMessage = function(pf,userName,pushMsg,cb){
     jpushclient.push().setPlatform(pf).setAudience(JPush.alias(userName)).setMessage(pushMsg.content,pushMsg.title).send(
-        function(err,res){
-            if(err){
-                console.log(err);
-            }else{
-                console.log('Sendno: ' + res.sendno);
-                console.log('Msg_id: ' + res.msg_id);
-            }
-        }
+        cb
     );
 }
 

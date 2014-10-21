@@ -9,7 +9,8 @@ var protocolConfig = require("./protocolConfig"),
     session = require("./session").session,
     pushMessage = require("../JPush/JPush").pushMessage,
     userOperate = require("../dao/useroperateDao"),
-    messageDao = require("../dao/messageDao");
+    messageDao = require("../dao/messageDao"),
+    util = require("../util/util");
 var io,
     online_users = {};
 
@@ -90,7 +91,8 @@ function message(socket){
         var relative_id = data.relative_id,sender = data.sender;
         var position = {
             receiver:relative_id,
-            sender:sender
+            sender:sender,
+            newestTime:data.newestTime
         };
 
         messageDao.selectMessages(position,function(err,results){
@@ -128,7 +130,8 @@ function apology(socket){
         msgObj.sender = data.sender;
         msgObj.receiver = data.receiver;
         msgObj.message = data.message;
-        msgObj.time = new Date();
+        msgObj.time = util.formatDate(new Date(),true);
+        msgObj.message_id = data.message_id;
         //从session中查询目标用户是否已经登录，若未登录，存于数据库，并推送，若已经登录，直接发送消息即可
         //1、从session中查询目标用户
         var receiverAuth = session.authority(msgObj.receiver);
@@ -138,10 +141,22 @@ function apology(socket){
                 if(err){
                     console.log(err);
                 }else{
-                    //2、推送
+                    //2、应答发送方，发送成功
+                    socket.emit("message_ack",{
+                        message_id:msgObj.message_id,
+                        interval:data.interval
+                    });
+                    //3、推送
                     pushMessage("android",msgObj.receiver,{
                         content:msgObj.message,
                         title:"推送消息"
+                    },function(err,res){
+                        if(err){
+                            console.log(err);
+                        }else{
+                            console.log('Sendno: ' + res.sendno);
+                            console.log('Msg_id: ' + res.msg_id);
+                        }
                     });
                 }
             });
@@ -151,7 +166,12 @@ function apology(socket){
                 if(err){
                     console.log(err);
                 }else{
-                    //2、直接发送给接收用户
+                    //2、应答发送方，发送成功
+                    socket.emit("message_ack",{
+                        message_id:msgObj.message_id,
+                        interval:data.interval
+                    });
+                    //3、直接发送给接收用户
                     var receiveSocket = response.socket(msgObj.receiver);
                     if(receiveSocket){
                         receiveSocket.emit(protocolConfig.APOLOGY,msgObj);

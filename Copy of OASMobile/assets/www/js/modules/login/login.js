@@ -29,8 +29,8 @@ define("modules/login/login",['util','superObject','socketManager'],function(){
                     type:"get",
                     success:function(data){
                         console.log(data);
-                        util.$ls("host",name);
                         if(data.flag){
+                            util.$ls("host",name);
                             socket = new Socket("localhost",5000,function(socket){
                                 socket.emit("login",{user:{name:name}});
                             });

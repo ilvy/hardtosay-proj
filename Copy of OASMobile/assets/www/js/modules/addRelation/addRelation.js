@@ -11,6 +11,7 @@ define("modules/addRelation/addRelation",['util','superObject'],function(){
     var addRelation = superObject.extend({
         data:{},
         initialize:function(html,data){
+            currentPage = "addRelation";
             $("#content").html(html);
             this.data = data;
             this.addListener();
