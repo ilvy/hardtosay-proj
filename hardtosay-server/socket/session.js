@@ -24,5 +24,14 @@ Session.prototype.authority = function(userName,auth){
     }
 }
 
+/**
+ * 删除session中的权限
+ * @param userName
+ */
+Session.prototype.removeAuth = function(userName){
+    if(this.authorities[userName]){
+        delete this.authorities[userName];
+    }
+}
 
 exports.session = new Session();

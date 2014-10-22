@@ -67,6 +67,41 @@
             background-color: #cecece;
             display: none;
         }
+        .exlamation{
+            content: "!";
+            font-size: 24px;
+            position: absolute;
+            left: -26px;
+            bottom: 0px;
+            color: red;
+        }
+        .sending{
+            font-size: 24px;
+            position: absolute;
+            left: -26px;
+            bottom: 0px;
+            color: #CDCDCD;
+        }
+        .msg_reply_btn_group{
+            position: absolute;
+            right: -80px;
+            bottom: 0;
+        }
+        .msg_reply_btn{
+            display: inline-block;
+            float: left;
+            padding: 3px;
+            border: 1px solid blue;
+            margin-left: 3px;
+            cursor: pointer;
+        }
+        .msg_reply_mask{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(225,225,225,0.5);
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -86,16 +121,28 @@
     </header>
 
     <section id="msg-list" class="msg-list">
-        <div class="message-block left">
+        <div class="message-block left ">
             <div class="ms-content" contenteditable="true">
-
+                <div class="msg_reply_mask">
+                    拒绝了你哦
+                </div>
             </div>
+
+            <div class="msg_reply_btn_group">
+                <div class="msg_reply_btn reply_access">接受</div>
+                <div class="msg_reply_btn reply_reject">拒绝</div>
+            </div>
+
         </div>
         <div class="message-block right">
-            <div class="ms-content" contenteditable="true">
+            <div class="ms-content " contenteditable="true">
 
             </div>
+            <span class="sending icon-spinner icon-spin">
+
+            </span>
         </div>
+
     </section>
     <div class="message-block left spare-input">
         <div class="ms-content" contenteditable="true">
@@ -165,5 +212,6 @@
             window.location.href = "receiveMsg.html";
         });
     });
+    alert(new Date(1413875655578))
 </script>
 </html>

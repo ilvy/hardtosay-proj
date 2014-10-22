@@ -24,14 +24,17 @@ Response.prototype.socket = function(userName,socket){
 
 Response.prototype.removeSocket = function(userName,socket){
     var objSockets = this.sockets[userName];
-    if(objSockets && objSockets.length == 1){
+//    if(objSockets && objSockets.length == 1){
+//        delete objSockets;
+//    }
+//    for(var i = 0; i < objSockets.length; i++){
+//        if(objSockets[i] == socket){
+//            objSockets.splice(i,i+1);
+//            break;
+//        }
+//    }
+    if(objSockets){
         delete objSockets;
-    }
-    for(var i = 0; i < objSockets.length; i++){
-        if(objSockets[i] == socket){
-            objSockets.splice(i,i+1);
-            break;
-        }
     }
 }
 

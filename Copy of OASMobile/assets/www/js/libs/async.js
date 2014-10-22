@@ -64,14 +64,25 @@ function loadScript(scriptName, callback) {
         callback();
         var url = convertHashToURL();
 //        var modUrl = toModUrl(url);
-        checkURL(url);
-//        if (scriptName.indexOf(modUrl)!=-1) {
-//            //callbacks[url](templates[url]);
-//            checkURL(url);
-//        }
-        
-    }
+        if(isModuleJs(scriptName,url)){
+            checkURL(url);
+        }
 
+    }
+}
+
+/**
+ * 判断当前加载js是否为模块js
+ * @param scriptName
+ * @param module
+ * @returns {boolean}
+ */
+function isModuleJs(scriptName,module){
+    scriptName = scriptName.split("/");
+    scriptName = scriptName[scriptName.length - 1];
+    module = module.split("/");
+    module = module[module.length - 1];
+    return module == scriptName;
 }
 
 /* ~ END: LOAD SCRIPTS */

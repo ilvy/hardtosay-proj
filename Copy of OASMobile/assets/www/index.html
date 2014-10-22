@@ -10,14 +10,15 @@
 <body>
     <header class="header">
         <div class="logo">
-            <img src="./images/logo.png">
+            <!--<img src="./images/logo.png">-->
+            <div class="back-btn"></div>
         </div>
         <div class="app_title">
             难开的口
         </div>
         <div style="position:absolute;right:0px;top:10px;padding: 3px 8px;background: #cdcdcd;display: inline-block;">
-            <a href="login.html" style="">
-                登录
+            <a id="logout" style="">
+                退出
             </a>
         </div>
 
@@ -77,6 +78,7 @@
 <script>
     fileConfigs = {
         socketManager:'./js/socket/socketManager.js',
+        messageManager:'./js/socket/messageManager.js',
         util:'./js/utils/util',
         superObject:'./js/libs/entity/superObject',
         draw:'./js/draw.js',
@@ -86,10 +88,11 @@
     var history = [];
     var wW = $(window).width(),wH = $(window).height();
     if(!location.hash){
-        $.defaultHash = '#relative';//changeHash('#relative');
+        $.defaultHash = '#login';//changeHash('#relative');
         changeHash($.defaultHash);
     }
 
+    var currentPage = "";
 //
 //    alert(location.hash);
 //    $(function(){

@@ -1,12 +1,13 @@
 /**
  * Created by Administrator on 14-10-16.
  */
-define("modules/humans/humans",['util','superObject','socketManager'],function(){
+define("modules/humans/humans",['util','superObject','messageManager','socketManager'],function(){
 
     var humans = superObject.extend({
 
         data:{},
         initialize:function(html,data){
+            currentPage = "humans";
             this.data = JSON.parse(util.$ls("humanspage"));//data;
             $("#content").html(html);
             this.addListener();
@@ -25,9 +26,13 @@ define("modules/humans/humans",['util','superObject','socketManager'],function()
                 socket.sendMessage(protocolConfig.message,{
                     sender:util.$ls("host"),
                     relative_id:relativeId
+//                    newestTime:msgManager.getNewestTime(relativeId)
                 },function(data){
                     if(data.flag == 1){
-                        util.$ls("message",data.data);
+//                        util.$ls("message",data.data);
+                        if(data.data.length){
+                            msgManager.add(relativeId,data.data);
+                        }
                         changeHash("#message",relative);
                     }
                 });

@@ -7,6 +7,7 @@ define("modules/relative/relative",['util','superObject','draw','touchUtil'],fun
         data:{},
         humansData:{},
         initialize:function(html,data){
+            currentPage = 'relative';
             $("#content").html(html);
             this.data = JSON.parse(util.$ls("humansData"));
             this.dealHumansData();
@@ -34,7 +35,25 @@ define("modules/relative/relative",['util','superObject','draw','touchUtil'],fun
             });
             $(".relation-node").touch(touchEvent.longtouch,function(event){
                 changeHash("#addRelation",{category:event.$this.data("category")});
-            })
+            });
+            /**
+             * 回退按钮
+             */
+            $(".back-btn").on("click",function(){
+                var currPage = $(this).data("page");
+                switch (currPage){
+                    case "relative":
+                        break;
+                    case "humans":
+                        changeHash("#relative");
+                        break;
+                    case "message":
+                        changeHash("#humans");
+                        break;
+                    case "addRelation":
+                        break;
+                }
+            });
         },
         dealHumansData:function(){
             var data = this.data;

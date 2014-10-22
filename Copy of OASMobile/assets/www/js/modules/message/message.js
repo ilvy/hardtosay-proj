@@ -1,19 +1,22 @@
 /**
  * Created by Administrator on 14-10-11.
  */
-define("modules/message/message",['util','superObject','socketManager'],function(){
+define("modules/message/message",['util','superObject','messageManager','socketManager'],function(){
 
     var message = superObject.extend({
         data:{},
+        relative:{},
         initialize:function(html,data){
+            currentPage = "message";
             $("#content").html(html);
-            this.data = JSON.parse(util.$ls("message"));//data;
+            this.data = msgManager.getAll(data.id);//data;
+            this.relative = data;
             this.initHeader();
             this.addListener();
             this.renderMessage();
         },
         initHeader:function(){
-            $(".app_title").html(this.data.name);
+            $(".app_title").html(this.relative.name);
         },
         addListener:function(){
             var _this = this;
@@ -52,17 +55,43 @@ define("modules/message/message",['util','superObject','socketManager'],function
                         //TODO 过滤用户输入非法字符
                         contents += "\n"+$(this).html();
                     });
-                    socket.sendMessage(protocolConfig.apology,{
-                        sender:"test1",
-                        receiver:_this.data.name,
-                        message:contents
-                    });
+                    var message_id = new Date().getTime();//以时间戳标示发出信息，用于服务端应答该信息
+                    var msgObj = {
+                        sender:util.$ls("host"),
+                        receiver:_this.relative.name,
+                        message:contents,
+                        message_id:message_id
+                    };
+                    msgManager.add(_this.relative.id,msgObj);//缓存发送消息
+                    msgObj.interval = setTimeout(function(){
+                        $("[message_id='"+message_id+"']").addClass("exlamation").siblings(".sending").remove();
+                        msgObj.status = 0;//标记缓存中的信息为发送失败状态
+                    },15*1000);//设置15s发送失败
+                    socket.sendMessage(protocolConfig.apology,msgObj);
                     $("#add-ms-btn").css("display","block");
                     $("#send-btn").css("display","none");
-                    $content.addClass("msg-display").attr("contenteditable",false);
+                    $content.addClass("msg-display").attr("contenteditable",false).attr("message_id",message_id);
+                    $("#msg-list .message-block:last").css({
+                        height:"initial",
+                        "overflow-y":"initial"
+                    }).append('<span class="icon-spinner icon-spin sending"></span>');
                 });
                 $("#msg-list").on("click",".msg-display",function(){
                     changeHash("#detailmsg");
+                });
+                $('#msg-list').on("click",'.msg_reply_btn',function(event){
+                    var $this = $(this);
+                    var replyObj = {};
+                    replyObj.message_id = $this.parents(".message-block").find("[message_id]").attr("message_id");
+                    replyObj.sender = util.$ls("host");
+                    replyObj.receiver = _this.relative.id;
+                    replyObj.type = $this.parents(".message-block").find(".ms-content").data("type");
+                    if($this.hasClass("reply_access")){
+                        replyObj.reply = 0;
+                    }else if($this.hasClass("reply_reject")){
+                        replyObj.reply = 1;
+                    }
+                    socket.sendMessage(protocolConfig.reply,replyObj);
                 });
             })
         },
@@ -70,9 +99,14 @@ define("modules/message/message",['util','superObject','socketManager'],function
             var data = this.data;
             var msglistStr = '';
             for(var i = 0; i < data.length; i++){
-                var record = data[i];
-                msglistStr += ' <div class="message-block left" style="height:initial;"><div class="ms-content msg-display" data-type="'+record["type"]+'">' +
-                    (record['message']?record['message']:"")+'</div></div>';
+                var record = data[i],replyBtns = "";
+                var posClass = record["receiver"] == this.relative.name?"right":
+                    (replyBtns = '<div class="msg_reply_btn_group"><div class="msg_reply_btn reply_access">接受</div>' +
+                        '<div class="msg_reply_btn reply_reject">拒绝</div></div>',"left");
+
+                msglistStr += ' <div class="message-block '+posClass+'" style="height:initial;overflow:initial;">' +
+                    '<div class="ms-content msg-display" data-type="'+record["type"]+'" message_id="'+record["message_id"]+'">' +
+                    (record['message']?record['message']:"")+'</div>'+replyBtns+'</div>';
             }
             $("#msg-list").html(msglistStr);
         }
