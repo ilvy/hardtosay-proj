@@ -41,15 +41,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="socket.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/socket/socket.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="94" column="38" selection-start="2542" selection-end="2542" vertical-scroll-proportion="0.42517483" vertical-offset="1482" max-vertical-offset="3914">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="db_tables" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/db_tables">
           <provider selected="true" editor-type-id="text-editor">
@@ -71,7 +62,7 @@
       <file leaf-file-name="useroperateDao.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dao/useroperateDao.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="0" selection-start="209" selection-end="209" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
+            <state line="7" column="17" selection-start="164" selection-end="164" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
               <folding />
             </state>
           </provider>
@@ -80,25 +71,34 @@
       <file leaf-file-name="messageDao.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dao/messageDao.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="118" selection-start="384" selection-end="384" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
+            <state line="20" column="41" selection-start="575" selection-end="575" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="513">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app.js">
+      <file leaf-file-name="user.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/user.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="0" selection-start="722" selection-end="722" vertical-scroll-proportion="0.0" vertical-offset="305" max-vertical-offset="836">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="247">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dbOperator.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db/dbOperator.js">
+      <file leaf-file-name="config.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/config.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="68" column="22" selection-start="1780" selection-end="1780" vertical-scroll-proportion="0.0" vertical-offset="785" max-vertical-offset="1596">
+            <state line="11" column="48" selection-start="199" selection-end="199" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="protocolConfig.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/socket/protocolConfig.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="10" column="26" selection-start="227" selection-end="227" vertical-scroll-proportion="0.40339702" vertical-offset="0" max-vertical-offset="471">
               <folding />
             </state>
           </provider>
@@ -127,20 +127,21 @@
         <option value="$PROJECT_DIR$/db/dbTest.js" />
         <option value="$PROJECT_DIR$/node_modules/async/package.json" />
         <option value="$PROJECT_DIR$/routes/index.js" />
-        <option value="$PROJECT_DIR$/socket/session.js" />
         <option value="$PROJECT_DIR$/routes/response.js" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/routes/httpActions.js" />
         <option value="$PROJECT_DIR$/routes/httpAction/login.js" />
         <option value="$PROJECT_DIR$/dao/useroperateDao.js" />
-        <option value="$PROJECT_DIR$/db/dbOperator.js" />
         <option value="$PROJECT_DIR$/db/dbpool.js" />
-        <option value="$PROJECT_DIR$/socket/protocolConfig.js" />
-        <option value="$PROJECT_DIR$/socket/response.js" />
         <option value="$PROJECT_DIR$/JPush/JPush.js" />
         <option value="$PROJECT_DIR$/util/util.js" />
         <option value="$PROJECT_DIR$/db_tables" />
+        <option value="$PROJECT_DIR$/db/dbOperator.js" />
+        <option value="$PROJECT_DIR$/socket/response.js" />
+        <option value="$PROJECT_DIR$/socket/session.js" />
+        <option value="$PROJECT_DIR$/socket/protocolConfig.js" />
         <option value="$PROJECT_DIR$/dao/messageDao.js" />
+        <option value="$PROJECT_DIR$/config/config.js" />
         <option value="$PROJECT_DIR$/socket/socket.js" />
       </list>
     </option>
@@ -297,6 +298,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hardtosay-server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hardtosay-server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -400,7 +415,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1448" y="-8" width="1456" height="916" extended-state="7" />
+    <frame x="-1448" y="-8" width="1456" height="916" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -408,7 +423,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17688513" sideWeight="0.8885077" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.052362707" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36398467" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37547892" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -449,69 +464,60 @@
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/socket/socket.js</url>
-          <line>122</line>
-          <option name="timeStamp" value="46" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/socket/socket.js</url>
-          <line>174</line>
-          <option name="timeStamp" value="49" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/socket/response.js</url>
           <line>16</line>
           <option name="timeStamp" value="50" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/socket/socket.js</url>
-          <line>90</line>
-          <option name="timeStamp" value="51" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/socket/socket.js</url>
-          <line>149</line>
+          <line>160</line>
           <option name="timeStamp" value="55" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/socket/socket.js</url>
-          <line>97</line>
-          <option name="timeStamp" value="56" />
+          <line>187</line>
+          <option name="timeStamp" value="74" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/socket/socket.js</url>
-          <line>98</line>
-          <option name="timeStamp" value="57" />
+          <line>133</line>
+          <option name="timeStamp" value="75" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/socket/socket.js</url>
-          <line>139</line>
-          <option name="timeStamp" value="58" />
+          <line>147</line>
+          <option name="timeStamp" value="76" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/socket/socket.js</url>
+          <line>150</line>
+          <option name="timeStamp" value="77" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/socket/socket.js</url>
+          <line>201</line>
+          <option name="timeStamp" value="79" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/socket/socket.js</url>
+          <line>241</line>
+          <option name="timeStamp" value="80" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/socket/socket.js</url>
+          <line>242</line>
+          <option name="timeStamp" value="81" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/socket/socket.js</url>
+          <line>230</line>
+          <option name="timeStamp" value="82" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="59" />
+      <option name="time" value="83" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/node_modules/async/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="48" selection-start="286" selection-end="286" vertical-scroll-proportion="0.0" vertical-offset="190" max-vertical-offset="931" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/httpActions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="456">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/httpAction/login.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="0" selection-start="734" selection-end="734" vertical-scroll-proportion="0.0" vertical-offset="63" max-vertical-offset="1045">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/socket/socket.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="85" column="34" selection-start="2152" selection-end="2152" vertical-scroll-proportion="0.0" vertical-offset="1073" max-vertical-offset="2109">
@@ -708,23 +714,9 @@
         <state line="33" column="3" selection-start="708" selection-end="708" vertical-scroll-proportion="-15.607142" vertical-offset="190" max-vertical-offset="931" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="0" selection-start="722" selection-end="722" vertical-scroll-proportion="0.0" vertical-offset="305" max-vertical-offset="836">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="45" selection-start="220" selection-end="220" vertical-scroll-proportion="0.3326572" vertical-offset="7" max-vertical-offset="589">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/httpActions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="0" selection-start="780" selection-end="780" vertical-scroll-proportion="0.703125" vertical-offset="205" max-vertical-offset="589">
           <folding />
         </state>
       </provider>
@@ -736,30 +728,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/httpAction/login.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="0" selection-start="1059" selection-end="1059" vertical-scroll-proportion="0.0" vertical-offset="609" max-vertical-offset="1064">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/AJAX.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="89" column="25" selection-start="1514" selection-end="1514" vertical-scroll-proportion="0.33263597" vertical-offset="1532" max-vertical-offset="2280">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/socket/session.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="0" selection-start="520" selection-end="520" vertical-scroll-proportion="0.0" vertical-offset="257" max-vertical-offset="627">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/socket/response.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="0" selection-start="511" selection-end="511" vertical-scroll-proportion="0.3326613" vertical-offset="234" max-vertical-offset="1520">
           <folding />
         </state>
       </provider>
@@ -771,44 +742,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/dbOperator.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="68" column="22" selection-start="1780" selection-end="1780" vertical-scroll-proportion="0.0" vertical-offset="785" max-vertical-offset="1596">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/util/loggerUtil.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="817">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/response.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="0" selection-start="300" selection-end="300" vertical-scroll-proportion="0.0" vertical-offset="96" max-vertical-offset="589">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dao/useroperateDao.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="0" selection-start="209" selection-end="209" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/socket/protocolConfig.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="26" selection-start="161" selection-end="161" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="266">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db_tables">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="49" selection-start="249" selection-end="249" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="190">
           <folding />
         </state>
       </provider>
@@ -820,16 +756,107 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/socket.io/node_modules/engine.io/lib/socket.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="130" column="0" selection-start="2581" selection-end="2581" vertical-scroll-proportion="0.33286715" vertical-offset="2232" max-vertical-offset="7239">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="1" selection-start="720" selection-end="720" vertical-scroll-proportion="0.0" vertical-offset="121" max-vertical-offset="836">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="477">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/httpActions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="0" selection-start="780" selection-end="780" vertical-scroll-proportion="0.7610063" vertical-offset="112" max-vertical-offset="589">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/response.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="0" selection-start="300" selection-end="300" vertical-scroll-proportion="0.0" vertical-offset="96" max-vertical-offset="589">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/httpAction/login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="0" selection-start="826" selection-end="826" vertical-scroll-proportion="0.0" vertical-offset="251" max-vertical-offset="1064">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dao/useroperateDao.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="17" selection-start="164" selection-end="164" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/dbOperator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="89" column="0" selection-start="2237" selection-end="2237" vertical-scroll-proportion="0.0" vertical-offset="1532" max-vertical-offset="2337">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/socket/session.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="0" selection-start="522" selection-end="522" vertical-scroll-proportion="0.71955717" vertical-offset="85" max-vertical-offset="798">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/socket/response.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="26" selection-start="956" selection-end="956" vertical-scroll-proportion="0.7527675" vertical-offset="276" max-vertical-offset="1577">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db_tables">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="49" selection-start="249" selection-end="249" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="190">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/dao/messageDao.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="118" selection-start="384" selection-end="384" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
+        <state line="20" column="41" selection-start="575" selection-end="575" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="513">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="48" selection-start="199" selection-end="199" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/socket/socket.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="94" column="38" selection-start="2542" selection-end="2542" vertical-scroll-proportion="0.42517483" vertical-offset="1482" max-vertical-offset="3914">
+        <state line="243" column="56" selection-start="7655" selection-end="7655" vertical-scroll-proportion="0.37367302" vertical-offset="4441" max-vertical-offset="5415">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/socket/protocolConfig.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="26" selection-start="227" selection-end="227" vertical-scroll-proportion="0.40339702" vertical-offset="0" max-vertical-offset="471">
           <folding />
         </state>
       </provider>

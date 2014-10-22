@@ -13,6 +13,7 @@ function Socket(host,port,cb){
 //    this.onMessage();
     this.onApology();
     this.onMessageAck();
+    this.onReply();
 }
 
 Socket.prototype.connect = function(host,port){
@@ -98,13 +99,17 @@ Socket.prototype.onApology = function(){
     this.socket.on(protocolConfig.apology,function(data){
         switch (currentPage){
             case "relative":
+                //TODO 对应关系显示消息提示
                 break;
             case "humans":
+                //TODO 对应头像显示消息提示
                 break;
             case "message":
+                msgManager.add(data.sender,data);
                 var msglistStr = "";
                 msglistStr += ' <div class="message-block left" style="height:initial;"><div class="ms-content msg-display" data-type="'+data["type"]+'">' +
-                    (data['message']?data['message']:"")+'</div></div>';
+                    (data['message']?data['message']:"")+'</div><div class="msg_reply_btn_group"><div class="msg_reply_btn reply_access">接受</div>' +
+                    '<div class="msg_reply_btn reply_reject">拒绝</div></div></div>';
                 $("#msg-list").append(msglistStr);
                 break;
         }
@@ -113,7 +118,20 @@ Socket.prototype.onApology = function(){
 
 Socket.prototype.onReply = function(){
     this.socket.on(protocolConfig.reply,function(data){
-
+        switch (currentPage){
+            case "relative":
+                //TODO 对应关系显示消息提示
+                break;
+            case "humans":
+                //TODO 对应头像显示消息提示
+                break;
+            case "message":
+                msgManager.add(data.sender,data);
+                var replyStr = '<div class="msg_reply_mask">'+(data.record?"原谅":"拒绝")+'</div>';
+                var message_id = data.message_id;
+                $('[message_id="'+message_id+'"]').append(replyStr);
+                break;
+        }
     });
 }
 
@@ -126,7 +144,7 @@ Socket.prototype.onMessageAck = function(){
     }
     this.socket.on(protocolConfig.message_ack,function(data){
         clearTimeout(data.interval);//移除信息发送失败定时器
-        $('[message_id="'+data.message_id+'"]').siblings("sending").remove();//TODO 移除发送中的标志
+        $('[message_id="'+data.message_id+'"]').siblings(".sending").remove();//TODO 移除发送中的标志
     });
     this.protocols[protocolConfig.message_ack] = protocolConfig.message_ack;
 }
@@ -154,6 +172,13 @@ var protocolConfig = {
     apology:"apology",
     message:"message",
     message_ack:"message_ack",
-    reply:"reply"
-
+    reply:"reply",
+    logout:"logout"
 };
+
+
+$("#logout").bind("click",function(){
+    var user = util.$ls("host");
+    socket.sendMessage(protocolConfig.logout,{user:user});
+    window.location.href = 'index.html';
+})

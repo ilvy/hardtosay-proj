@@ -88,5 +88,19 @@ msgManager = {
         if(record.message_id){
             return util.formatDate(new Date(record.message_id,true));
         }
+    },
+    addReply:function(receiver,reply){
+        var $msg = JSON.parse(util.$ls("message"));
+        if(!$msg || !$msg[receiver]){
+            return;
+        }
+        var msgs = $msg[receiver];
+        for(var i = 0; i < msgs.length; i++){
+            if(msgs[i].message_id == reply.message_id){
+                msgs[i].reply = reply;
+                break;
+            }
+        }
+        util.$ls("message",$msg);
     }
 }

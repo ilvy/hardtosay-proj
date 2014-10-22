@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 14-10-16.
  */
-define("modules/humans/humans",['util','superObject','socketManager','messageManager'],function(){
+define("modules/humans/humans",['util','superObject','messageManager','socketManager'],function(){
 
     var humans = superObject.extend({
 
@@ -25,12 +25,14 @@ define("modules/humans/humans",['util','superObject','socketManager','messageMan
                 //TODO 优化 若无新数据，直接从缓存中读取
                 socket.sendMessage(protocolConfig.message,{
                     sender:util.$ls("host"),
-                    relative_id:relativeId,
-                    newestTime:msgManager.getNewestTime(relativeId)
+                    relative_id:relativeId
+//                    newestTime:msgManager.getNewestTime(relativeId)
                 },function(data){
                     if(data.flag == 1){
 //                        util.$ls("message",data.data);
-                        msgManager.add(relativeId,data.data);
+                        if(data.data.length){
+                            msgManager.add(relativeId,data.data);
+                        }
                         changeHash("#message",relative);
                     }
                 });

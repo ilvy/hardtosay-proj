@@ -246,6 +246,28 @@ body{
     color: #CDCDCD;
 }
 
+.msg_reply_btn_group{
+    position: absolute;
+    right: -80px;
+    bottom: 0;
+}
+.msg_reply_btn{
+    display: inline-block;
+    float: left;
+    padding: 3px;
+    border: 1px solid blue;
+    margin-left: 3px;
+    cursor: pointer;
+}
+
+.msg_reply_mask{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(225,225,225,0.5);
+    text-align: center;
+}
+
 /***********************end message.html****************************/
 
 /************start detailmsg.html**************/

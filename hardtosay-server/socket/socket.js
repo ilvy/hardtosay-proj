@@ -10,7 +10,8 @@ var protocolConfig = require("./protocolConfig"),
     pushMessage = require("../JPush/JPush").pushMessage,
     userOperate = require("../dao/useroperateDao"),
     messageDao = require("../dao/messageDao"),
-    util = require("../util/util");
+    util = require("../util/util"),
+    replyPushmsgConfig = require("../config/config").replyPushmsgConfig;
 var io,
     online_users = {};
 
@@ -21,6 +22,8 @@ function SocketServer(server){
         socketLogin(socket);
         message(socket);
         apology(socket);
+        logout(socket);
+        reply(socket);
     });
 }
 
@@ -91,8 +94,8 @@ function message(socket){
         var relative_id = data.relative_id,sender = data.sender;
         var position = {
             receiver:relative_id,
-            sender:sender,
-            newestTime:data.newestTime
+            sender:sender
+//            newestTime:data.newestTime
         };
 
         messageDao.selectMessages(position,function(err,results){
@@ -102,13 +105,21 @@ function message(socket){
                     flag:0,
                     msg:"get message failed",
                     data:err
-                })
+                });
             }else{
                 response.send(socket,protocolConfig.MESSAGE,{
                     flag:1,
                     msg:"get message success",
                     data:results
                 });
+                //更改消息状态
+                messageDao.updateMessageStatus(position,function(err,results){
+                    if(err){
+
+                    }else{
+
+                    }
+                })
             }
         })
     })
@@ -121,7 +132,7 @@ function message(socket){
 function apology(socket){
     socket.on(protocolConfig.APOLOGY,function(data){
         console.log(data);
-        var sender = data.sender;
+            var sender = data.sender;
         var userName = sender,auth;
         if(!(auth = session.authority(userName))){//session无登录记录
             return;
@@ -161,6 +172,7 @@ function apology(socket){
                 }
             });
         }else{
+            msgObj.status = 1;
             //1、存数据
             dbOperator.save("message",msgObj,function(err,results){
                 if(err){
@@ -175,12 +187,79 @@ function apology(socket){
                     var receiveSocket = response.socket(msgObj.receiver);
                     if(receiveSocket){
                         receiveSocket.emit(protocolConfig.APOLOGY,msgObj);
+                        //4、修改消息状态
                     }
 
                 }
             })
         }
     });
+}
+
+function reply(socket){
+    socket.on(protocolConfig.REPLY,function(data){
+        //1、从session中查询目标用户
+        var receiverAuth = session.authority(data.receiver);
+        data.time = util.formatDate(new Date(),true);
+        data.status = 0;
+        if(!receiverAuth){
+            messageDao.saveReply(data,function(err,results){
+                if(err){
+                    console.log(data.sender+"发送回复失败，"+err);
+                    return;
+                }
+                //2、应答发送方，发送成功
+//                socket.emit("reply_ack",{
+//                    message_id:msgObj.message_id,
+//                    interval:data.interval
+//                });
+                //3、推送
+                pushMessage("android",data.receiver,{
+                    content:data.sender+"发来消息："+replyPushmsgConfig.apology[data.reply],
+                    title:"推送消息"
+                },function(err,res){
+                    if(err){
+                        console.log(err);
+                    }else{
+                        console.log('Sendno: ' + res.sendno);
+                        console.log('Msg_id: ' + res.msg_id);
+                    }
+                });
+            });
+        }else{
+            data.status = 1;
+            messageDao.saveReply(data,function(err,results){
+                if(err){
+                    console.log(data.sender+"发送回复失败，"+err);
+                    return;
+                }
+                //2、应答发送方，发送成功
+//                socket.emit("reply_ack",{
+//                    message_id:msgObj.message_id,
+//                    interval:data.interval
+//                });
+                //3、直接发送给接收用户
+                var receiveSocket = response.socket(data.receiver);
+                if(receiveSocket){
+                    receiveSocket.emit(protocolConfig.REPLY,data);
+                    //4、修改消息状态
+                }
+            });
+        }
+
+    })
+}
+
+function logout(socket){
+    socket.on(protocolConfig.logout,function(data){
+        var user = data.user;
+        session.removeAuth(user);
+        response.removeSocket(user);
+    });
+}
+
+function messageAck(socket){
+    socket.on()
 }
 
 /**
