@@ -37,6 +37,19 @@ exports.login = function(req,res){
 };
 
 /**
+ *
+ * @param req
+ * @param res
+ */
+exports.register = function(req,res){
+    var data = req.query;
+    var user = data.user;
+    if(user){
+
+    }
+}
+
+/**
  * 检查用户是否已经存在
  * @param cb
  */

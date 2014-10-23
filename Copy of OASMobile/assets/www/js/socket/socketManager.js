@@ -107,7 +107,8 @@ Socket.prototype.onApology = function(){
             case "message":
                 msgManager.add(data.sender,data);
                 var msglistStr = "";
-                msglistStr += ' <div class="message-block left" style="height:initial;"><div class="ms-content msg-display" data-type="'+data["type"]+'">' +
+                msglistStr += ' <div class="message-block left" style="height:initial;overflow:initial;"><div class="ms-content msg-display"' +
+                    ' data-type="'+data["type"]+'" message_id="'+data["message_id"]+'">' +
                     (data['message']?data['message']:"")+'</div><div class="msg_reply_btn_group"><div class="msg_reply_btn reply_access">接受</div>' +
                     '<div class="msg_reply_btn reply_reject">拒绝</div></div></div>';
                 $("#msg-list").append(msglistStr);
@@ -126,7 +127,7 @@ Socket.prototype.onReply = function(){
                 //TODO 对应头像显示消息提示
                 break;
             case "message":
-                msgManager.add(data.sender,data);
+                msgManager.addReply(data.sender,data);
                 var replyStr = '<div class="msg_reply_mask">'+(data.record?"原谅":"拒绝")+'</div>';
                 var message_id = data.message_id;
                 $('[message_id="'+message_id+'"]').append(replyStr);

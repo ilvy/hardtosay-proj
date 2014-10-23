@@ -28,7 +28,7 @@ failMsgManager = {
 
 /**
  * 消息管理器
- * @type {{add: add, delete: delete, getAll: getAll, getNewestTime: getNewestTime}}
+ * @type {{add: add, delete: delete, getAll: getAll, getNewestTime: getNewestTime, addReply: addReply}}
  */
 msgManager = {
     /**
@@ -95,6 +95,18 @@ msgManager = {
             return;
         }
         var msgs = $msg[receiver];
+        if(reply.length){
+            for(var i = 0; i < reply.length; i++){
+                for(var j = 0; j < msgs.length; j++){
+                    if(msgs[j].message_id == reply[i].message_id){
+                        msgs[j].reply = reply[i];
+                        break;
+                    }
+                }
+            }
+            util.$ls("message",$msg);
+            return;
+        }
         for(var i = 0; i < msgs.length; i++){
             if(msgs[i].message_id == reply.message_id){
                 msgs[i].reply = reply;

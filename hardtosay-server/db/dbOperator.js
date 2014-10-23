@@ -113,6 +113,43 @@ function select(table_name,position,sortPos,callback){
     });
 }
 
+
+function selectMessagewidthReply(position,sortPos,callback){
+    pool.acquire(function(err,db){
+        if(err){
+
+        }else{
+            var collection = db.collection("message");
+            var cursor = collection.find(position).sort(sortPos);
+            var obj = {};
+            var results = [];
+            var replyColl = db.collection("reply");
+//            while(obj = cursor.next()){
+            cursor.toArray(function(err,results){
+                for(var i = 0; i < results.length; i++){
+                    var obj = results[i];
+                    replyColl.find({message_id:obj.message_id,sender:obj.sender,receiver:obj.receiver}).toArray(function(err,docs){
+                        if(err){
+                            console.log("get reply err:"+err);
+                        }else{
+                            if(docs.length > 0){
+                                obj.reply = docs[0];
+                            }
+                        }
+                    })
+                }
+
+            })
+
+
+            callback(err,results);
+            pool.release(db);
+
+        }
+    });
+}
+
 exports.save = save;
 exports.select = select;
 exports.update = update;
+exports.selectMessagewidthReply = selectMessagewidthReply;

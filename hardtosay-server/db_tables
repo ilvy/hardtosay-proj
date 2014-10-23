@@ -1,5 +1,5 @@
 user:(user_id,name,pwd)
 relative:(host_id,host_name,relative_id,relative_name,image,relative)
 message:(type,sender,receiver,message,time)
-reply(id,message_id,type,reply,sender,receiver) type:protocol
+reply(id,message_id,type,reply,sender,receiver,time) type:protocol
 ack(id,message_id,interval)interval:发送失败后需要执行的定时器
