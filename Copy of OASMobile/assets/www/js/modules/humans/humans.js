@@ -31,7 +31,11 @@ define("modules/humans/humans",['util','superObject','messageManager','socketMan
                     if(data.flag == 1){
 //                        util.$ls("message",data.data);
                         if(data.data.length){
-                            msgManager.add(relativeId,data.data);
+                            if(data.type == 'message'){
+                                msgManager.add(relativeId,data.data);
+                            }else if(data.type == 'reply'){
+                                msgManager.addReply(relativeId,data.data);
+                            }
                         }
                         changeHash("#message",relative);
                     }

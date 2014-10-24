@@ -7,6 +7,9 @@ function Response(){
 }
 
 Response.prototype.success = function(res,msg,results){
+    if(!results){
+        results = [];
+    }
     res.send({
         flag:1,
         msg:msg,

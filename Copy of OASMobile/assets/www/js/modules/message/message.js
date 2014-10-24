@@ -87,9 +87,9 @@ define("modules/message/message",['util','superObject','messageManager','socketM
                     replyObj.receiver = _this.relative.id;
                     replyObj.type = $this.parents(".message-block").find(".ms-content").data("type");
                     if($this.hasClass("reply_access")){
-                        replyObj.reply = 0;
-                    }else if($this.hasClass("reply_reject")){
                         replyObj.reply = 1;
+                    }else if($this.hasClass("reply_reject")){
+                        replyObj.reply = 0;
                     }
                     socket.sendMessage(protocolConfig.reply,replyObj);
                 });
@@ -97,16 +97,18 @@ define("modules/message/message",['util','superObject','messageManager','socketM
         },
         renderMessage:function(){
             var data = this.data;
-            var msglistStr = '';
+            var msglistStr = '',replyStr = '';
             for(var i = 0; i < data.length; i++){
-                var record = data[i],replyBtns = "";
-                var posClass = record["receiver"] == this.relative.name?"right":
+                replyStr = "";
+                var record = data[i],replyBtns = "",reply = record.reply;
+                var posClass = record["receiver"] == this.relative.name?
+                    (replyStr = (reply?'<div class="msg_reply_mask">'+(reply.reply?"原谅":"拒绝")+'</div>':''),"right"):
                     (replyBtns = '<div class="msg_reply_btn_group"><div class="msg_reply_btn reply_access">接受</div>' +
                         '<div class="msg_reply_btn reply_reject">拒绝</div></div>',"left");
 
                 msglistStr += ' <div class="message-block '+posClass+'" style="height:initial;overflow:initial;">' +
                     '<div class="ms-content msg-display" data-type="'+record["type"]+'" message_id="'+record["message_id"]+'">' +
-                    (record['message']?record['message']:"")+'</div>'+replyBtns+'</div>';
+                    (record['message']?record['message']:"")+replyStr+'</div>'+replyBtns+'</div>';
             }
             $("#msg-list").html(msglistStr);
         }

@@ -86,7 +86,7 @@ function socketLogin(socket){
 }
 
 /**
- *
+ * 用户主动获取消息以及回复信息
  * @param socket
  */
 function message(socket){
@@ -104,12 +104,14 @@ function message(socket){
                 response.send(socket,protocolConfig.MESSAGE,{
                     flag:0,
                     msg:"get message failed",
+                    type:"message",
                     data:err
                 });
             }else{
                 response.send(socket,protocolConfig.MESSAGE,{
                     flag:1,
                     msg:"get message success",
+                    type:"message",
                     data:results
                 });
                 //更改消息状态
@@ -121,7 +123,29 @@ function message(socket){
                     }
                 })
             }
-        })
+        });
+        messageDao.selectReplys(position,function(err,results){
+            if(err){
+                console.log(err);
+                response.send(socket,protocolConfig.MESSAGE,{
+                    flag:0,
+                    msg:"get message failed",
+                    type:"reply",
+                    data:err
+                });
+            }else{
+                response.send(socket,protocolConfig.MESSAGE,{
+                    flag:1,
+                    msg:"get message success",
+                    type:"reply",
+                    data:results
+                });
+                //更改消息状态
+                messageDao.updateReplyStatus(position,function(err,results){
+
+                });
+            }
+        });
     })
 }
 
@@ -147,6 +171,7 @@ function apology(socket){
         //1、从session中查询目标用户
         var receiverAuth = session.authority(msgObj.receiver);
         if(!receiverAuth){
+            msgObj.status = 0;
             //1、存数据
             dbOperator.save("message",msgObj,function(err,results){
                 if(err){

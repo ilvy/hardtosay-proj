@@ -81,7 +81,7 @@ function update(table_name,updatePos,updateObj,callback){
  * @param position
  * @param callback
  */
-function select(table_name,position,sortPos,callback){
+function select(table_name,position,extraPos,callback){
     var arguLen = arguments.length;
     pool.acquire(function(err,db){
         if(err){
@@ -89,7 +89,7 @@ function select(table_name,position,sortPos,callback){
         }else{
             var collection = db.collection(table_name);
             if(arguLen == 3){
-                callback = sortPos;
+                callback = extraPos;
                 collection.find(position).toArray(function(err,docs){
                     if(err){
                         console.log("find err:"+err);
@@ -99,7 +99,9 @@ function select(table_name,position,sortPos,callback){
                     pool.release(db);
                 });
             }else if(arguLen == 4){
-                collection.find(position).sort(sortPos).toArray(function(err,docs){
+                var sortPos = extraPos.sort?extraPos.sort:{},
+                    fieldsPos = extraPos.fieldsPos?extraPos.fieldsPos:{};
+                collection.find(position,fieldsPos).sort(sortPos).toArray(function(err,docs){
                     if(err){
                         console.log("find err:"+err);
                     }else{
@@ -113,6 +115,43 @@ function select(table_name,position,sortPos,callback){
     });
 }
 
+
+function selectMessagewidthReply(position,sortPos,callback){
+    pool.acquire(function(err,db){
+        if(err){
+
+        }else{
+            var collection = db.collection("message");
+            var cursor = collection.find(position).sort(sortPos);
+            var obj = {};
+            var results = [];
+            var replyColl = db.collection("reply");
+//            while(obj = cursor.next()){
+            cursor.toArray(function(err,results){
+                for(var i = 0; i < results.length; i++){
+                    var obj = results[i];
+                    replyColl.find({message_id:obj.message_id,sender:obj.sender,receiver:obj.receiver}).toArray(function(err,docs){
+                        if(err){
+                            console.log("get reply err:"+err);
+                        }else{
+                            if(docs.length > 0){
+                                obj.reply = docs[0];
+                            }
+                        }
+                    })
+                }
+
+            })
+
+
+            callback(err,results);
+            pool.release(db);
+
+        }
+    });
+}
+
 exports.save = save;
 exports.select = select;
 exports.update = update;
+exports.selectMessagewidthReply = selectMessagewidthReply;
