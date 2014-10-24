@@ -5,7 +5,8 @@ var uopDao = require("../../dao/useroperateDao"),
     response = require("../response"),
     session = require("../../socket/session").session,
     protocolConfig = require("../../socket/protocolConfig"),
-    JPush = require("../../JPush/JPush");
+    JPush = require("../../JPush/JPush"),
+    dbOperator = require("../../db/dbOperator");
 
 exports.search = function(req,res){
     var data = req.query;
@@ -50,6 +51,33 @@ exports.addRelation = function(req,res){
 
         }
     })
+};
+
+/**
+ * 回复加关系请求
+ * @param req
+ * @param res
+ */
+exports.replyAddRelationRequest = function(req,res){
+    var data = req.query;
+    var position = {};
+    position.sender = data.sender;
+    position.receiver = data.receiver;
+    var reply = data.reply;
+    position.status = reply == 1?1:2;
+    uopDao.updateRelation(position,function(err,results){
+        if(err){
+
+        }else{
+            dbOperator.select('relative',{host_id:data.sender,relative_id:data.receiver},function(err,results){
+                if(err){
+
+                }else{
+                    response.success(res,"加关系成功",results);
+                }
+            });
+        }
+    });
 }
 
 /**

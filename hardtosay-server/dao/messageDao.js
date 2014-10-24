@@ -10,7 +10,7 @@ var dbOperator = require("../db/dbOperator");
  * @param cb
  */
 exports.selectMessages = function(position,cb){
-    dbOperator.select("message",{receiver:position.sender,sender:position.receiver,status:0},{time:1},cb);
+    dbOperator.select("message",{receiver:position.sender,sender:position.receiver,status:0},{sort:{time:1}},cb);
 }
 //exports.selectMessages = function(position,cb){
 //    dbOperator.selectMessagewidthReply({receiver:position.sender,sender:position.receiver,status:0},{time:1},cb);

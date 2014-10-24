@@ -71,7 +71,8 @@ function socketLogin(socket){
             return;
         }
         response.socket(userName,socket);
-        userOperate.selectRelatives(userName,function(err,results){
+        var position = {host_id:userName};
+        userOperate.selectRelatives(position,function(err,results){
             if(err){
                 console.log(err);
             }else{
@@ -144,6 +145,28 @@ function message(socket){
                 messageDao.updateReplyStatus(position,function(err,results){
 
                 });
+            }
+        });
+        userOperate.selectRelationRequests(position,function(err,results){
+            if(err){
+                console.log(err);
+                response.send(socket,protocolConfig.MESSAGE,{
+                    flag:0,
+                    msg:"get message failed",
+                    type:"relationRequest",
+                    data:err
+                });
+            }else{
+                response.send(socket,protocolConfig.MESSAGE,{
+                    flag:1,
+                    msg:"get message success",
+                    type:"relationRequest",
+                    data:results
+                });
+                //更改消息状态
+//                userOperate.activateRelation(position,function(err,results){
+//
+//                });
             }
         });
     })
