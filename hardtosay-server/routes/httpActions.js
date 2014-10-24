@@ -6,7 +6,8 @@
  * To change this template use File | Settings | File Templates.
  */
 var session = require("../socket/session"),
-    login = require("./httpAction/login").login;
+    login = require("./httpAction/login").login,
+    relation = require("./httpAction/relation");
 
 exports.router = function(app){
     app.all('*', function(req, res, next) {
@@ -21,5 +22,6 @@ exports.router = function(app){
         res.send("http test");
     });
     app.get("/login",login);
+    app.get("/search",relation.search);
 };
 

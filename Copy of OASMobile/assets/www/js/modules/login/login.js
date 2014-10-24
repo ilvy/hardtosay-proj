@@ -16,7 +16,7 @@ define("modules/login/login",['util','superObject','socketManager'],function(){
             $(document).on("click","#loginBtn",function(){
                 var name = $("#username").val(),
                     pwd = $("#password").val();
-                var url = "http://localhost:5000/login";
+                var url = remoteServer+"/login";
                 var data = {
                     user:{
                         name:name,

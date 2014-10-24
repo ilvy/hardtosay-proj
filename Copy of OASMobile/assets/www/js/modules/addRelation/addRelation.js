@@ -17,13 +17,42 @@ define("modules/addRelation/addRelation",['util','superObject'],function(){
             this.addListener();
         },
         addListener:function(){
+            var _this = this;
             $(".app_title").html(this.data.category);
+            $("#content").on("click","#search-user",function(){
+                _this.searchRelations();
+            });
             $("#content").on("click",".add-attention",function(){
 
-            })
+            });
         },
         searchRelations:function(){
-
+            var _this = this;
+            var search_key = $(".search-input").val();
+            var url = remoteServer+'/search?search_key='+search_key;
+            $.ajax({
+                url:url,
+                type:"get",
+                success:function(data){
+                    console.log(data);
+                    if(data && data.flag == 1){
+                        data = data.results;
+                        _this.renderUsers(data);
+                    }
+                },
+                error:function(err){
+                    console.log(err);
+                }
+            })
+        },
+        renderUsers:function(data){
+            var listStr = "";
+            for(var i = 0; i < data.length; i++){
+                var record = data[i];
+                listStr += '<div class="search-record"><div class="sr-head-icon sr-row"></div><div class="sr-name sr-row">'+record.name+'</div>' +
+                    '<div class="sr-desc sr-row"><input type="button" class="add-attention" value="加关注"/></div></div></div>';
+            }
+            $(".search-list").html(listStr);
         }
     });
     return function(html,data){
