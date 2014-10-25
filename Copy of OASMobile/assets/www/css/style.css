@@ -61,6 +61,16 @@ body{
     margin-top: 50px;
     font-size: 24px;
 }
+.search-input:focus{
+    outline: none;
+}
+.search-input{
+    border: white;
+    border-bottom: 1px solid;
+    position: relative;
+}
+
+
 /***************start login.html*****************/
 
 /***************start humans.html*****************/

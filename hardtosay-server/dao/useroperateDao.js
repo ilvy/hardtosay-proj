@@ -4,8 +4,13 @@
 
 var dbOperator = require("../db/dbOperator");
 
-exports.selectRelatives = function(host_name,cb){
-    dbOperator.select("relative",{host_name:host_name},cb);
+exports.selectRelatives = function(position,cb){
+    var posObj = {};
+    posObj.host_id = position.host_id;
+    if(position.relative_id){
+        posObj.relative_id = position.relative_id;
+    }
+    dbOperator.select("relative",posObj,cb);
 }
 
 exports.selectUsersByKey = function(search_key,cb){
@@ -44,6 +49,12 @@ exports.addRelation = function(user1,user2,relative,cb){
  * @param user2
  * @param cb
  */
-exports.activateRelation = function(user1,user2,cb){
-    dbOperator.update('relative',{host_id:user1,relative_id:user2},{$set:{status:1}},cb);
+exports.updateRelation = function(position,cb){
+    dbOperator.update('relative',{$or:[{host_id:position.sender,relative_id:position.receiver,status:0},
+        {host_id:position.sender,relative_id:position.receiver,status:0}]},{$set:{status:position.status}},cb);
+}
+
+
+exports.selectRelationRequests = function(position,cb){
+    dbOperator.select('relative',{relative_id:position.sender,host_id:position.receiver,status:0},cb)
 }
