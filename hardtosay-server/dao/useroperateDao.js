@@ -5,12 +5,12 @@
 var dbOperator = require("../db/dbOperator");
 
 exports.selectRelatives = function(position,cb){
-    var posObj = {};
-    posObj.host_id = position.host_id;
-    if(position.relative_id){
-        posObj.relative_id = position.relative_id;
-    }
-    dbOperator.select("relative",posObj,cb);
+//    var posObj = {};
+//    posObj.host_id = position.host_id;
+//    if(position.relative_id){
+//        posObj.relative_id = position.relative_id;
+//    }
+    dbOperator.select("relative",{host_id:position.host_id},cb);
 }
 
 exports.selectUsersByKey = function(search_key,cb){
@@ -56,5 +56,24 @@ exports.updateRelation = function(position,cb){
 
 
 exports.selectRelationRequests = function(position,cb){
-    dbOperator.select('relative',{relative_id:position.sender,host_id:position.receiver,status:0},cb)
+    dbOperator.select('relative',{$or:[{relative_id:position.sender,host_id:position.receiver,status:0},
+        {relative_id:position.sender,host_id:position.receiver,isNewRelative:1}]},cb);
+}
+
+/**
+ * 接收方同意或拒绝后，发送发未收到回复需要对消息打上未接收标记
+ * @param position
+ * @param cb
+ */
+exports.tagNewRelation = function(position,cb){
+    dbOperator.update("relative",{relative_id:position.sender,host_id:position.receiver},{$set:{isNewRelative:1}},cb);
+}
+
+/**
+ *
+ * @param position
+ * @param cb
+ */
+exports.tagOldRelation = function(position,cb){
+    dbOperator.update("relative",{relative_id:position.sender,host_id:position.receiver},{$set:{isNewRelative:0}},cb);
 }
