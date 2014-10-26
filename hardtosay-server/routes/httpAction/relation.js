@@ -6,7 +6,8 @@ var uopDao = require("../../dao/useroperateDao"),
     session = require("../../socket/session").session,
     protocolConfig = require("../../socket/protocolConfig"),
     JPush = require("../../JPush/JPush"),
-    dbOperator = require("../../db/dbOperator");
+    dbOperator = require("../../db/dbOperator"),
+    socketResponse = require("../../socket/response").response;
 
 exports.search = function(req,res){
     var data = req.query;
@@ -30,12 +31,13 @@ exports.addRelation = function(req,res){
         if(err){
 
         }else{
+            response.success(res,"请求发送成功",{});
             var sender = getUserInfo(user1,results);
             var receiverAuth = session.authority(user2);
-            //TODO 1、判断被请求用户是否在线,若在线，直接发送请求
+            //1、判断被请求用户是否在线,若在线，直接发送请求
             if(receiverAuth){
                 receiverAuth.emit(protocolConfig.ADDRELATION,sender);
-            }else{//TODO 2、若不在线，推送该消息
+            }else{//2、若不在线，推送该消息
                 JPush.pushMessage("android",user2,{
                     content:sender.name+"请求加你为"+relative,
                     title:"推送消息"
@@ -69,11 +71,52 @@ exports.replyAddRelationRequest = function(req,res){
         if(err){
 
         }else{
-            dbOperator.select('relative',{host_id:data.sender,relative_id:data.receiver},function(err,results){
+
+            dbOperator.select('relative',[{host_id:data.sender,relative_id:data.receiver},{relative_id:data.sender,host_id:data.receiver}],function(err,results1){
                 if(err){
 
                 }else{
-                    response.success(res,"加关系成功",results);
+                    var data = {
+                        results:results1
+                    };
+                    //请求方信息
+                    var requester = getUserInfo(position.receiver,results);
+                    //接收方信息
+                    var receiverInfo = getUserInfo(position.sender,results);
+                    if(reply == 1){ // 请求接收者同意加关系，将请求方的具体信息发送至接收者，并准备好请求接收方的接收数据
+                        data.status = 1;
+                        data.relativeObj = receiverInfo;
+                        response.success(res,"",requester);//同意后，发送请求方的个人信息
+                    }else if(reply == 2){
+                        data.status = 2;
+                    }
+                    socketResponse.socket(position.receiver);
+                    if(socketResponse){
+                        //1、直接发送
+                        socketResponse.success(position.receiver,protocolConfig.ADDRELATION,data);
+                    }else{
+                        //1、先存储该消息
+                        uopDao.tagNewRelation(position,function(err,results){
+                            if(err){
+
+                            }else{//2、推送给用户
+                                JPush.pushMessage("android",position.receiver,{
+                                    content:position.sender+"已通过您的请求",
+                                    title:"推送消息"
+                                },function(err,res){
+                                    if(err){
+                                        console.log(err);
+                                    }else{
+                                        console.log('Sendno: ' + res.sendno);
+                                        console.log('Msg_id: ' + res.msg_id);
+                                    }
+                                });
+                            }
+
+                        })
+
+
+                    }
                 }
             });
         }
