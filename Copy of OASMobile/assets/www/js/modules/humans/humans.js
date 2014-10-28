@@ -40,18 +40,45 @@ define("modules/humans/humans",['util','superObject','messageManager','socketMan
                         changeHash("#message",relative);
                     }
                 });
-
             });
+            //TODO 回复同意或者拒绝，暂时直接点击同意
+            $("#content").off(".newRelation")
+                .on("click",".newRelation",function(event){
+                    util.stopPropagation(event);
+                    var sender = util.$ls("host");
+                    var receiver = $(this).parents(".relative").data("id");
+                    var reply = 1;
+                    var url = remoteServer + '/replyAddRelationRequest?sender='+sender+"&receiver="+receiver+"&reply="+reply;
+                    $.ajax({
+                        url:url,
+                        type:"get",
+                        success:function(data){
+                            console.log(data);
+                        },
+                        error:function(err){
+                            console.log(err);
+                        }
+                    })
+                });
         },
         renderHumans:function(){
             var data = this.data,record;
-            var humanStr = "";
+            var humanStr = "",requestStr = "";
             for(var i = 0; i < data.length; i++){
                 record = data[i];
-                humanStr += '<div class="relative" data-id="'+record.relative_id+'" data-name="'+record.relative_name+'"><div class="photo" style="background-image: ../'+record.image+'">' +
-                    '</div>'+record.relative_name+'</div>';
+                if(record.status == 0 && record.relativeFlag == -1){
+                    requestStr += '<div class="relative reply-add-request" data-id="'+record.relative_id+'" data-name="'+record.relative_name+'">' +
+                        '<div class="photo" style="background-image: ../'+record.image+'"><div class="newRelation"></div></div>'+record.relative_name+'</div>';
+                }else if(record.status == 0 && record.relativeFlag == 1){
+                    requestStr += '<div class="relative reply-add-request" data-id="'+record.relative_id+'" data-name="'+record.relative_name+'">' +
+                        '<div class="photo" style="background-image: ../'+record.image+'"><div class="waiting">等待验证</div></div>'+record.relative_name+'</div>'
+                }else{
+                    humanStr += '<div class="relative" data-id="'+record.relative_id+'" data-name="'+record.relative_name+'"><div class="photo" style="background-image: ../'+record.image+'">' +
+                        '</div>'+record.relative_name+'</div>';
+                }
+
             }
-            $("#content").html(humanStr);
+            $("#content").html(requestStr+humanStr);
         }
     });
     return function(html,data){

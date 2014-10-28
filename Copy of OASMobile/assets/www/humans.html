@@ -18,6 +18,24 @@
             border-radius: 50px;
             padding: 8px;
             background: url("./images/me.png") no-repeat center;
+            position: relative;
+        }
+        .newRelation{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 50px;
+            background:rgba(225,225,225,0.6);
+        }
+        .newRelation:before{
+            content: "+";
+            position: absolute;
+            color: red;
+            top: 0px;
+            right: 0px;
+            font-weight: bolder;
         }
     </style>
 </head>
@@ -35,8 +53,9 @@
     <section>
         <div class="relative">
             <div class="photo">
-
+                <div class="newRelation"></div>
             </div>
+
             蒋叔风
         </div>
         <div class="relative">

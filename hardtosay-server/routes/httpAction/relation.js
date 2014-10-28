@@ -36,6 +36,10 @@ exports.addRelation = function(req,res){
             var receiverAuth = session.authority(user2);
             //1、判断被请求用户是否在线,若在线，直接发送请求
             if(receiverAuth){
+                sender.relative = relative;
+                sender.status = 0;
+                sender.relativeFlag = -1;
+                sender.type = "request";
                 receiverAuth.emit(protocolConfig.ADDRELATION,sender);
             }else{//2、若不在线，推送该消息
                 JPush.pushMessage("android",user2,{
@@ -71,29 +75,34 @@ exports.replyAddRelationRequest = function(req,res){
         if(err){
 
         }else{
-
-            dbOperator.select('relative',[{host_id:data.sender,relative_id:data.receiver},{relative_id:data.sender,host_id:data.receiver}],function(err,results1){
+            if(results == 0){
+                return;
+            }
+            dbOperator.select('relative',{$or:[{host_id:data.sender,relative_id:data.receiver},{relative_id:data.sender,host_id:data.receiver}]},function(err,results1){
                 if(err){
 
                 }else{
+                    if(!results1 || results1.length == 0){
+                        return;
+                    }
                     var data = {
-                        results:results1
+
                     };
                     //请求方信息
-                    var requester = getUserInfo(position.receiver,results);
+                    var requester = getUserInfo(position.receiver,results1);
                     //接收方信息
-                    var receiverInfo = getUserInfo(position.sender,results);
+                    var receiverInfo = getUserInfo(position.sender,results1);
                     if(reply == 1){ // 请求接收者同意加关系，将请求方的具体信息发送至接收者，并准备好请求接收方的接收数据
-                        data.status = 1;
-                        data.relativeObj = receiverInfo;
+                        receiverInfo.status = 1;
+                        receiverInfo.type = 'reply';
                         response.success(res,"",requester);//同意后，发送请求方的个人信息
                     }else if(reply == 2){
-                        data.status = 2;
+                        receiverInfo.status = 2;
                     }
-                    socketResponse.socket(position.receiver);
-                    if(socketResponse){
+                    var receiverAuth = socketResponse.socket(position.receiver);
+                    if(receiverAuth){
                         //1、直接发送
-                        socketResponse.success(position.receiver,protocolConfig.ADDRELATION,data);
+                        socketResponse.send(position.receiver,protocolConfig.ADDRELATION,receiverInfo);
                     }else{
                         //1、先存储该消息
                         uopDao.tagNewRelation(position,function(err,results){
@@ -131,7 +140,7 @@ exports.replyAddRelationRequest = function(req,res){
  */
 function getUserInfo(id,results){
     for(var i = 0; i < results.length; i++){
-        if(results[i].user_id == id){
+        if(results[i].user_id == id || results[i].relative_id == id){
             return results[i];
         }
     }

@@ -31,7 +31,7 @@ exports.addRelation = function(user1,user2,relative,cb){
 
             }else{
                 dbOperator.save("relative",{host_id:u2.user_id,host_name:u2.name,relative_id:u1.user_id,relative_name:u1.name,
-                    image:u1.image,relative:relative,status:0,relativeFlag:(u1.user_id == user1?"1":"-1")},function(err2,res2){
+                    image:u1.image,relative:relative,status:0,relativeFlag:(u2.user_id == user1?"1":"-1")},function(err2,res2){
                     cb(err2,results);
                 });
 
@@ -51,7 +51,7 @@ exports.addRelation = function(user1,user2,relative,cb){
  */
 exports.updateRelation = function(position,cb){
     dbOperator.update('relative',{$or:[{host_id:position.sender,relative_id:position.receiver,status:0},
-        {host_id:position.sender,relative_id:position.receiver,status:0}]},{$set:{status:position.status}},cb);
+        {host_id:position.receiver,relative_id:position.sender,status:0}]},{$set:{status:position.status}},cb);
 }
 
 
