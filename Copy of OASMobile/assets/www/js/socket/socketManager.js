@@ -14,6 +14,7 @@ function Socket(host,port,cb){
     this.onApology();
     this.onMessageAck();
     this.onReply();
+    this.onAddRelation();
 }
 
 Socket.prototype.connect = function(host,port){
@@ -81,10 +82,64 @@ Socket.prototype.onRegister = function(){
     });
 }
 
+/**
+ * 监听
+ *      1、加关系请求
+ *      2、对方回复请求
+ */
 Socket.prototype.onAddRelation = function(){
     this.socket.on("addRelation",function(data){
+        var requesterInfo = data;
+        if(requesterInfo.type == "request"){//别人加我的请求
 
+        }else if(requesterInfo.type == 'reply'){//我加别人，别人的回复
+            relativeManager.addRelativeSuccess(data.relative,data.relative_id,data);
+            if(currentPage == 'humans'){
+                $('[data-id="'+data.relative_id+'"] .waiting').remove();
+            }
+            //TODO 通知栏通知用户回复
+            return;
+        }
+        if(data.status == 2){
+            //TODO 说明请求被拒绝,通知栏通知
+            return;
+        }
+        //TODO 加到用户的humans面板，并以通知栏或者红点形式提醒
+        var relative = {
+            relative_id:requesterInfo.user_id,
+            relative_name:requesterInfo. name,
+            image:requesterInfo.image,
+            relative:data.relative
+        };
+        switch (currentPage){
+            case "relative":
+                //TODO 对应关系显示消息提示
+                var humansData = JSON.parse(util.$ls("humansData"));
+                if(!humansData[data.relative]){
+                    humansData[data.relative] = [];
+                }
+                humansData[data.relative].push(relative);
+                break;
+            case "humans":
+                //TODO 直接添加到第一个,并修改显示样式为请求添加好友
+                var newRelationMask = '';
+                if(data.status == 0 && data.relativeFlag == -1){
+                    newRelationMask = '<div class="newRelation"></div>';
+                }
+                var relativeStr = '<div class="relative" data-id="'+relative.relative_id+'" data-name="'+relative.relative_name+'">' +
+                    '<div class="photo" style="background-image: ../'+relative.image+'">'+newRelationMask+'</div>'+relative.relative_name+'</div>';
+                $("#content").prepend(relativeStr);
+                break;
+            case "message":
+                //TODO 通知栏提示
+
+                break;
+        }
     });
+}
+
+Socket.prototype.onAddRelationReply = function(){
+
 }
 
 Socket.prototype.onMessage = function(protocol,cb){
@@ -174,7 +229,8 @@ var protocolConfig = {
     message:"message",
     message_ack:"message_ack",
     reply:"reply",
-    logout:"logout"
+    logout:"logout",
+    addRelation:"addRelation"
 };
 
 

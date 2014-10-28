@@ -147,28 +147,7 @@ function message(socket){
                 });
             }
         });
-        userOperate.selectRelationRequests(position,function(err,results){
-            if(err){
-                console.log(err);
-                response.send(socket,protocolConfig.MESSAGE,{
-                    flag:0,
-                    msg:"get message failed",
-                    type:"relationRequest",
-                    data:err
-                });
-            }else{
-                response.send(socket,protocolConfig.MESSAGE,{
-                    flag:1,
-                    msg:"get message success",
-                    type:"relationRequest",
-                    data:results
-                });
-                //更改消息状态
-//                userOperate.activateRelation(position,function(err,results){
-//
-//                });
-            }
-        });
+
     })
 }
 

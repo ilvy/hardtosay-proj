@@ -23,7 +23,7 @@ define("modules/addRelation/addRelation",['util','superObject'],function(){
                 _this.searchRelations();
             });
             $("#content").on("click",".add-attention",function(){
-                var user2 = $(this).parents(".search-record").data("user_id");
+                var user2 = $(this).parents(".search-record").data("userid");
                 var user1 = util.$ls("host");
                 var relative = _this.data.category;
                 var url = remoteServer+"/addRelation?user1="+user1+"&user2="+user2+"&relative="+relative;

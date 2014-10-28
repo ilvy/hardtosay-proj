@@ -34,7 +34,7 @@ define("modules/relative/relative",['util','superObject','draw','touchUtil'],fun
                 changeHash("#humans",data);
             });
             $(".relation-node").touch(touchEvent.longtouch,function(event){
-                changeHash("#addRelation",{category:event.$this.data("category")});
+                changeHash("#addRelation",{category:event.$this.data("cate_en")});
             });
             /**
              * 回退按钮
@@ -60,11 +60,21 @@ define("modules/relative/relative",['util','superObject','draw','touchUtil'],fun
             this.humansData = {};
             for(var i = 0; i < data.length; i++){
                 var relative = data[i]["relative"];
+                if(data[i].status == 0 && data[i].relativeFlag == -1){
+                    this.showAddRelationRequest(relative,data[i]);
+                }
                 if(!this.humansData[relative]){
                     this.humansData[relative] = [];
                 }
                 this.humansData[relative].push(data[i]);
             }
+        },
+        /**
+         * TODO 显示有加关系请求的提示
+         */
+        showAddRelationRequest:function(relative){
+//            $()
+            console.log(relative+"有好友请求消息");
         },
         /**
          * 画svg

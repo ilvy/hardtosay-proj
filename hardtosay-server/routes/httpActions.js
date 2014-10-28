@@ -23,5 +23,7 @@ exports.router = function(app){
     });
     app.get("/login",login);
     app.get("/search",relation.search);
+    app.get("/addRelation",relation.addRelation);
+    app.get("/replyAddRelationRequest",relation.replyAddRelationRequest);
 };
 

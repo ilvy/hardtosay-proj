@@ -116,3 +116,47 @@ msgManager = {
         util.$ls("message",$msg);
     }
 }
+
+/**
+ * 关系数据管理
+ * @type {{classify: classify, add: add, addRelativeSuccess: addRelativeSuccess}}
+ */
+var relativeManager = {
+    classify:function(){
+
+    },
+    add:function(cate,msgList){
+        var $humansData = JSON.parse(util.$ls("humansData"));
+        if(!$humansData){
+            $humansData = {};
+        }
+        if(!$humansData[cate]){
+            $humansData[cate] = [];
+        }
+        if(msgList.length){
+            [].push.apply($humansData[cate],msgList);
+        }else{
+            $humansData[cate].push(msgList);
+        }
+        util.$ls("humansData",$humansData);
+    },
+    /**
+     * 添加关系成功，更新缓存数据
+     * @param cate
+     * @param receiver
+     * @param obj
+     */
+    addRelativeSuccess:function(cate,receiver,obj){
+        var $humansData = JSON.parse(util.$ls("humansData"));
+        if(!$humansData || !$humansData[cate]){
+            return;
+        }
+        var $data = $humansData[cate];
+        for(var i = 0; i < $data.length; i++){
+            if($data[i]["receiver"] = receiver){
+                $data[i]["receiver"] = obj;
+                break;
+            }
+        }
+    }
+}

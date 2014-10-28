@@ -66,7 +66,7 @@ function update(table_name,updatePos,updateObj,callback){
 //        console.log(err);
         }else {
             var collection = db.collection(table_name);
-            collection.update(updatePos,updateObj,function(err,docs){
+            collection.update(updatePos,updateObj,{safe:true,multi:true},function(err,docs){
                 callback(err,docs);
                 console.log(docs);
                 pool.release(db);
