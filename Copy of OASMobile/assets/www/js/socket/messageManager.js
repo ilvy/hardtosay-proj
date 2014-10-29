@@ -119,11 +119,20 @@ msgManager = {
 
 /**
  * 关系数据管理
- * @type {{classify: classify, add: add, addRelativeSuccess: addRelativeSuccess}}
+ * @type {{classify: classify, add: add, addRelativeSuccess: addRelativeSuccess, getAll: getAll}}
  */
 var relativeManager = {
-    classify:function(){
+    classify:function(data){
+        var $humansData = {};
+        for(var i = 0; i < data.length; i++){
+            var relative = data[i]["relative"];
 
+            if(!$humansData[relative]){
+                $humansData[relative] = [];
+            }
+            $humansData[relative].push(data[i]);
+        }
+        util.$ls("humansData",$humansData);
     },
     add:function(cate,msgList){
         var $humansData = JSON.parse(util.$ls("humansData"));
@@ -158,5 +167,13 @@ var relativeManager = {
                 break;
             }
         }
+        util.$ls("humansData",$humansData);
+    },
+    getAll:function(){
+        var $humansData = JSON.parse(util.$ls("humansData"));
+        if(!$humansData){
+            $humansData = {};
+        }
+        return $humansData;
     }
 }
