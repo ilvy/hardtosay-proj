@@ -22,7 +22,7 @@ define("modules/humans/humans",['util','superObject','messageManager','socketMan
                     id:relativeId,
                     name:$this.data("name")
                 };
-                //TODO 优化 若无新数据，直接从缓存中读取
+
                 socket.sendMessage(protocolConfig.message,{
                     sender:util.$ls("host"),
                     relative_id:relativeId

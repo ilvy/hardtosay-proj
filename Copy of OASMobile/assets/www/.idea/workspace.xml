@@ -62,14 +62,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="humans.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="humans.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/modules/humans/humans.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="47" column="50" selection-start="1883" selection-end="1883" vertical-scroll-proportion="0.40860215" vertical-offset="627" max-vertical-offset="1748">
+            <state line="24" column="0" selection-start="773" selection-end="773" vertical-scroll-proportion="0.0" vertical-offset="114" max-vertical-offset="1748">
               <folding>
-                <marker date="1414471191690" expanded="false" signature="2986:3007" placeholder="..." />
-                <marker date="1414471191690" expanded="true" signature="3369:3390" placeholder="..." />
-                <marker date="1414471191690" expanded="false" signature="3651:3672" placeholder="..." />
+                <marker date="1414637206412" expanded="true" signature="2946:2967" placeholder="..." />
+                <marker date="1414637206412" expanded="true" signature="3329:3350" placeholder="..." />
+                <marker date="1414637206412" expanded="true" signature="3611:3632" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -86,10 +86,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="messageManager.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="messageManager.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/socket/messageManager.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="133" column="9" selection-start="3655" selection-end="3655" vertical-scroll-proportion="0.0" vertical-offset="2135" max-vertical-offset="3496">
+            <state line="30" column="82" selection-start="892" selection-end="892" vertical-scroll-proportion="-3.0060241" vertical-offset="2566" max-vertical-offset="3857">
               <folding />
             </state>
           </provider>
@@ -152,13 +152,13 @@
         <option value="$PROJECT_DIR$/js/modules/addRelation/addRelation.html" />
         <option value="$PROJECT_DIR$/humans.html" />
         <option value="$PROJECT_DIR$/css/style.css" />
-        <option value="$PROJECT_DIR$/js/modules/humans/humans.js" />
         <option value="$PROJECT_DIR$/js/modules/addRelation/addRelation.js" />
         <option value="$PROJECT_DIR$/js/modules/login/login.js" />
         <option value="$PROJECT_DIR$/js/socket/socketManager.js" />
         <option value="$PROJECT_DIR$/js/modules/relative/relative.js" />
-        <option value="$PROJECT_DIR$/js/socket/messageManager.js" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/js/modules/humans/humans.js" />
+        <option value="$PROJECT_DIR$/js/socket/messageManager.js" />
       </list>
     </option>
   </component>
@@ -602,8 +602,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="10" width="1456" height="876" extended-state="0" />
-    <editor active="true" />
+    <frame x="-8" y="10" width="1456" height="876" extended-state="1" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -920,13 +920,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/socket/messageManager.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="133" column="9" selection-start="3655" selection-end="3655" vertical-scroll-proportion="0.0" vertical-offset="2135" max-vertical-offset="3496">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1406">
@@ -950,12 +943,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/modules/humans/humans.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="50" selection-start="1883" selection-end="1883" vertical-scroll-proportion="0.40860215" vertical-offset="627" max-vertical-offset="1748">
+        <state line="24" column="0" selection-start="773" selection-end="773" vertical-scroll-proportion="0.0" vertical-offset="114" max-vertical-offset="1748">
           <folding>
-            <marker date="1414471191690" expanded="false" signature="2986:3007" placeholder="..." />
-            <marker date="1414471191690" expanded="true" signature="3369:3390" placeholder="..." />
-            <marker date="1414471191690" expanded="false" signature="3651:3672" placeholder="..." />
+            <marker date="1414637206412" expanded="true" signature="2946:2967" placeholder="..." />
+            <marker date="1414637206412" expanded="true" signature="3329:3350" placeholder="..." />
+            <marker date="1414637206412" expanded="true" signature="3611:3632" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/socket/messageManager.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="82" selection-start="892" selection-end="892" vertical-scroll-proportion="-3.0060241" vertical-offset="2566" max-vertical-offset="3857">
+          <folding />
         </state>
       </provider>
     </entry>
