@@ -33,7 +33,7 @@ exports.addRelation = function(req,res){
         }else{
             response.success(res,"请求发送成功",{});
             var sender = getUserInfo(user1,results);
-            var receiverAuth = session.authority(user2);
+            var receiverAuth = socketResponse.socket(user2);//session.authority(user2);
             //1、判断被请求用户是否在线,若在线，直接发送请求
             if(receiverAuth){
                 sender.relative = relative;

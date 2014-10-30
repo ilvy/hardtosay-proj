@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 14-10-10.
  */
-define("modules/relative/relative",['util','superObject','draw','touchUtil'],function(){
+define("modules/relative/relative",['util','superObject','draw','touchUtil','messageManager'],function(){
 
     var relative = superObject.extend({
         data:{},
