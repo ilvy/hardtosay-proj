@@ -12,7 +12,16 @@ var uopDao = require("../../dao/useroperateDao"),
 exports.search = function(req,res){
     var data = req.query;
     var search_key = data.search_key;//TODO 用户名，手机号，e-mail
-    uopDao.selectUsersByKey(search_key,function(err,results){
+    var sender = data.user;
+    if(session.authority(sender)){
+        response.failed(res,"权限不足");
+        return;
+    }
+    var position = {
+        searck_key:search_key,
+        sender:sender
+    }
+    uopDao.selectUsersByKey(position,function(err,results){
         if(err){
             console.log("selectUsersByKey failed:"+err);
             response.failed(res,"查询失败");

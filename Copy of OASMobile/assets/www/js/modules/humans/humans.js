@@ -46,6 +46,7 @@ define("modules/humans/humans",['util','superObject','messageManager','socketMan
                 .on("click",".newRelation",function(event){
                     util.stopPropagation(event);
                     var sender = util.$ls("host");
+                    var $this = $(this);
                     var receiver = $(this).parents(".relative").data("id");
                     var reply = 1;
                     var url = remoteServer + '/replyAddRelationRequest?sender='+sender+"&receiver="+receiver+"&reply="+reply;
@@ -54,6 +55,9 @@ define("modules/humans/humans",['util','superObject','messageManager','socketMan
                         type:"get",
                         success:function(data){
                             console.log(data);
+                            if(data && data.flag == 1){
+                                $this.remove();
+                            }
                         },
                         error:function(err){
                             console.log(err);

@@ -2,7 +2,8 @@
  * Created by Administrator on 14-10-14.
  */
 
-var dbOperator = require("../db/dbOperator");
+var dbOperator = require("../db/dbOperator"),
+    async = require("async");
 
 exports.selectRelatives = function(position,cb){
 //    var posObj = {};
@@ -13,8 +14,35 @@ exports.selectRelatives = function(position,cb){
     dbOperator.select("relative",{host_id:position.host_id},cb);
 }
 
-exports.selectUsersByKey = function(search_key,cb){
-    dbOperator.select('user',{$or:[{user_id:search_key},{name:new RegExp(search_key)},{tel:search_key},{email:search_key}]},cb);
+exports.selectUsersByKey = function(position,callback){
+    var search_key = position.searck_key;
+    var sender = position.sender;
+    dbOperator.select('user',{$and:[{$nor:[{user_id:sender}]},{$or:[{user_id:search_key},{name:new RegExp(search_key)},{tel:search_key},{email:search_key}]}]},
+        function(err,results){
+            if(err){
+
+            }else{
+                if(results && results.length > 0){
+                    var record,funs = [];
+                    for(var i = 0; i < results.length; i++){
+                        record = results[i];
+                        funs.push((function(cb){
+                            var relative = record;
+                            dbOperator.select("relative",{host_id:record.user_id,relative_id:sender},function(err,results){
+                                if(results && results.length > 0){
+                                    cb(err,relative);
+                                }else{
+                                    cb(err,null);
+                                }
+                            });
+                        })());
+                    }
+                    async.parallel(funs,function(err,results){
+                        callback(err,results);
+                    });
+                }
+            }
+        });
 }
 
 //exports.addRelation = function(user1,user2,relative,cb){
