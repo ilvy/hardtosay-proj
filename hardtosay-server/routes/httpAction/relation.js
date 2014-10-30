@@ -40,6 +40,8 @@ exports.addRelation = function(req,res){
                 sender.status = 0;
                 sender.relativeFlag = -1;
                 sender.type = "request";
+                sender.relative_id = sender.user_id;
+                sender.relative_name = sender.name;
                 receiverAuth.emit(protocolConfig.ADDRELATION,sender);
             }else{//2、若不在线，推送该消息
                 JPush.pushMessage("android",user2,{

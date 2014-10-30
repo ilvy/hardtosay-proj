@@ -70,7 +70,8 @@ Socket.prototype.onLogin = function(){
         console.log(data);
         if(data.flag == 1){
             changeHash("#relative",data);
-            util.$ls("humansData",data.data);
+            relativeManager.classify(data.data);
+//            util.$ls("humansData",data.data);
         }
     });
     this.protocols["login"] = protocolConfig.login;
@@ -114,11 +115,12 @@ Socket.prototype.onAddRelation = function(){
         switch (currentPage){
             case "relative":
                 //TODO 对应关系显示消息提示
-                var humansData = JSON.parse(util.$ls("humansData"));
-                if(!humansData[data.relative]){
-                    humansData[data.relative] = [];
-                }
-                humansData[data.relative].push(relative);
+//                var humansData = JSON.parse(util.$ls("humansData"));
+//                if(!humansData[data.relative]){
+//                    humansData[data.relative] = [];
+//                }
+//                humansData[data.relative].push(relative);
+                relativeManager.add(data.relative,data);
                 break;
             case "humans":
                 //TODO 直接添加到第一个,并修改显示样式为请求添加好友

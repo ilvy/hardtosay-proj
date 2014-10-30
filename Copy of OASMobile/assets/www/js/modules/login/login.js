@@ -5,7 +5,7 @@
  * Time: 下午11:23
  * To change this template use File | Settings | File Templates.
  */
-define("modules/login/login",['util','superObject','socketManager'],function(){
+define("modules/login/login",['util','superObject','messageManager','socketManager'],function(){
 
     var login = superObject.extend({
         initialize:function(html){

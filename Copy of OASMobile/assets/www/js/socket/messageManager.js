@@ -3,26 +3,32 @@
  * 失败消息管理器
  */
 failMsgManager = {
+    $failmsgs:null,
     add:function(msg){
-        var $failmsg = JSON.parse(util.$ls("failmsg"));
+        var $failmsg = this.getByHost();
         if(!$failmsg){
             $failmsg = [];
         }
         $failmsg.push(msg);
-        util.$ls("failmsg",$failmsg);
+        util.$ls("failmsg",this.$failmsgs);
     },
     delete:function(message_id){
-        var $failmsg = JSON.parse(util.$ls("failmsg"));
+        var $failmsg = this.getByHost();
         for(var i = 0; i < $failmsg.length; i++){
             if($failmsg[i].message_id == message_id){
                 $failmsg.splice(i,1);
             }
         }
-        util.$ls("failmsg",$failmsg);
+        util.$ls("failmsg",this.$failmsgs);
     },
     getAll:function(){
-        var $failmsg = JSON.parse(util.$ls("failmsg"));
+        var $failmsg = this.getByHost();
         return $failmsg;
+    },
+    getByHost:function(){
+        var host = util.$ls("host");
+        this.$failmsgs = JSON.parse(util.$ls("failmsg"));
+        return this.$failmsgs[host]?this.$failmsgs[host]:this.$failmsgs[host] = {};
     }
 };
 
@@ -31,13 +37,14 @@ failMsgManager = {
  * @type {{add: add, delete: delete, getAll: getAll, getNewestTime: getNewestTime, addReply: addReply}}
  */
 msgManager = {
+    $message:null,
     /**
      * 添加数组或者单个消息记录
      * @param receiver
      * @param msgList
      */
     add:function(receiver,msgList){
-        var $msg = JSON.parse(util.$ls("message"));
+        var $msg = this.getMessageByHost();
         if(!$msg){
             $msg = {};
         }
@@ -49,10 +56,10 @@ msgManager = {
         }else{
             $msg[receiver].push(msgList);
         }
-        util.$ls("message",$msg);
+        util.$ls("message",this.$message);
     },
     delete:function(receiver,message_id){
-        var $msg = JSON.parse(util.$ls("message"));
+        var $msg = this.getMessageByHost();
         if(!$msg){
             $msg = {};
         }
@@ -65,10 +72,10 @@ msgManager = {
                 msgs.splice(i,1);
             }
         }
-        util.$ls("message",$msg);
+        util.$ls("message",this.$message);
     },
     getAll:function(receiver){
-        var $msg = JSON.parse(util.$ls("message"));
+        var $msg = this.getMessageByHost();
         if(!$msg){
             $msg = {};
         }
@@ -90,7 +97,7 @@ msgManager = {
         }
     },
     addReply:function(receiver,reply){
-        var $msg = JSON.parse(util.$ls("message"));
+        var $msg = this.getMessageByHost();
         if(!$msg || !$msg[receiver]){
             return;
         }
@@ -113,17 +120,33 @@ msgManager = {
                 break;
             }
         }
-        util.$ls("message",$msg);
+        util.$ls("message",this.$message);
+    },
+    getMessageByHost:function(){
+        this.$message = JSON.parse(util.$ls("message"));
+        var host = util.$ls("host");
+        var $msg = this.$message[host];
+        return $msg?$msg:$msg = this.$message[host] = {};
     }
 }
 
 /**
  * 关系数据管理
- * @type {{classify: classify, add: add, addRelativeSuccess: addRelativeSuccess}}
+ * @type {{classify: classify, add: add, addRelativeSuccess: addRelativeSuccess, getAll: getAll}}
  */
 var relativeManager = {
-    classify:function(){
+    $humansDatas:null,
+    classify:function(data){
+        var $humansData = {};
+        for(var i = 0; i < data.length; i++){
+            var relative = data[i]["relative"];
 
+            if(!$humansData[relative]){
+                $humansData[relative] = [];
+            }
+            $humansData[relative].push(data[i]);
+        }
+        util.$ls("humansData",$humansData);
     },
     add:function(cate,msgList){
         var $humansData = JSON.parse(util.$ls("humansData"));
@@ -158,5 +181,18 @@ var relativeManager = {
                 break;
             }
         }
+        util.$ls("humansData",$humansData);
+    },
+    getAll:function(){
+        var $humansData = JSON.parse(util.$ls("humansData"));
+        if(!$humansData){
+            $humansData = {};
+        }
+        return $humansData;
+    },
+    getByHost:function(){
+        this.$humansDatas = JSON.parse(util.$ls("humansData"));
+        var host = util.$ls("host");
+        return this.$humansDatas[host];
     }
 }

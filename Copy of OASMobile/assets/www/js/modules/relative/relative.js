@@ -9,7 +9,7 @@ define("modules/relative/relative",['util','superObject','draw','touchUtil','mes
         initialize:function(html,data){
             currentPage = 'relative';
             $("#content").html(html);
-            this.data = JSON.parse(util.$ls("humansData"));
+//            this.humansData = relativeManager.getAll();//JSON.parse(util.$ls("humansData"));
             this.dealHumansData();
             var _this = this;
             $(function(){
@@ -29,7 +29,8 @@ define("modules/relative/relative",['util','superObject','draw','touchUtil','mes
             var _this = this;
             $(".relation-node").touch(touchEvent.click,function(event){
                 var category = event.$this.data("cate_en");
-                var data = _this.humansData[category];
+                var humansData = relativeManager.getAll();
+                var data = humansData[category];
                 util.$ls("humanspage",data);
                 changeHash("#humans",data);
             });
@@ -55,19 +56,20 @@ define("modules/relative/relative",['util','superObject','draw','touchUtil','mes
                 }
             });
         },
+        /**
+         * 处理用户加关系请求
+         */
         dealHumansData:function(){
-            var data = this.data;
-            this.humansData = {};
-            for(var i = 0; i < data.length; i++){
-                var relative = data[i]["relative"];
-                if(data[i].status == 0 && data[i].relativeFlag == -1){
-                    this.showAddRelationRequest(relative,data[i]);
+            var data = relativeManager.getAll();
+            for(var key in data){
+                for(var i = 0; i < data[key].length; i++){
+                    var record = data[key][i];
+                    if(record.status == 0 && record.relativeFlag == -1){
+                        this.showAddRelationRequest(key,data[key][i]);
+                    }
                 }
-                if(!this.humansData[relative]){
-                    this.humansData[relative] = [];
-                }
-                this.humansData[relative].push(data[i]);
             }
+
         },
         /**
          * TODO 显示有加关系请求的提示
