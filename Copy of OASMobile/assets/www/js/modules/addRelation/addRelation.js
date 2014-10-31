@@ -34,7 +34,7 @@ define("modules/addRelation/addRelation",['util','superObject'],function(){
                     success:function(data){
                         console.log(data);
                         if(data.flag == 1){
-                            $this.val("请求已经发送").removeClass(".add-att-btn");
+                            $this.val("请求等待").removeClass("add-att-btn");
                         }
                     },
                     error:function(err){

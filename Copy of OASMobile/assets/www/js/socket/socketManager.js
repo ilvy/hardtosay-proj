@@ -120,7 +120,7 @@ Socket.prototype.onAddRelation = function(){
 //                    humansData[data.relative] = [];
 //                }
 //                humansData[data.relative].push(relative);
-                relativeManager.add(data.relative,data);
+                $("."+requesterInfo.relative).addClass("remind-tag");
                 break;
             case "humans":
                 //TODO 直接添加到第一个,并修改显示样式为请求添加好友
@@ -137,6 +137,7 @@ Socket.prototype.onAddRelation = function(){
 
                 break;
         }
+        relativeManager.add(data.relative,data);
     });
 }
 
@@ -156,13 +157,14 @@ Socket.prototype.onApology = function(){
     this.socket.on(protocolConfig.apology,function(data){
         switch (currentPage){
             case "relative":
-                //TODO 对应关系显示消息提示
+                //TODO 对应关系显示消息提示      //bug 消息缺少关系字段
+
                 break;
             case "humans":
                 //TODO 对应头像显示消息提示
+                $("[data-id='"+data.receiver+"'] .photo").addClass("remind-tag");
                 break;
             case "message":
-                msgManager.add(data.sender,data);
                 var msglistStr = "";
                 msglistStr += ' <div class="message-block left" style="height:initial;overflow:initial;"><div class="ms-content msg-display"' +
                     ' data-type="'+data["type"]+'" message_id="'+data["message_id"]+'">' +
@@ -171,7 +173,8 @@ Socket.prototype.onApology = function(){
                 $("#msg-list").append(msglistStr);
                 break;
         }
-    })
+        msgManager.add(data.sender,data);
+    });
 }
 
 Socket.prototype.onReply = function(){
@@ -182,6 +185,7 @@ Socket.prototype.onReply = function(){
                 break;
             case "humans":
                 //TODO 对应头像显示消息提示
+                $("[data-id='"+data.receiver+"'] .photo").addClass("remind-tag");
                 break;
             case "message":
                 msgManager.addReply(data.sender,data);

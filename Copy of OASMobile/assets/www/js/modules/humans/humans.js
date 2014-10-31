@@ -17,6 +17,7 @@ define("modules/humans/humans",['util','superObject','messageManager','socketMan
         addListener:function(){
             $(document).on("click",'.relative',function(){
                 var $this = $(this);
+                $this.find(".photo").removeClass("remind-tag");
                 var relativeId = $this.data("id");
                 var relative = {
                     id:relativeId,

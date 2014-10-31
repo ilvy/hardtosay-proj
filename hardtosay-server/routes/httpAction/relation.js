@@ -7,13 +7,14 @@ var uopDao = require("../../dao/useroperateDao"),
     protocolConfig = require("../../socket/protocolConfig"),
     JPush = require("../../JPush/JPush"),
     dbOperator = require("../../db/dbOperator"),
-    socketResponse = require("../../socket/response").response;
+    socketResponse = require("../../socket/response").response,
+    async = require("async");
 
 exports.search = function(req,res){
     var data = req.query;
     var search_key = data.search_key;//TODO 用户名，手机号，e-mail
     var sender = data.user;
-    if(session.authority(sender)){
+    if(!session.authority(sender)){
         response.failed(res,"权限不足");
         return;
     }
@@ -36,38 +37,61 @@ exports.addRelation = function(req,res){
     var user1 = data.user1,
         user2 = data.user2,
         relative = data.relative;
-    uopDao.addRelation(user1,user2,relative,function(err,results){
-        if(err){
+    if(!session.authority(user1)){
+        response.failed(res,"请重新登录");
+        return;
+    }
+    var funs = [];
+    funs.push([
+        function isExistRelative(cb){
+            //确认关系是否存在
+            uopDao.selectRelatives({host_id:user1,relative_id:user2},function(err,results){
+                if(results && results.length > 0){
+                    return;
+                }
+                cb(err,null);
+            });
+        },
+        function add(cb){
+            uopDao.addRelation(user1,user2,relative,function(err,results){
+                if(err){
 
-        }else{
-            response.success(res,"请求发送成功",{});
-            var sender = getUserInfo(user1,results);
-            var receiverAuth = socketResponse.socket(user2);//session.authority(user2);
-            //1、判断被请求用户是否在线,若在线，直接发送请求
-            if(receiverAuth){
-                sender.relative = relative;
-                sender.status = 0;
-                sender.relativeFlag = -1;
-                sender.type = "request";
-                sender.relative_id = sender.user_id;
-                sender.relative_name = sender.name;
-                receiverAuth.emit(protocolConfig.ADDRELATION,sender);
-            }else{//2、若不在线，推送该消息
-                JPush.pushMessage("android",user2,{
-                    content:sender.name+"请求加你为"+relative,
-                    title:"推送消息"
-                },function(err,res){
-                    if(err){
-                        console.log(err);
-                    }else{
-                        console.log('Sendno: ' + res.sendno);
-                        console.log('Msg_id: ' + res.msg_id);
+                }else{
+                    response.success(res,"请求发送成功",{});
+                    var sender = getUserInfo(user1,results);
+                    var receiverAuth = socketResponse.socket(user2);//session.authority(user2);
+                    //1、判断被请求用户是否在线,若在线，直接发送请求
+                    if(receiverAuth){
+                        sender.relative = relative;
+                        sender.status = 0;
+                        sender.relativeFlag = -1;
+                        sender.type = "request";
+                        sender.relative_id = sender.user_id;
+                        sender.relative_name = sender.name;
+                        receiverAuth.emit(protocolConfig.ADDRELATION,sender);
+                    }else{//2、若不在线，推送该消息
+                        JPush.pushMessage("android",user2,{
+                            content:sender.name+"请求加你为"+relative,
+                            title:"推送消息"
+                        },function(err,res){
+                            if(err){
+                                console.log(err);
+                            }else{
+                                console.log('Sendno: ' + res.sendno);
+                                console.log('Msg_id: ' + res.msg_id);
+                            }
+                        });
                     }
-                });
-            }
 
+                }
+                cb(err,results);
+            })
         }
+    ]);
+    async.series(funs,function(err,results){
+        //TODO
     })
+
 };
 
 /**

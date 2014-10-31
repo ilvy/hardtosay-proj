@@ -41,6 +41,14 @@ define("modules/login/login",['util','superObject','messageManager','socketManag
                     }
                 })
             });
+            $(document).on("click","#regBtn",function(){
+                var name = $("#username").val(),
+                    pwd = $("#password").val();
+                var url = remoteServer + "/register";
+                var data = {
+
+                }
+            });
         }
     });
     return function(html){

@@ -184,6 +184,17 @@ body{
     top: 350px;
     left: 15%;
 }
+.remind-tag:before{
+    content: "";
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border: 1px solid red;
+    border-radius: 6px;
+    background-color: red;
+    right: 0;
+    top: 0;
+}
 
 /*******************end content relative.html**********************/
 

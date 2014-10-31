@@ -29,6 +29,7 @@ define("modules/relative/relative",['util','superObject','draw','touchUtil','mes
             var _this = this;
             $(".relation-node").touch(touchEvent.click,function(event){
                 var category = event.$this.data("cate_en");
+                $("."+category).removeClass("remind-tag");//移除右上角的提示红点
                 var humansData = relativeManager.getAll();
                 var data = humansData[category];
                 util.$ls("humanspage",data);

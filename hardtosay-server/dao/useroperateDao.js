@@ -11,8 +11,14 @@ exports.selectRelatives = function(position,cb){
 //    if(position.relative_id){
 //        posObj.relative_id = position.relative_id;
 //    }
-    dbOperator.select("relative",{host_id:position.host_id},cb);
+    if(!position.relative_id){
+        dbOperator.select("relative",{host_id:position.host_id},cb);
+    }else{
+        dbOperator.select("relative",{host_id:position.host_id,relative_id:position.relative_id},cb);
+    }
+
 }
+
 
 exports.selectUsersByKey = function(position,callback){
     var search_key = position.searck_key;
@@ -26,18 +32,25 @@ exports.selectUsersByKey = function(position,callback){
                     var record,funs = [];
                     for(var i = 0; i < results.length; i++){
                         record = results[i];
-                        funs.push((function(cb){
+                        funs.push((function(){
                             var relative = record;
-                            dbOperator.select("relative",{host_id:record.user_id,relative_id:sender},function(err,results){
-                                if(results && results.length > 0){
-                                    cb(err,relative);
-                                }else{
-                                    cb(err,null);
-                                }
-                            });
+                            return function(cb){
+                                dbOperator.select("relative",{host_id:record.user_id,relative_id:sender},function(err,results){
+                                    if(results && results.length > 0){
+                                        cb(err,null);
+                                    }else{
+                                        cb(err,relative);
+                                    }
+                                });
+                            }
                         })());
                     }
                     async.parallel(funs,function(err,results){
+                        for(var i = 0; i < results.length; i++){
+                            if(results[i] == null){
+                                results.splice(i,1);
+                            }
+                        }
                         callback(err,results);
                     });
                 }
