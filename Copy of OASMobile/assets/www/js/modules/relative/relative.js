@@ -32,6 +32,7 @@ define("modules/relative/relative",['util','superObject','draw','touchUtil','mes
                 $("."+category).removeClass("remind-tag");//移除右上角的提示红点
                 var humansData = relativeManager.getAll();
                 var data = humansData[category];
+                currentCate = category;
                 util.$ls("humanspage",data);
                 changeHash("#humans",data);
             });

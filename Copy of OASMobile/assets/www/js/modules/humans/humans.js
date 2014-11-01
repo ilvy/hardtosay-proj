@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 14-10-16.
  */
-define("modules/humans/humans",['util','superObject','messageManager','socketManager'],function(){
+define("modules/humans/humans",['util','superObject','globalManger','messageManager','socketManager'],function(){
 
     var humans = superObject.extend({
 
@@ -23,7 +23,7 @@ define("modules/humans/humans",['util','superObject','messageManager','socketMan
                     id:relativeId,
                     name:$this.data("name")
                 };
-
+                global.currentTalker = relative;
                 socket.sendMessage(protocolConfig.message,{
                     sender:util.$ls("host"),
                     relative_id:relativeId

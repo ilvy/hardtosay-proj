@@ -42,7 +42,7 @@ exports.addRelation = function(req,res){
         return;
     }
     var funs = [];
-    funs.push([
+    funs = [
         function isExistRelative(cb){
             //确认关系是否存在
             uopDao.selectRelatives({host_id:user1,relative_id:user2},function(err,results){
@@ -87,9 +87,10 @@ exports.addRelation = function(req,res){
                 cb(err,results);
             })
         }
-    ]);
+    ];
     async.series(funs,function(err,results){
         //TODO
+        console.log(err);
     })
 
 };

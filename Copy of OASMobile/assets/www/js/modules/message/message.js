@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 14-10-11.
  */
-define("modules/message/message",['util','superObject','messageManager','socketManager'],function(){
+define("modules/message/message",['util','superObject','messageManager','socketManager','globalManger'],function(){
 
     var message = superObject.extend({
         data:{},
@@ -10,7 +10,7 @@ define("modules/message/message",['util','superObject','messageManager','socketM
             currentPage = "message";
             $("#content").html(html);
             this.data = msgManager.getAll(data.id);//data;
-            this.relative = data;
+            this.relative = global.currentTalker;
             this.initHeader();
             this.addListener();
             this.renderMessage();
@@ -60,7 +60,8 @@ define("modules/message/message",['util','superObject','messageManager','socketM
                         sender:util.$ls("host"),
                         receiver:_this.relative.name,
                         message:contents,
-                        message_id:message_id
+                        message_id:message_id,
+                        relative:currentCate
                     };
                     msgManager.add(_this.relative.id,msgObj);//缓存发送消息
                     msgObj.interval = setTimeout(function(){
@@ -86,6 +87,7 @@ define("modules/message/message",['util','superObject','messageManager','socketM
                     replyObj.sender = util.$ls("host");
                     replyObj.receiver = _this.relative.id;
                     replyObj.type = $this.parents(".message-block").find(".ms-content").data("type");
+                    replyObj.relative = currentCate;
                     if($this.hasClass("reply_access")){
                         replyObj.reply = 1;
                     }else if($this.hasClass("reply_reject")){
