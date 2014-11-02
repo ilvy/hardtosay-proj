@@ -1,18 +1,17 @@
 /**
  * Created by Administrator on 14-10-11.
  */
-define("modules/message/message",['util','superObject','messageManager','socketManager','globalManger'],function(){
+define("modules/message/message",['util','superObject','messageManager','socketManager','globalManager'],function(){
 
     var message = superObject.extend({
         data:{},
         relative:{},
         initialize:function(html,data){
-            currentPage = "message";
+            global.currentPage = "message";
             $("#content").html(html);
-            this.data = msgManager.getAll(data.id);//data;
             this.relative = global.currentTalker;
+            this.data = msgManager.getAll(this.relative.id);//data;
             this.initHeader();
-            this.addListener();
             this.renderMessage();
         },
         initHeader:function(){
@@ -116,6 +115,12 @@ define("modules/message/message",['util','superObject','messageManager','socketM
         }
     });
     return function(html,data){
-        new message(html,data);
+//        new message(html,data);
+        if(!global.modules["message"]){
+            global.modules["message"] = new message(html,data);
+            global.modules["message"].addListener();
+        }else{
+            global.modules["message"].initialize(html);
+        }
     }
 })

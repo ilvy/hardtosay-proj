@@ -11,10 +11,9 @@ define("modules/addRelation/addRelation",['util','superObject'],function(){
     var addRelation = superObject.extend({
         data:{},
         initialize:function(html,data){
-            currentPage = "addRelation";
+            global.currentPage = "addRelation";
             $("#content").html(html);
             this.data = data;
-            this.addListener();
         },
         addListener:function(){
             var _this = this;
@@ -74,6 +73,12 @@ define("modules/addRelation/addRelation",['util','superObject'],function(){
         }
     });
     return function(html,data){
-        new addRelation(html,data);
+//        new addRelation(html,data);
+        if(!global.modules["addRelation"]){
+            global.modules["addRelation"] = new addRelation(html,data);
+            global.modules["addRelation"].addListener();
+        }else{
+            global.modules["addRelation"].initialize(html);
+        }
     }
 });

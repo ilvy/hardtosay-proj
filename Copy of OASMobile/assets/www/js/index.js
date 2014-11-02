@@ -66,4 +66,17 @@ function addListener(){
 //            duration: 200//动画时间
 //        });
 //    })
+    $(".back-btn").bind("click",function(){
+        switch (currentPage){
+            case 'relative':
+
+                break;
+            case 'humans':
+                break;
+            case 'message':
+                break;
+            case 'addRelation':
+                break;
+        }
+    });
 }
