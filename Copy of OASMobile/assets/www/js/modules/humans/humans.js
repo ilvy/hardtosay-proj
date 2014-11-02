@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 14-10-16.
  */
-define("modules/humans/humans",['util','superObject','messageManager','socketManager'],function(){
+define("modules/humans/humans",['util','superObject','globalManger','messageManager','socketManager'],function(){
 
     var humans = superObject.extend({
 
@@ -17,12 +17,13 @@ define("modules/humans/humans",['util','superObject','messageManager','socketMan
         addListener:function(){
             $(document).on("click",'.relative',function(){
                 var $this = $(this);
+                $this.find(".photo").removeClass("remind-tag");
                 var relativeId = $this.data("id");
                 var relative = {
                     id:relativeId,
                     name:$this.data("name")
                 };
-
+                global.currentTalker = relative;
                 socket.sendMessage(protocolConfig.message,{
                     sender:util.$ls("host"),
                     relative_id:relativeId

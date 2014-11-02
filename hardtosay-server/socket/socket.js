@@ -169,6 +169,7 @@ function apology(socket){
         msgObj.message = data.message;
         msgObj.time = util.formatDate(new Date(),true);
         msgObj.message_id = data.message_id;
+        msgObj.relative = data.relative;
         //从session中查询目标用户是否已经登录，若未登录，存于数据库，并推送，若已经登录，直接发送消息即可
         //1、从session中查询目标用户
         var receiverAuth = session.authority(msgObj.receiver);

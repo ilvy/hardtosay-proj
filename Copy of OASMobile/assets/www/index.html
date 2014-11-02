@@ -24,36 +24,36 @@
 
     </header>
     <section class="content" id="content">
-        <!--<div class="me relation-node">-->
-            <!--&lt;!&ndash;<div>I</div>&ndash;&gt;-->
-        <!--</div>-->
-        <!--<div class="partner relation-node">-->
-            <!--&lt;!&ndash;<div class="main-btn">另一半</div>&ndash;&gt;-->
+        <div class="me relation-node">
+            <!--<div>I</div>-->
+        </div>
+        <div class="partner relation-node remind-tag">
+            <!--<div class="main-btn">另一半</div>-->
 
-            <!--<div href="#wheel" class="main-btn">-->
-                <!--另一半-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<ul id="wheel"  data-angle="NE">-->
-            <!--<li class="item"><a href="#home">A</a></li>-->
-            <!--<li class="item"><a href="#home">B</a></li>-->
-            <!--<li class="item"><a href="#home">C</a></li>-->
-        <!--</ul>-->
-        <!--<div class="parents relation-node">-->
-            <!--<div class="main-btn">爸妈</div>-->
-        <!--</div>-->
-        <!--<div class="children relation-node">-->
-            <!--<div class="main-btn">子女</div>-->
-        <!--</div>-->
-        <!--<div class="lace relation-node">-->
-            <!--<div class="main-btn">闺蜜</div>-->
-        <!--</div>-->
-        <!--<div class="soap relation-node">-->
-            <!--<div class="main-btn">基友</div>-->
-        <!--</div>-->
-        <!--<div id="test">-->
+            <div href="#wheel" class="main-btn">
+                另一半
+            </div>
+        </div>
+        <ul id="wheel"  data-angle="NE">
+            <li class="item"><a href="#home">A</a></li>
+            <li class="item"><a href="#home">B</a></li>
+            <li class="item"><a href="#home">C</a></li>
+        </ul>
+        <div class="parents relation-node">
+            <div class="main-btn">爸妈</div>
+        </div>
+        <div class="children relation-node">
+            <div class="main-btn">子女</div>
+        </div>
+        <div class="lace relation-node">
+            <div class="main-btn">闺蜜</div>
+        </div>
+        <div class="soap relation-node">
+            <div class="main-btn">基友</div>
+        </div>
+        <div id="test">
 
-        <!--</div>-->
+        </div>
     </section>
 
     <footer>
@@ -82,7 +82,8 @@
         util:'./js/utils/util',
         superObject:'./js/libs/entity/superObject',
         draw:'./js/draw.js',
-        touchUtil:'./js/utils/touchUtil.js'
+        touchUtil:'./js/utils/touchUtil.js',
+        globalManger:'./js/socket/globalManger.js'
 
     };
     var history = [];
@@ -94,6 +95,7 @@
 
     var currentPage = "";
     var remoteServer = "http://localhost:5000";
+    var currentCate = "";//当前对话关系类型
 //    function cutString(str,limitLen){
 //        var suffix = "";
 //        if(str.length > limitLen){

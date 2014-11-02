@@ -28,6 +28,9 @@ failMsgManager = {
     getByHost:function(){
         var host = util.$ls("host");
         this.$failmsgs = JSON.parse(util.$ls("failmsg"));
+        if(!this.$failmsgs){
+            this.$failmsgs = {};
+        }
         return this.$failmsgs[host]?this.$failmsgs[host]:this.$failmsgs[host] = {};
     }
 };
@@ -124,6 +127,9 @@ msgManager = {
     },
     getMessageByHost:function(){
         this.$message = JSON.parse(util.$ls("message"));
+        if(!this.$message){
+            this.$message = {};
+        }
         var host = util.$ls("host");
         var $msg = this.$message[host];
         return $msg?$msg:$msg = this.$message[host] = {};
@@ -192,6 +198,9 @@ var relativeManager = {
     },
     getByHost:function(){
         this.$humansDatas = JSON.parse(util.$ls("humansData"));
+        if(!this.$humansDatas){
+            this.$humansDatas = {};
+        }
         var host = util.$ls("host");
         return this.$humansDatas[host];
     }

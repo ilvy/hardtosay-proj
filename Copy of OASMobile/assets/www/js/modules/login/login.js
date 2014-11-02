@@ -5,7 +5,7 @@
  * Time: 下午11:23
  * To change this template use File | Settings | File Templates.
  */
-define("modules/login/login",['util','superObject','messageManager','socketManager'],function(){
+define("modules/login/login",['util','superObject','messageManager','socketManager','globalManger'],function(){
 
     var login = superObject.extend({
         initialize:function(html){
@@ -40,6 +40,14 @@ define("modules/login/login",['util','superObject','messageManager','socketManag
                         console.log(err);
                     }
                 })
+            });
+            $(document).on("click","#regBtn",function(){
+                var name = $("#username").val(),
+                    pwd = $("#password").val();
+                var url = remoteServer + "/register";
+                var data = {
+
+                }
             });
         }
     });
