@@ -13,25 +13,29 @@ define("modules/message/message",['util','superObject','messageManager','socketM
             this.data = msgManager.getAll(this.relative.id);//data;
             this.initHeader();
             this.renderMessage();
+            this.initComponents();
         },
         initHeader:function(){
             $(".app_title").html(this.relative.name);
         },
+        initComponents:function(){
+            $("#add-ms-btn").wheelmenu({
+                trigger: "click",
+                animation: "fly",
+                animationSpeed: "fast"
+            });
+            $("#add-ms-btn").css({
+                left:(wW - $("#add-ms-btn").width()) / 2
+            });
+            $("#send-btn").css({
+                left:(wW - $("#send-btn").width()) / 2
+            });
+        },
         addListener:function(){
             var _this = this;
             $(function(){
-                $("#add-ms-btn").css({
-                    left:(wW - $("#add-ms-btn").width()) / 2
-                });
-                $("#send-btn").css({
-                    left:(wW - $("#send-btn").width()) / 2
-                });
-                $("#add-ms-btn").wheelmenu({
-                    trigger: "click",
-                    animation: "fly",
-                    animationSpeed: "fast"
-                });
-                $("#wheel").on("click",".item",function(){
+
+                $("#content").on("click",".item",function(){
                     var $this = $(this);
                     var action = $this.data("action");
                     $(".spare-input").data("action",action).removeClass("spare-input").appendTo($(".msg-list"));
@@ -45,7 +49,7 @@ define("modules/message/message",['util','superObject','messageManager','socketM
                 /*
                  *发送消息
                  */
-                $("#send-btn").on("click",function(){
+                $("#content").on("click","#send-btn",function(){
                     var $content = $("#msg-list .message-block:last .ms-content");
                     var contents = $content.contents().filter(function(){
                         return this.nodeType == 3;
@@ -76,10 +80,10 @@ define("modules/message/message",['util','superObject','messageManager','socketM
                         "overflow-y":"initial"
                     }).append('<span class="icon-spinner icon-spin sending"></span>');
                 });
-                $("#msg-list").on("click",".msg-display",function(){
+                $("#content").on("click",".msg-display",function(){
                     changeHash("#detailmsg");
                 });
-                $('#msg-list').on("click",'.msg_reply_btn',function(event){
+                $('#content').on("click",'.msg_reply_btn',function(event){
                     var $this = $(this);
                     var replyObj = {};
                     replyObj.message_id = $this.parents(".message-block").find("[message_id]").attr("message_id");
