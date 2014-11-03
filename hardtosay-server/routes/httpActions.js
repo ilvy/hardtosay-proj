@@ -7,7 +7,12 @@
  */
 var session = require("../socket/session"),
     login = require("./httpAction/login").login,
-    relation = require("./httpAction/relation");
+    relation = require("./httpAction/relation"),
+    fs = require("fs"),
+    formidable = require("formidable"),
+    upload = require("formidable-upload"),
+    uploader = upload().accept(/image*/)
+        .to(["public",'image']).imguri();
 
 exports.router = function(app){
     app.all('*', function(req, res, next) {
@@ -25,5 +30,23 @@ exports.router = function(app){
     app.get("/search",relation.search);
     app.get("/addRelation",relation.addRelation);
     app.get("/replyAddRelationRequest",relation.replyAddRelationRequest);
+//    app.post("/uploadHeadImg",function(req,res){
+//        console.log(req);
+//        uploader.exec(req.files.upload,function(err,file){
+//            if(err){
+//                console.log(err);
+//            }else{
+//                console.log(file);
+//            }
+//        })
+//    });//uploader.middleware("imagefile")
+    app.post("/uploadHeadImg",function(req,res){
+        var form = new formidable.IncomingForm();
+        form.uploadDir = './image';
+        form.parse(req,function(err,fields,files){
+//            fs.renameSync(files.upload.path,"/image/test.png");
+            res.send("upload success");
+        });
+    })
 };
 

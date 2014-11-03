@@ -15,16 +15,9 @@ define("modules/relative/relative",['util','superObject','draw','touchUtil','glo
             $(function(){
                 _this.drawSvgLines();
             });
+            this.addBindListener();
         },
-        addListener:function(){
-//            $(".main-btn").wheelmenu({
-//                trigger: "click",
-//                animation: "fly",
-//                animationSpeed: "fast"
-//            });
-//            $(document).on("click",'.relation-node',function(event){
-//                changeHash("#message");
-//            });
+        addBindListener:function(){//bindListener 需要重复监听
             var _this = this;
             $(".relation-node").touch(touchEvent.click,function(event){
                 var category = event.$this.data("cate_en");
@@ -39,6 +32,18 @@ define("modules/relative/relative",['util','superObject','draw','touchUtil','glo
                 currentCate = event.$this.data("cate_en");
                 changeHash("#addRelation",{category:event.$this.data("cate_en")});
             });
+        },
+        addListener:function(){
+//            $(".main-btn").wheelmenu({
+//                trigger: "click",
+//                animation: "fly",
+//                animationSpeed: "fast"
+//            });
+//            $(document).on("click",'.relation-node',function(event){
+//                changeHash("#message");
+//            });
+
+            var _this = this;
             /**
              * 回退按钮
              */
@@ -143,6 +148,7 @@ define("modules/relative/relative",['util','superObject','draw','touchUtil','glo
             global.modules["relative"].addListener();
         }else{
             global.modules["relative"].initialize(html);
+            global.modules["relative"].addListener();
         }
 
     }
