@@ -5,12 +5,11 @@
  * Time: 下午11:23
  * To change this template use File | Settings | File Templates.
  */
-define("modules/login/login",['util','superObject','messageManager','socketManager','globalManger'],function(){
+define("modules/login/login",['util','superObject','messageManager','socketManager','globalManager'],function(){
 
     var login = superObject.extend({
         initialize:function(html){
             $("#content").html(html);
-            this.addListener();
         },
         addListener:function(){
             $(document).on("click","#loginBtn",function(){
@@ -52,6 +51,12 @@ define("modules/login/login",['util','superObject','messageManager','socketManag
         }
     });
     return function(html){
-        new login(html);
+//        new login(html);
+        if(!global.modules["login"]){
+            global.modules["login"] = new login(html);
+            global.modules["login"].addListener();
+        }else{
+            global.modules["login"].initialize(html);
+        }
     }
 })

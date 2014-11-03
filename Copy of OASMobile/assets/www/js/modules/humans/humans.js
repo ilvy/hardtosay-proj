@@ -1,16 +1,15 @@
 /**
  * Created by Administrator on 14-10-16.
  */
-define("modules/humans/humans",['util','superObject','globalManger','messageManager','socketManager'],function(){
+define("modules/humans/humans",['util','superObject','globalManager','messageManager','socketManager'],function(){
 
     var humans = superObject.extend({
 
         data:{},
         initialize:function(html,data){
-            currentPage = "humans";
+            global.currentPage = "humans";
             this.data = JSON.parse(util.$ls("humanspage"));//data;
             $("#content").html(html);
-            this.addListener();
             this.renderHumans();
 
         },
@@ -87,6 +86,12 @@ define("modules/humans/humans",['util','superObject','globalManger','messageMana
         }
     });
     return function(html,data){
-        new humans(html,data);
+//        new humans(html,data);
+        if(!global.modules["humans"]){
+            global.modules["humans"] = new humans(html,data);
+            global.modules["humans"].addListener();
+        }else{
+            global.modules["humans"].initialize(html);
+        }
     }
 });

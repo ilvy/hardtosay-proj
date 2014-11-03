@@ -3,5 +3,7 @@
  */
 
 var global = {
-    currentTalker:null
+    currentTalker:null,
+    currentPage:null,
+    modules:[]
 };

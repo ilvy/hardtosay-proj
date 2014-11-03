@@ -1,13 +1,13 @@
 /**
  * Created by Administrator on 14-10-10.
  */
-define("modules/relative/relative",['util','superObject','draw','touchUtil','messageManager'],function(){
+define("modules/relative/relative",['util','superObject','draw','touchUtil','globalManager','messageManager','socketManager'],function(){
 
     var relative = superObject.extend({
         data:{},
         humansData:{},
         initialize:function(html,data){
-            currentPage = 'relative';
+            global.currentPage = 'relative';
             $("#content").html(html);
 //            this.humansData = relativeManager.getAll();//JSON.parse(util.$ls("humansData"));
             this.dealHumansData();
@@ -15,7 +15,6 @@ define("modules/relative/relative",['util','superObject','draw','touchUtil','mes
             $(function(){
                 _this.drawSvgLines();
             });
-            this.addListener();
         },
         addListener:function(){
 //            $(".main-btn").wheelmenu({
@@ -37,15 +36,20 @@ define("modules/relative/relative",['util','superObject','draw','touchUtil','mes
                 changeHash("#humans",data);
             });
             $(".relation-node").touch(touchEvent.longtouch,function(event){
+                currentCate = event.$this.data("cate_en");
                 changeHash("#addRelation",{category:event.$this.data("cate_en")});
             });
             /**
              * 回退按钮
              */
-            $(".back-btn").on("click",function(){
-                var currPage = $(this).data("page");
+            $(".back-btn").bind("click",function(){
+                var currPage = global.currentPage;
                 switch (currPage){
                     case "relative":
+                        var user = util.$ls("host");
+                        socket.sendMessage(protocolConfig.logout,{user:user});
+                        window.location.href = 'index.html';
+                        changeHash("login");
                         break;
                     case "humans":
                         changeHash("#relative");
@@ -54,6 +58,7 @@ define("modules/relative/relative",['util','superObject','draw','touchUtil','mes
                         changeHash("#humans");
                         break;
                     case "addRelation":
+                        changeHash("relative");
                         break;
                 }
             });
@@ -133,6 +138,12 @@ define("modules/relative/relative",['util','superObject','draw','touchUtil','mes
         }
     });
     return function(html,data){
-        new relative(html,data);
+        if(!global.modules["relative"]){
+            global.modules["relative"] = new relative(html,data);
+            global.modules["relative"].addListener();
+        }else{
+            global.modules["relative"].initialize(html);
+        }
+
     }
 });
