@@ -46,12 +46,13 @@ exports.selectUsersByKey = function(position,callback){
                         })());
                     }
                     async.parallel(funs,function(err,results){
+                        var resData = [];
                         for(var i = 0; i < results.length; i++){
-                            if(results[i] == null){
-                                results.splice(i,1);
+                            if(results[i] != null){
+                                resData.push(results[i]);
                             }
                         }
-                        callback(err,results);
+                        callback(err,resData);
                     });
                 }
             }
