@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="./js/libs/jquery.js"></script>
+    <script src="./js/phoneGap/cordova.js"></script>
+    <!--<script src="./js/libs/ajaxupload.js"></script>-->
+</head>
+<body>
+    <!--<input type="button" value="上传" id="upload"/>-->
+    <input type="button" value="upload" onclick="getPicture()"/>
+    <div id="imgDiv" style="width: 300px;height: 300px;"></div>
+    <img id="imgTest" src="" width="300" height="300"/>
+    <!--<img  src="http://192.168.50.216:3000/image/test_1415346903425.jpg" width="300" height="300"/>-->
+</body>
+<script>
+//    $(function(){
+//        new AjaxUpload("#upload",{
+//            action:"http://192.168.50.216:5000/uploadHeadImg",
+//            name:'file',
+//            onSubmit:function(file,ext){
+//                console.log(file +" "+ ext);
+//            },
+//            onComplete:function(file,res){
+//                console.log(res);
+//            }
+//        })
+//    })
+
+    function upload(imgUrl){
+        var options = new FileUploadOptions();
+
+        options.fileKey = "file";//用于设置参数，对应form表单里控件的name属性，这是关键，废了一天时间，完全是因为这里，这里的参数名字，和表单提交的form对应
+        options.type = "image/jpeg";
+//        var imagefilename = Number(new Date())+".jpg";
+        var fileName=imgUrl.substr(imgUrl.lastIndexOf('/') + 1);
+        options.fileName = fileName.indexOf(".") > -1?fileName:fileName+".jpg";
+        //options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
+
+        //如果是图片格式，就用image/jpeg，其他文件格式上官网查API
+//        options["form-data"] =
+        options.mimeType = "image/jpeg";
+
+//        options.mimeType = "multipart/form-data";//这两个参数修改了，后台就跟普通表单页面post上传一样 enctype="multipart/form-data"
+
+        //这里的uri根据自己的需求设定，是一个接收上传图片的地址
+
+        var uri = encodeURI("http://192.168.50.216:3000/uploadHeadImg");
+
+        //alert(imageURI);
+
+        //alert(uri);
+
+        options.chunkedMode = false;
+
+        var params = new Object();
+
+        params.fileAddPic = imgUrl;
+
+        options.params = params;
+
+        var ft = new FileTransfer();
+
+        ft.upload(imgUrl, uri, success, fail, options);
+    }
+    function success(data){
+        console.log("upload success :"+data.response);
+        $("#imgTest")[0].src = data.response;
+        $("#imgDiv").html('<img  src="'+data.response+'" width="300" height="300"/>');
+    }
+    function fail(){
+        console.log("upload fail :");
+    }
+
+    function getPicture(){
+        var option = {
+            quality:80,
+            destinationType:Camera.DestinationType.FILE_URI,
+            sourceType:Camera.PictureSourceType.PHOTOLIBRARY,
+            encodingType:Camera.EncodingType.JPEG
+        };
+        navigator.camera.getPicture(function(data){
+            upload(data);
+        },function(err){
+            console.log(err);
+        },option);
+    }
+
+</script>
+</html>

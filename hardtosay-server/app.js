@@ -11,7 +11,8 @@ var path = require('path');
 var socketServer = require("./socket/socket");
 
 var app = express();
-
+process.env.TMP = "./tmp";
+console.log(process.env.TMP);
 // all environments
 app.set('port', process.env.PORT || 5000);
 app.set('views', path.join(__dirname, 'views'));

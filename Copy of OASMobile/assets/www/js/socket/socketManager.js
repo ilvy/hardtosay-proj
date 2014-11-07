@@ -95,7 +95,7 @@ Socket.prototype.onAddRelation = function(){
 
         }else if(requesterInfo.type == 'reply'){//我加别人，别人的回复
             relativeManager.addRelativeSuccess(data.relative,data.relative_id,data);
-            if(currentPage == 'humans'){
+            if(global.currentPage == 'humans'){
                 $('[data-id="'+data.relative_id+'"] .waiting').remove();
             }
             //TODO 通知栏通知用户回复
@@ -112,7 +112,7 @@ Socket.prototype.onAddRelation = function(){
             image:requesterInfo.image,
             relative:data.relative
         };
-        switch (currentPage){
+        switch (global.currentPage){
             case "relative":
                 //TODO 对应关系显示消息提示
 //                var humansData = JSON.parse(util.$ls("humansData"));
@@ -155,7 +155,7 @@ Socket.prototype.onMessage = function(protocol,cb){
 
 Socket.prototype.onApology = function(){
     this.socket.on(protocolConfig.apology,function(data){
-        switch (currentPage){
+        switch (global.currentPage){
             case "relative":
                 //TODO 对应关系显示消息提示      //bug 消息缺少关系字段
                 $("."+data.relative).addClass("remind-tag");
@@ -166,11 +166,14 @@ Socket.prototype.onApology = function(){
                 break;
             case "message":
                 var msglistStr = "";
-                msglistStr += ' <div class="message-block left" style="height:initial;overflow:initial;"><div class="ms-content msg-display"' +
+                msglistStr += ' <div class="message-block left" style="height:initial;overflow:initial;"><div class="ms-content edit-finish-block msg-display"' +
                     ' data-type="'+data["type"]+'" message_id="'+data["message_id"]+'">' +
-                    (data['message']?data['message']:"")+'</div><div class="msg_reply_btn_group"><div class="msg_reply_btn reply_access">接受</div>' +
-                    '<div class="msg_reply_btn reply_reject">拒绝</div></div></div>';
+                    (data['message']?data['message']:"")+'</div><div class="msg_reply_btn_group"><div class="msg_reply_btn reply_access"><span class="icon-heart-empty"></span></div>' +
+                    '<div class="msg_reply_btn reply_reject"><span class="icon-heart"></span><div class="reject-heart"></div></div></div></div>';
                 $("#msg-list").append(msglistStr);
+                $("html,body").animate({
+                    scrollTop:$("body").height()
+                },1000);
                 break;
         }
         msgManager.add(data.sender,data);
@@ -179,7 +182,7 @@ Socket.prototype.onApology = function(){
 
 Socket.prototype.onReply = function(){
     this.socket.on(protocolConfig.reply,function(data){
-        switch (currentPage){
+        switch (global.currentPage){
             case "relative":
                 //TODO 对应关系显示消息提示
                 $("."+data.relative).addClass("remind-tag");
@@ -189,7 +192,8 @@ Socket.prototype.onReply = function(){
                 $("[data-id='"+data.sender+"'] .photo").addClass("remind-tag");
                 break;
             case "message":
-                var replyStr = '<div class="msg_reply_mask">'+(data.reply?"原谅":"拒绝")+'</div>';
+                var replyStr = '<div class="msg_reply_mask">'+(data.reply?"<span class=\"icon-heart broke-effect-var\"></span>":
+                                "<div class='broke-heart'><span class=\"icon-heart broke-effect-var\"></span><div class=\"broke-effect\"></div></div>")+'</div>';
                 var message_id = data.message_id;
                 $('[message_id="'+message_id+'"]').append(replyStr);
                 break;
@@ -205,6 +209,7 @@ Socket.prototype.onMessageAck = function(){
     if(this.isActiveProtocol(protocolConfig.message_ack)){
         return;
     }
+    //TODO 管理所有发送消息的回应
     this.socket.on(protocolConfig.message_ack,function(data){
         clearTimeout(data.interval);//移除信息发送失败定时器
         $('[message_id="'+data.message_id+'"]').siblings(".sending").remove();//TODO 移除发送中的标志

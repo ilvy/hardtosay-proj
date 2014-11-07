@@ -1,7 +1,7 @@
 body{
     margin: 0px;
     padding: 0px;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 .header{
@@ -219,13 +219,14 @@ body{
 
 /***********************start message.html****************************/
 .message-block{
-    width: 80%;
+    width: 66%;
     height: 300px;
     border: 1px solid #CDCDCD;
     background-color: #ffffff;
     overflow-y: auto;
     border-radius: 5px;
     position: relative;
+    overflow-x: hidden;
 }
 .msg-list .message-block:last-child{
     margin-bottom: 60px;
@@ -235,16 +236,50 @@ body{
     height: 100%;
 }
 
+.x-hidden{
+    overflow-x: hidden;
+}
+
+.edit-finish-block{
+    padding: 8px 8px;
+}
+
 .left{
     margin-top: 10px;
-    margin-left: 20px;
+    margin-left: 2%;
     box-shadow: 1px 1px 3px #cdcdcd;
 }
 .right{
     margin-top: 10px;
-    margin-left: 50px;
+    margin-left: 32%;
     box-shadow: -1px 1px 3px #cdcdcd;
 }
+.left:before{
+    content: "";
+    height: 0px;
+    width: 0px;
+    border: 8px #e2e2e2 solid;
+    border-left: 8px transparent solid;
+    border-top: 4px transparent solid;
+    border-bottom: 8px transparent solid;
+    position: absolute;
+    left: -16px;
+    top: 6px;
+}
+
+.right:before{
+    content: "";
+    height: 0px;
+    width: 0px;
+    border: 8px #e2e2e2 solid;
+    border-right: 8px transparent solid;
+    border-top: 4px transparent solid;
+    border-bottom: 8px transparent solid;
+    position: absolute;
+    right: -16px;
+    top: 6px;
+}
+
 .add-ms-btn{
     width: 48px;
     height: 48px;
@@ -298,14 +333,14 @@ body{
 
 .msg_reply_btn_group{
     position: absolute;
-    right: -80px;
+    right: -50px;
     bottom: 0;
 }
 .msg_reply_btn{
     display: inline-block;
     float: left;
     padding: 3px;
-    border: 1px solid blue;
+    /*border: 1px solid blue;*/
     margin-left: 3px;
     cursor: pointer;
 }
@@ -317,6 +352,52 @@ body{
     background-color: rgba(225,225,225,0.5);
     text-align: center;
     top: 0;
+    left: 0;
+}
+
+.icon-heart{
+    color: red;
+}
+
+.icon-heart-empty{
+    color: red;
+}
+
+.reject-heart{
+    position: absolute;
+    height: 0px;
+    width: 0px;
+    border-top: 23px white solid;
+    border-right: 2px transparent solid;
+    border-left: 2px transparent solid;
+    border-bottom: 10px transparent solid;
+    top: 6px;
+    right: 8px;
+}
+
+.broke-heart{
+    width: 30px;
+    height: 30px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.broke-effect{
+    position: absolute;
+    height: 0px;
+    width: 0px;
+    border-top: 34px white solid;
+    border-right: 3px transparent solid;
+    border-left: 3px transparent solid;
+    border-bottom: 9px transparent solid;
+    top: 2px;
+    right: 10px;
+}
+
+.broke-effect-var{
+    font-size: 30px;
+    top: 2px;
+    right: 12px;
 }
 
 /***********************end message.html****************************/

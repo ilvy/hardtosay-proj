@@ -1,0 +1,209 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   'magickwand' ]
+2 info using npm@1.4.3
+3 info using node@v0.10.26
+4 verbose node symlink C:\Program Files\nodejs\\node.exe
+5 warn package.json fs@0.0.2 fs is also the name of a node core module.
+6 warn package.json fs@0.0.2 No description
+7 warn package.json fs@0.0.2 No repository field.
+8 verbose readDependencies using package.json deps
+9 verbose cache add [ 'magickwand', null ]
+10 verbose cache add name=undefined spec="magickwand" args=["magickwand",null]
+11 verbose parsed url { protocol: null,
+11 verbose parsed url   slashes: null,
+11 verbose parsed url   auth: null,
+11 verbose parsed url   host: null,
+11 verbose parsed url   port: null,
+11 verbose parsed url   hostname: null,
+11 verbose parsed url   hash: null,
+11 verbose parsed url   search: null,
+11 verbose parsed url   query: null,
+11 verbose parsed url   pathname: 'magickwand',
+11 verbose parsed url   path: 'magickwand',
+11 verbose parsed url   href: 'magickwand' }
+12 silly lockFile 6f70ed77-magickwand magickwand
+13 verbose lock magickwand C:\Users\Administrator\AppData\Roaming\npm-cache\6f70ed77-magickwand.lock
+14 silly lockFile 6f70ed77-magickwand magickwand
+15 silly lockFile 6f70ed77-magickwand magickwand
+16 verbose addNamed [ 'magickwand', '' ]
+17 verbose addNamed [ null, '*' ]
+18 silly lockFile daf31e61-magickwand magickwand@
+19 verbose lock magickwand@ C:\Users\Administrator\AppData\Roaming\npm-cache\daf31e61-magickwand.lock
+20 silly addNameRange { name: 'magickwand', range: '*', hasData: false }
+21 verbose url raw magickwand
+22 verbose url resolving [ 'https://registry.npmjs.org/', './magickwand' ]
+23 verbose url resolved https://registry.npmjs.org/magickwand
+24 info trying registry request attempt 1 at 22:22:53
+25 verbose etag "7QWVP0V4HUS1M42FA4PUTR2PQ"
+26 http GET https://registry.npmjs.org/magickwand
+27 http 503 https://registry.npmjs.org/magickwand
+28 verbose bad json <?xml version="1.0" encoding="utf-8"?>
+28 verbose bad json <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+28 verbose bad json  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+28 verbose bad json <html>
+28 verbose bad json   <head>
+28 verbose bad json     <title>503 backend read error</title>
+28 verbose bad json   </head>
+28 verbose bad json   <body>
+28 verbose bad json     <h1>Error 503 backend read error</h1>
+28 verbose bad json     <p>backend read error</p>
+28 verbose bad json     <h3>Guru Mediation:</h3>
+28 verbose bad json     <p>Details: cache-ty68-TYO 1415111021 3279974179</p>
+28 verbose bad json     <hr>
+28 verbose bad json     <p>Varnish cache server</p>
+28 verbose bad json   </body>
+28 verbose bad json </html>
+29 error registry error parsing json
+30 info retry will retry, error on last attempt: SyntaxError: Unexpected token <
+30 info retry
+30 info retry <?xml version="1.0" encoding="utf-8"?>
+30 info retry <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+30 info retry  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+30 info retry <html>
+30 info retry   <head>
+30 info retry     <title>503 backend read error</title>
+30 info retry   </head>
+30 info retry   <body>
+30 info retry     <h1>Error 503 backend read error</h1>
+30 info retry     <p>backend read error</p>
+30 info retry     <h3>Guru Mediation:</h3>
+30 info retry     <p>Details: cache-ty68-TYO 1415111021 3279974179</p>
+30 info retry     <hr>
+30 info retry     <p>Varnish cache server</p>
+30 info retry   </body>
+30 info retry </html>
+31 info trying registry request attempt 2 at 22:23:05
+32 verbose etag "7QWVP0V4HUS1M42FA4PUTR2PQ"
+33 http GET https://registry.npmjs.org/magickwand
+34 http 304 https://registry.npmjs.org/magickwand
+35 silly registry.get cb [ 304,
+35 silly registry.get   { date: 'Tue, 04 Nov 2014 14:51:13 GMT',
+35 silly registry.get     server: 'Apache',
+35 silly registry.get     via: '1.1 varnish',
+35 silly registry.get     'last-modified': 'Tue, 04 Nov 2014 14:51:13 GMT',
+35 silly registry.get     'cache-control': 'max-age=60',
+35 silly registry.get     etag: '"7QWVP0V4HUS1M42FA4PUTR2PQ"',
+35 silly registry.get     age: '0',
+35 silly registry.get     'x-served-by': 'cache-ty66-TYO',
+35 silly registry.get     'x-cache': 'MISS',
+35 silly registry.get     'x-cache-hits': '0',
+35 silly registry.get     'x-timer': 'S1415112673.175771,VS0,VE196',
+35 silly registry.get     vary: 'Accept',
+35 silly registry.get     'content-length': '0',
+35 silly registry.get     'keep-alive': 'timeout=10, max=50',
+35 silly registry.get     connection: 'Keep-Alive' } ]
+36 verbose etag magickwand from cache
+37 silly addNameRange number 2 { name: 'magickwand', range: '*', hasData: true }
+38 silly addNameRange versions [ 'magickwand',
+38 silly addNameRange   [ '0.0.1',
+38 silly addNameRange     '0.0.2',
+38 silly addNameRange     '0.0.3',
+38 silly addNameRange     '0.0.4',
+38 silly addNameRange     '0.0.5',
+38 silly addNameRange     '0.0.6',
+38 silly addNameRange     '0.0.7',
+38 silly addNameRange     '0.0.8',
+38 silly addNameRange     '0.0.10' ] ]
+39 verbose addNamed [ 'magickwand', '0.0.10' ]
+40 verbose addNamed [ '0.0.10', '0.0.10' ]
+41 silly lockFile 17cac7f1-magickwand-0-0-10 magickwand@0.0.10
+42 verbose lock magickwand@0.0.10 C:\Users\Administrator\AppData\Roaming\npm-cache\17cac7f1-magickwand-0-0-10.lock
+43 silly lockFile 17cac7f1-magickwand-0-0-10 magickwand@0.0.10
+44 silly lockFile 17cac7f1-magickwand-0-0-10 magickwand@0.0.10
+45 silly lockFile daf31e61-magickwand magickwand@
+46 silly lockFile daf31e61-magickwand magickwand@
+47 silly resolved [ { name: 'magickwand',
+47 silly resolved     description: 'native bindings for imagemagick convert',
+47 silly resolved     version: '0.0.10',
+47 silly resolved     author: { name: 'Qasim Zaidi', email: 'qasim@zaidi.me' },
+47 silly resolved     contributors: [ [Object], [Object] ],
+47 silly resolved     dependencies: {},
+47 silly resolved     repository: { type: 'git', url: 'git://github.com/qzaidi/magickwand.git' },
+47 silly resolved     main: 'index',
+47 silly resolved     bugs: { url: 'https://github.com/qzaidi/magickwand/issues' },
+47 silly resolved     licenses: [ [Object] ],
+47 silly resolved     engines: { node: '>=0.6.0' },
+47 silly resolved     scripts: { install: 'node-gyp rebuild' },
+47 silly resolved     gypfile: true,
+47 silly resolved     readme: 'magickwand\n==========\n\nNative bindings for imagemagick to resize and compress images. This can be used to dynamically resize images in an express/connect based server. See [examples/cdn.js](https://github.com/qzaidi/magickwand/blob/master/examples/cdn.js) for an example of connect middleware using magickwand.\n\nMost other modules exposing imagemagick invoke the convert utility as a child process, instead of making direct C API calls. While this works, API calls are much faster than invoking convert, and that is the motivation for this module.\n\nExample\n-------\n\n``` js\nvar magickwand = require(\'magickwand\');\nvar fs = require(\'fs\');\n\nmagickwand.resize(\'<pathtoimagefile>\', { width: 300, height: 200, quality: 80 } ,function(err,data) {\n  fs.writeFile(\'/tmp/def.jpg\',data,"binary");\n});\n```\n\nTo maintain aspect ratio while resizing, set one of the width/height parameters to 0. The callback is passed an info \nargument that has the width/height of the newly resized image, and is useful in case you chose to preserve the aspect\nratio\n\n```\nmagickwand.resize(\'<pathtoimagefile>\', { width: 100 },function(err,data,info) {\n  fs.writeFile(\'/tmp/def.jpg\',data,"binary");\n  console.log(\'new height is \' + info.height);\n});\n```\n\nTo convert to another supported format, use the format argument\n\n```\nmagickwand.resize(\'<pathtoimagefile>\', { format: \'png\', width: 300, height: 250 },function(err,data) {\n  fs.writeFile(\'/tmp/def.jpg\',data,"binary");\n});\n```\n\nSee examples/cdn.js on how to use this module as a middleware in connect.\n\nRequirements\n------------\n\nmagickwand uses the C library by the same name, so libmagickwand-dev should be installed. \n\nOn Ubuntu, for example\n\n``` bash\nsudo apt-get install libmagickwand-dev\n```\n\nOn Mac - you can use homebrew to install imagemagick.\n\n```bash\nbrew install pkg-config\nbrew install imagemagick  --disable-openmp\n```\n\nI had trouble using the default recipe for imagemagick, as openmp would cause node process to hang.\nMake sure you have disabled openmp while building Imagemagick.If you use homebrew, use the --disable-openmp \noption while installing imagemagick.\n\nOn SmartOS, install using pkgin\n\n```bash\npkgin ImageMagick\n```\n\nInstallation\n------------\n\n``` bash\n$ npm install magickwand\n```\n\nSource Install / Manual Compilation\n-----------------------------------\n\n``` bash\n$ git clone git://github.com/qzaidi/magickwand.git\n$ node-gyp configure build\n```\n',
+47 silly resolved     readmeFilename: 'README.md',
+47 silly resolved     homepage: 'https://github.com/qzaidi/magickwand',
+47 silly resolved     _id: 'magickwand@0.0.10',
+47 silly resolved     _from: 'magickwand@' } ]
+48 info install magickwand@0.0.10 into D:\Documents\GitHub\hardtosay-proj\hardtosay-server
+49 info installOne magickwand@0.0.10
+50 info D:\Documents\GitHub\hardtosay-proj\hardtosay-server\node_modules\magickwand unbuild
+51 verbose tar unpack C:\Users\Administrator\AppData\Roaming\npm-cache\magickwand\0.0.10\package.tgz
+52 silly lockFile dee76aaf-y-server-node-modules-magickwand tar://D:\Documents\GitHub\hardtosay-proj\hardtosay-server\node_modules\magickwand
+53 verbose lock tar://D:\Documents\GitHub\hardtosay-proj\hardtosay-server\node_modules\magickwand C:\Users\Administrator\AppData\Roaming\npm-cache\dee76aaf-y-server-node-modules-magickwand.lock
+54 silly lockFile e5a7eaeb-he-magickwand-0-0-10-package-tgz tar://C:\Users\Administrator\AppData\Roaming\npm-cache\magickwand\0.0.10\package.tgz
+55 verbose lock tar://C:\Users\Administrator\AppData\Roaming\npm-cache\magickwand\0.0.10\package.tgz C:\Users\Administrator\AppData\Roaming\npm-cache\e5a7eaeb-he-magickwand-0-0-10-package-tgz.lock
+56 silly gunzTarPerm modes [ '755', '644' ]
+57 silly gunzTarPerm extractEntry package.json
+58 silly gunzTarPerm modified mode [ 'package.json', 438, 420 ]
+59 silly gunzTarPerm extractEntry .npmignore
+60 silly gunzTarPerm modified mode [ '.npmignore', 438, 420 ]
+61 silly gunzTarPerm extractEntry README.md
+62 silly gunzTarPerm modified mode [ 'README.md', 438, 420 ]
+63 silly gunzTarPerm extractEntry index.js
+64 silly gunzTarPerm modified mode [ 'index.js', 438, 420 ]
+65 silly gunzTarPerm extractEntry binding.gyp
+66 silly gunzTarPerm modified mode [ 'binding.gyp', 438, 420 ]
+67 silly gunzTarPerm extractEntry examples/cdn.js
+68 silly gunzTarPerm modified mode [ 'examples/cdn.js', 438, 420 ]
+69 silly gunzTarPerm extractEntry src/magickwand.h
+70 silly gunzTarPerm modified mode [ 'src/magickwand.h', 438, 420 ]
+71 silly gunzTarPerm extractEntry src/module.cpp
+72 silly gunzTarPerm modified mode [ 'src/module.cpp', 438, 420 ]
+73 silly gunzTarPerm extractEntry src/resize.cpp
+74 silly gunzTarPerm modified mode [ 'src/resize.cpp', 438, 420 ]
+75 silly gunzTarPerm extractEntry src/thumbnail.cpp
+76 silly gunzTarPerm modified mode [ 'src/thumbnail.cpp', 438, 420 ]
+77 silly gunzTarPerm extractEntry test/magic.js
+78 silly gunzTarPerm modified mode [ 'test/magic.js', 438, 420 ]
+79 silly lockFile dee76aaf-y-server-node-modules-magickwand tar://D:\Documents\GitHub\hardtosay-proj\hardtosay-server\node_modules\magickwand
+80 silly lockFile dee76aaf-y-server-node-modules-magickwand tar://D:\Documents\GitHub\hardtosay-proj\hardtosay-server\node_modules\magickwand
+81 silly lockFile e5a7eaeb-he-magickwand-0-0-10-package-tgz tar://C:\Users\Administrator\AppData\Roaming\npm-cache\magickwand\0.0.10\package.tgz
+82 silly lockFile e5a7eaeb-he-magickwand-0-0-10-package-tgz tar://C:\Users\Administrator\AppData\Roaming\npm-cache\magickwand\0.0.10\package.tgz
+83 info preinstall magickwand@0.0.10
+84 verbose readDependencies using package.json deps
+85 verbose readDependencies using package.json deps
+86 silly resolved []
+87 verbose about to build D:\Documents\GitHub\hardtosay-proj\hardtosay-server\node_modules\magickwand
+88 info build D:\Documents\GitHub\hardtosay-proj\hardtosay-server\node_modules\magickwand
+89 verbose linkStuff [ false,
+89 verbose linkStuff   false,
+89 verbose linkStuff   false,
+89 verbose linkStuff   'D:\\Documents\\GitHub\\hardtosay-proj\\hardtosay-server\\node_modules' ]
+90 info linkStuff magickwand@0.0.10
+91 verbose linkBins magickwand@0.0.10
+92 verbose linkMans magickwand@0.0.10
+93 verbose rebuildBundles magickwand@0.0.10
+94 info install magickwand@0.0.10
+95 verbose unsafe-perm in lifecycle true
+96 info magickwand@0.0.10 Failed to exec install script
+97 info D:\Documents\GitHub\hardtosay-proj\hardtosay-server\node_modules\magickwand unbuild
+98 info preuninstall magickwand@0.0.10
+99 info uninstall magickwand@0.0.10
+100 verbose true,D:\Documents\GitHub\hardtosay-proj\hardtosay-server\node_modules,D:\Documents\GitHub\hardtosay-proj\hardtosay-server\node_modules unbuild magickwand@0.0.10
+101 info postuninstall magickwand@0.0.10
+102 error magickwand@0.0.10 install: `node-gyp rebuild`
+102 error Exit status 1
+103 error Failed at the magickwand@0.0.10 install script.
+103 error This is most likely a problem with the magickwand package,
+103 error not with npm itself.
+103 error Tell the author that this fails on your system:
+103 error     node-gyp rebuild
+103 error You can get their info via:
+103 error     npm owner ls magickwand
+103 error There is likely additional logging output above.
+104 error System Windows_NT 6.1.7601
+105 error command "C:\\Program Files\\nodejs\\\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "magickwand"
+106 error cwd D:\Documents\GitHub\hardtosay-proj\hardtosay-server
+107 error node -v v0.10.26
+108 error npm -v 1.4.3
+109 error code ELIFECYCLE
+110 verbose exit [ 1, true ]

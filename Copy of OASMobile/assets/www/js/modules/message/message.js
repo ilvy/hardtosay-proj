@@ -74,15 +74,16 @@ define("modules/message/message",['util','superObject','messageManager','socketM
                     socket.sendMessage(protocolConfig.apology,msgObj);
                     $("#add-ms-btn").css("display","block");
                     $("#send-btn").css("display","none");
-                    $content.addClass("msg-display").attr("contenteditable",false).attr("message_id",message_id);
+                    $content.addClass("msg-display").attr("contenteditable",false).attr("message_id",message_id).addClass("edit-finish-block");
                     $("#msg-list .message-block:last").css({
                         height:"initial",
-                        "overflow-y":"initial"
+                        "overflow-y":"initial",
+                        "overflow-x":"initial"
                     }).append('<span class="icon-spinner icon-spin sending"></span>');
                 });
-                $("#content").on("click",".msg-display",function(){
-                    changeHash("#detailmsg");
-                });
+//                $("#content").on("click",".msg-display",function(){
+//                    changeHash("#detailmsg");
+//                });
                 $('#content').on("click",'.msg_reply_btn',function(event){
                     var $this = $(this);
                     var replyObj = {};
@@ -92,8 +93,15 @@ define("modules/message/message",['util','superObject','messageManager','socketM
                     replyObj.type = $this.parents(".message-block").find(".ms-content").data("type");
                     replyObj.relative = currentCate;
                     if($this.hasClass("reply_access")){
+                        if($this.find(".icon-heart-empty").length == 0){
+                            return;
+                        }
                         replyObj.reply = 1;
+                        $this.find(".icon-heart-empty").removeClass().addClass("icon-heart");
                     }else if($this.hasClass("reply_reject")){
+                        if(!confirm("这可是拒绝哦，别伤了对方的心哦！")){
+                            return;
+                        }
                         replyObj.reply = 0;
                     }
                     socket.sendMessage(protocolConfig.reply,replyObj);
@@ -107,12 +115,13 @@ define("modules/message/message",['util','superObject','messageManager','socketM
                 replyStr = "";
                 var record = data[i],replyBtns = "",reply = record.reply;
                 var posClass = record["receiver"] == this.relative.name?
-                    (replyStr = (reply?'<div class="msg_reply_mask">'+(reply.reply?"原谅":"拒绝")+'</div>':''),"right"):
-                    (replyBtns = '<div class="msg_reply_btn_group"><div class="msg_reply_btn reply_access">接受</div>' +
-                        '<div class="msg_reply_btn reply_reject">拒绝</div></div>',"left");
+                    (replyStr = (reply?'<div class="msg_reply_mask">'+(reply.reply?"<span class=\"icon-heart broke-effect-var\"></span>":
+                                            "<div class='broke-heart'><span class=\"icon-heart broke-effect-var\"></span><div class=\"broke-effect\"></div></div>")+'</div>':''),"right"):
+                    (replyBtns = '<div class="msg_reply_btn_group"><div class="msg_reply_btn reply_access"><span class="icon-heart-empty"></span></div>' +
+                        '<div class="msg_reply_btn reply_reject"><span class="icon-heart"></span><div class="reject-heart"></div></div></div>',"left");
 
                 msglistStr += ' <div class="message-block '+posClass+'" style="height:initial;overflow:initial;">' +
-                    '<div class="ms-content msg-display" data-type="'+record["type"]+'" message_id="'+record["message_id"]+'">' +
+                    '<div class="ms-content edit-finish-block msg-display" data-type="'+record["type"]+'" message_id="'+record["message_id"]+'">' +
                     (record['message']?record['message']:"")+replyStr+'</div>'+replyBtns+'</div>';
             }
             $("#msg-list").html(msglistStr);
