@@ -81,13 +81,13 @@ public class MainActivity extends DroidGap {
 		super.onCreate(savedInstanceState);
 		docPlugin.deviceMac = getLocalMacAddress();
 		super.setIntegerProperty("splashscreen", R.drawable.splash);
-		super.loadUrl("file:///android_asset/www/uploadTest.html", 1500);
+		super.loadUrl("file:///android_asset/www/index.html", 1500);
 	}
 
 	protected void onNewIntent(Intent intent){
 		super.onNewIntent(intent);
 		setIntent(intent);
-		super.loadUrl("file:///android_asset/www/uploadTest.html");
+		super.loadUrl("file:///android_asset/www/index.html");
 	}
 	// 获得MAC地址
 	public String getLocalMacAddress() {

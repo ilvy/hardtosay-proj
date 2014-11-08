@@ -128,6 +128,9 @@ var util = {
             var res = window.sessionStorage.getItem("hardtosay_"+key);
             return res;
         }
+    },
+    filterMessage:function(msg){
+        return msg.replace(/&&&/g,"<br/>");
     }
 }
 

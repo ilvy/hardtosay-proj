@@ -9,6 +9,11 @@ var protocolConfig = require("../../socket/protocolConfig"),
     session = require("../../socket/session").session,
     userOperate = require("../../dao/useroperateDao");
 
-exports.register = function(){
+/**
+ * 注册：提交用户账号，密码，上传用户头像，其他都在用户信息完善界面完成
+ * @param req
+ * @param res
+ */
+exports.register = function(req,res){
 
 }
