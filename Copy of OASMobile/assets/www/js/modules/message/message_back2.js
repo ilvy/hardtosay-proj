@@ -38,8 +38,9 @@ define("modules/message/message",['util','superObject','messageManager','socketM
                 $("#content").on("click",".item",function(){
                     var $this = $(this);
                     var action = $this.data("action");
-                    $(".spare-input").data("action",action).removeClass("spare-input").appendTo($(".msg-list"));
-                    $('<div class="message-block spare-input right"><div class="ms-content" contenteditable="true"></div></div>').appendTo($("body"));
+                    $(".spare-input").data("action",action).css("display","block");
+//                    $(".spare-input").data("action",action).removeClass("spare-input").appendTo($(".msg-list"));
+//                    $('<div class="message-block spare-input right"><div class="ms-content" contenteditable="true"></div></div>').appendTo($("body"));
                     $("html,body").animate({
                         scrollTop:$("body").height()
                     },1000);
@@ -51,14 +52,13 @@ define("modules/message/message",['util','superObject','messageManager','socketM
                  */
                 $("#content").on("click","#send-btn",function(){
                     var $content = $("#msg-list .message-block:last .ms-content");
-                    var contents = $content.html();
-//                    var contents = $content.contents().filter(function(){
-//                        return this.nodeType == 3;
-//                    }).text();
-//                    $content.find("> div").each(function(){
-//                        //TODO 过滤用户输入非法字符
-//                        contents += "&&&"+$(this).html();
-//                    });
+                    var contents = $content.contents().filter(function(){
+                        return this.nodeType == 3;
+                    }).text();
+                    $content.find("> div").each(function(){
+                        //TODO 过滤用户输入非法字符
+                        contents += "&&&"+$(this).html();
+                    });
                     var message_id = new Date().getTime();//以时间戳标示发出信息，用于服务端应答该信息
                     var msgObj = {
                         sender:util.$ls("host"),
@@ -117,14 +117,15 @@ define("modules/message/message",['util','superObject','messageManager','socketM
                 var record = data[i],replyBtns = "",reply = record.reply;
                 var posClass = record["receiver"] == this.relative.name?
                     (replyStr = (reply?'<div class="msg_reply_mask">'+(reply.reply?"<span class=\"icon-heart broke-effect-var\"></span>":
-                        "<div class='broke-heart'><span class=\"icon-heart broke-effect-var\"></span><div class=\"broke-effect\"></div></div>")+'</div>':''),"right"):
+                                            "<div class='broke-heart'><span class=\"icon-heart broke-effect-var\"></span><div class=\"broke-effect\"></div></div>")+'</div>':''),"right"):
                     (replyBtns = '<div class="msg_reply_btn_group"><div class="msg_reply_btn reply_access"><span class="icon-heart-empty"></span></div>' +
                         '<div class="msg_reply_btn reply_reject"><span class="icon-heart"></span><div class="reject-heart"></div></div></div>',"left");
 
                 msglistStr += ' <div class="message-block '+posClass+'" style="height:initial;overflow:initial;">' +
-                    '<div class="ms-content edit-finish-block msg-display" data-type="'+record["type"]+'" message_id="'+record["message_id"]+'">' +
-                    util.filterMessage(record['message']?record['message']:"")+replyStr+'</div>'+replyBtns+'</div>';
+//                    '<div class="ms-content edit-finish-block msg-display" data-type="'+record["type"]+'" message_id="'+record["message_id"]+'">' +
+                    util.filterMessage(record['message']?record['message']:"")+replyStr+replyBtns+'</div>';
             }
+            msglistStr += '<div class="message-block right spare-input"><div class="ms-content" contenteditable="true"></div></div>';
             $("#msg-list").html(msglistStr);
         }
     });

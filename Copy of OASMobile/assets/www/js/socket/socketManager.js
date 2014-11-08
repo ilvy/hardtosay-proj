@@ -71,6 +71,7 @@ Socket.prototype.onLogin = function(){
         if(data.flag == 1){
             changeHash("#relative",data);
             relativeManager.classify(data.data);
+            util.$ls("login",1);
 //            util.$ls("humansData",data.data);
         }
     });
@@ -168,7 +169,7 @@ Socket.prototype.onApology = function(){
                 var msglistStr = "";
                 msglistStr += ' <div class="message-block left" style="height:initial;overflow:initial;"><div class="ms-content edit-finish-block msg-display"' +
                     ' data-type="'+data["type"]+'" message_id="'+data["message_id"]+'">' +
-                    (data['message']?data['message']:"")+'</div><div class="msg_reply_btn_group"><div class="msg_reply_btn reply_access"><span class="icon-heart-empty"></span></div>' +
+                    util.filterMessage(data['message']?data['message']:"")+'</div><div class="msg_reply_btn_group"><div class="msg_reply_btn reply_access"><span class="icon-heart-empty"></span></div>' +
                     '<div class="msg_reply_btn reply_reject"><span class="icon-heart"></span><div class="reject-heart"></div></div></div></div>';
                 $("#msg-list").append(msglistStr);
                 $("html,body").animate({

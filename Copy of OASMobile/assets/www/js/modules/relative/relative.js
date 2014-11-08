@@ -7,6 +7,9 @@ define("modules/relative/relative",['util','superObject','draw','touchUtil','glo
         data:{},
         humansData:{},
         initialize:function(html,data){
+            if(!util.$ls("login")){
+                changeHash("#login");
+            }
             global.currentPage = 'relative';
             $("#content").html(html);
 //            this.humansData = relativeManager.getAll();//JSON.parse(util.$ls("humansData"));

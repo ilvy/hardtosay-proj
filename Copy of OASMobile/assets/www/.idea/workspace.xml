@@ -26,39 +26,73 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state vertical-scroll-proportion="-5.428571" vertical-offset="1444" max-vertical-offset="2565">
               <caret line="84" column="44" selection-start-line="84" selection-start-column="44" selection-end-line="84" selection-end-column="44" />
               <folding />
+=======
+            <state line="73" column="30" selection-start="1534" selection-end="1534" vertical-scroll-proportion="-14.4" vertical-offset="1027" max-vertical-offset="4921">
+              <folding>
+                <marker date="1415444036404" expanded="false" signature="3570:3591" placeholder="..." />
+                <marker date="1415444036404" expanded="false" signature="4746:4778" placeholder="..." />
+              </folding>
+>>>>>>> 20ad3dbe60dd84dea4d154e82086df44f0397e1a
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="socketManager.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/socket/socketManager.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="722" max-vertical-offset="4902">
               <caret line="38" column="34" selection-start-line="38" selection-start-column="34" selection-end-line="38" selection-end-column="34" />
+=======
+      <file leaf-file-name="relative.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/js/modules/relative/relative.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="10" column="37" selection-start="381" selection-end="381" vertical-scroll-proportion="0.28657618" vertical-offset="0" max-vertical-offset="3097">
+>>>>>>> 20ad3dbe60dd84dea4d154e82086df44f0397e1a
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="async.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/libs/async.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4845">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+=======
+      <file leaf-file-name="login.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/modules/login/login.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="31" column="50" selection-start="1095" selection-end="1095" vertical-scroll-proportion="0.0" vertical-offset="323" max-vertical-offset="1273">
+>>>>>>> 20ad3dbe60dd84dea4d154e82086df44f0397e1a
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="login.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/login.html">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="456" max-vertical-offset="1216">
               <caret line="43" column="24" selection-start-line="43" selection-start-column="24" selection-end-line="43" selection-end-column="24" />
               <folding />
+=======
+      <file leaf-file-name="message_back2.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/modules/message/message_back2.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="127" column="119" selection-start="6756" selection-end="6756" vertical-scroll-proportion="-21.96" vertical-offset="1864" max-vertical-offset="2774">
+              <folding>
+                <marker date="1415435658151" expanded="true" signature="164:7145" placeholder="{...}" />
+                <marker date="1415435658151" expanded="true" signature="204:6831" placeholder="{...}" />
+                <marker date="1415435658151" expanded="true" signature="5304:6825" placeholder="{...}" />
+              </folding>
+>>>>>>> 20ad3dbe60dd84dea4d154e82086df44f0397e1a
             </state>
           </provider>
         </entry>
@@ -66,59 +100,101 @@
       <file leaf-file-name="relative.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/modules/relative/relative.html">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="589">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+=======
+            <state line="57" column="61" selection-start="2382" selection-end="2382" vertical-scroll-proportion="0.0" vertical-offset="230" max-vertical-offset="2755">
+>>>>>>> 20ad3dbe60dd84dea4d154e82086df44f0397e1a
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="addRelation.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/modules/addRelation/addRelation.html">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="475">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+=======
+      <file leaf-file-name="message.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/modules/message/message.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="12" column="27" selection-start="402" selection-end="402" vertical-scroll-proportion="-8.142858" vertical-offset="0" max-vertical-offset="798">
+>>>>>>> 20ad3dbe60dd84dea4d154e82086df44f0397e1a
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="style.css" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.18518518" vertical-offset="8721" max-vertical-offset="9234">
               <caret line="464" column="21" selection-start-line="464" selection-start-column="21" selection-end-line="464" selection-end-column="21" />
+=======
+      <file leaf-file-name="util.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/utils/util.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="129" column="9" selection-start="4096" selection-end="4096" vertical-scroll-proportion="0.0" vertical-offset="2035" max-vertical-offset="2698">
+>>>>>>> 20ad3dbe60dd84dea4d154e82086df44f0397e1a
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="addRelation.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/modules/addRelation/addRelation.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="323" max-vertical-offset="1691">
               <caret line="17" column="14" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
+=======
+      <file leaf-file-name="messageManager.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/socket/messageManager.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="106" column="28" selection-start="2842" selection-end="2842" vertical-scroll-proportion="0.0" vertical-offset="2014" max-vertical-offset="4028">
+>>>>>>> 20ad3dbe60dd84dea4d154e82086df44f0397e1a
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="login.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/modules/login/login.html">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="190" max-vertical-offset="399">
               <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+=======
+      <file leaf-file-name="flag.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/flag.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="20" column="18" selection-start="610" selection-end="610" vertical-scroll-proportion="-0.0" vertical-offset="380" max-vertical-offset="1235">
+>>>>>>> 20ad3dbe60dd84dea4d154e82086df44f0397e1a
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="login.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/modules/login/login.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="475" max-vertical-offset="1273">
               <caret line="25" column="24" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
               <folding />
+=======
+      <file leaf-file-name="uploadTest.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/uploadTest.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="62" column="0" selection-start="2041" selection-end="2041" vertical-scroll-proportion="-9.5" vertical-offset="912" max-vertical-offset="1805">
+              <folding>
+                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+>>>>>>> 20ad3dbe60dd84dea4d154e82086df44f0397e1a
             </state>
           </provider>
         </entry>
@@ -140,6 +216,7 @@
         <option value="$PROJECT_DIR$/message.html" />
         <option value="$PROJECT_DIR$/receiveMsg.html" />
         <option value="$PROJECT_DIR$/messageList.html" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/sendMS.html" />
         <option value="$PROJECT_DIR$/login.html" />
         <option value="$PROJECT_DIR$/js/modules/addRelation/addRelation.html" />
@@ -149,6 +226,31 @@
         <option value="$PROJECT_DIR$/js/socket/socketManager.js" />
         <option value="$PROJECT_DIR$/js/modules/login/login.js" />
         <option value="$PROJECT_DIR$/css/style.css" />
+=======
+        <option value="$PROJECT_DIR$/login.html" />
+        <option value="$PROJECT_DIR$/js/libs/entity/superObject.js" />
+        <option value="$PROJECT_DIR$/js/modules/humans/humans.html" />
+        <option value="$PROJECT_DIR$/js/utils/touchUtil.js" />
+        <option value="$PROJECT_DIR$/js/modules/detailmsg/detailmsg.js" />
+        <option value="$PROJECT_DIR$/js/libs/async.js" />
+        <option value="$PROJECT_DIR$/sendMS.html" />
+        <option value="$PROJECT_DIR$/js/modules/humans/humans.js" />
+        <option value="$PROJECT_DIR$/js/socket/messageManager.js" />
+        <option value="$PROJECT_DIR$/js/modules/addRelation/addRelation.html" />
+        <option value="$PROJECT_DIR$/js/modules/addRelation/addRelation.js" />
+        <option value="$PROJECT_DIR$/js/modules/relative/relative.html" />
+        <option value="$PROJECT_DIR$/js/modules/login/login.html" />
+        <option value="$PROJECT_DIR$/uploadTest.html" />
+        <option value="$PROJECT_DIR$/js/utils/util.js" />
+        <option value="$PROJECT_DIR$/js/modules/message/message_back.js" />
+        <option value="$PROJECT_DIR$/js/modules/message/message.html" />
+        <option value="$PROJECT_DIR$/css/style.css" />
+        <option value="$PROJECT_DIR$/js/modules/message/message.js" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/js/modules/login/login.js" />
+        <option value="$PROJECT_DIR$/js/socket/socketManager.js" />
+        <option value="$PROJECT_DIR$/js/modules/relative/relative.js" />
+>>>>>>> 20ad3dbe60dd84dea4d154e82086df44f0397e1a
       </list>
     </option>
   </component>
@@ -314,6 +416,10 @@
               <option name="myItemId" value="modules" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="register" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -435,6 +541,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+<<<<<<< HEAD
               <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -453,6 +560,8 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+=======
+>>>>>>> 20ad3dbe60dd84dea4d154e82086df44f0397e1a
               <option name="myItemId" value="images" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -593,6 +702,7 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/js/socket/socketManager.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="342" max-vertical-offset="1748">
@@ -601,6 +711,8 @@
         </state>
       </provider>
     </entry>
+=======
+>>>>>>> 20ad3dbe60dd84dea4d154e82086df44f0397e1a
     <entry file="file://$PROJECT_DIR$/js/libs/async.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4560">
@@ -777,6 +889,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4598">
@@ -786,6 +899,9 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/modules/addRelation/addRelation.js">
+=======
+    <entry file="file://$PROJECT_DIR$/receiveMsg.html">
+>>>>>>> 20ad3dbe60dd84dea4d154e82086df44f0397e1a
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="608">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -793,6 +909,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/js/modules/login/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="304">
@@ -802,6 +919,9 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/modules/login/login.js">
+=======
+    <entry file="file://$PROJECT_DIR$/js/libs/async.js">
+>>>>>>> 20ad3dbe60dd84dea4d154e82086df44f0397e1a
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="437">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -851,9 +971,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+=======
+        <state line="22" column="43" selection-start="808" selection-end="808" vertical-scroll-proportion="0.0" vertical-offset="1026" max-vertical-offset="1938">
+          <folding>
+            <marker date="1414980985389" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1414980985389" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1414980985389" expanded="false" signature="-1:-1" placeholder="..." />
+          </folding>
+>>>>>>> 20ad3dbe60dd84dea4d154e82086df44f0397e1a
         </state>
       </provider>
     </entry>
@@ -865,6 +994,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/js/modules/login/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
@@ -874,6 +1004,9 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/modules/login/login.js">
+=======
+    <entry file="file://$PROJECT_DIR$/js/modules/relative/relative.html">
+>>>>>>> 20ad3dbe60dd84dea4d154e82086df44f0397e1a
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -881,6 +1014,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/receiveMsg.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
@@ -889,6 +1023,9 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/index.js">
+=======
+    <entry file="file://$PROJECT_DIR$/js/libs/ajaxupload.js">
+>>>>>>> 20ad3dbe60dd84dea4d154e82086df44f0397e1a
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -946,6 +1083,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="456" max-vertical-offset="1216">
@@ -958,10 +1096,32 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="342" max-vertical-offset="1748">
           <caret line="38" column="34" selection-start-line="38" selection-start-column="34" selection-end-line="38" selection-end-column="34" />
+=======
+    <entry file="file://$PROJECT_DIR$/js/socket/messageManager.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="106" column="28" selection-start="2842" selection-end="2842" vertical-scroll-proportion="0.0" vertical-offset="2014" max-vertical-offset="4028">
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/uploadTest.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="62" column="0" selection-start="2041" selection-end="2041" vertical-scroll-proportion="-9.5" vertical-offset="912" max-vertical-offset="1805">
+          <folding>
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/utils/util.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="129" column="9" selection-start="4096" selection-end="4096" vertical-scroll-proportion="0.0" vertical-offset="2035" max-vertical-offset="2698">
+>>>>>>> 20ad3dbe60dd84dea4d154e82086df44f0397e1a
+          <folding />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/js/modules/login/login.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="171" max-vertical-offset="1007">
@@ -974,12 +1134,57 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="608">
           <caret line="17" column="14" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
+=======
+    <entry file="file://$PROJECT_DIR$/js/modules/message/message_back2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="127" column="119" selection-start="6756" selection-end="6756" vertical-scroll-proportion="-21.96" vertical-offset="1864" max-vertical-offset="2774">
+          <folding>
+            <marker date="1415435658151" expanded="true" signature="164:7145" placeholder="{...}" />
+            <marker date="1415435658151" expanded="true" signature="204:6831" placeholder="{...}" />
+            <marker date="1415435658151" expanded="true" signature="5304:6825" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/modules/message/message.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="27" selection-start="402" selection-end="402" vertical-scroll-proportion="-8.142858" vertical-offset="0" max-vertical-offset="798">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="241" column="1" selection-start="4259" selection-end="4259" vertical-scroll-proportion="0.0" vertical-offset="4187" max-vertical-offset="8702">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/modules/message/message.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="57" column="61" selection-start="2382" selection-end="2382" vertical-scroll-proportion="0.0" vertical-offset="230" max-vertical-offset="2755">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
+        <state line="95" column="25" selection-start="3055" selection-end="3055" vertical-scroll-proportion="-11.535714" vertical-offset="1482" max-vertical-offset="2565">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/modules/login/login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="50" selection-start="1095" selection-end="1095" vertical-scroll-proportion="0.0" vertical-offset="323" max-vertical-offset="1273">
+>>>>>>> 20ad3dbe60dd84dea4d154e82086df44f0397e1a
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state vertical-scroll-proportion="-5.428571" vertical-offset="1444" max-vertical-offset="2565">
           <caret line="84" column="44" selection-start-line="84" selection-start-column="44" selection-end-line="84" selection-end-column="44" />
           <folding />
@@ -990,6 +1195,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.18518518" vertical-offset="8721" max-vertical-offset="9234">
           <caret line="464" column="21" selection-start-line="464" selection-start-column="21" selection-end-line="464" selection-end-column="21" />
+=======
+        <state line="73" column="30" selection-start="1534" selection-end="1534" vertical-scroll-proportion="-14.4" vertical-offset="1027" max-vertical-offset="4921">
+          <folding>
+            <marker date="1415444036404" expanded="false" signature="3570:3591" placeholder="..." />
+            <marker date="1415444036404" expanded="false" signature="4746:4778" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/modules/relative/relative.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="37" selection-start="381" selection-end="381" vertical-scroll-proportion="0.28657618" vertical-offset="0" max-vertical-offset="3097">
+>>>>>>> 20ad3dbe60dd84dea4d154e82086df44f0397e1a
           <folding />
         </state>
       </provider>
