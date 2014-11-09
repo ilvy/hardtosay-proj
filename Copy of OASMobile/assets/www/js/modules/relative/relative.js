@@ -9,6 +9,7 @@ define("modules/relative/relative",['util','superObject','draw','touchUtil','glo
         initialize:function(html,data){
             if(!util.$ls("login")){
                 changeHash("#login");
+                return;
             }
             global.currentPage = 'relative';
             $("#content").html(html);

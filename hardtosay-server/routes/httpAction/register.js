@@ -15,5 +15,15 @@ var protocolConfig = require("../../socket/protocolConfig"),
  * @param res
  */
 exports.register = function(req,res){
-
+    var data = req.query;
+    data.name = data.user_id;
+    data.image = data.image||'image/me.png';
+    userOperate.register(data,function(err,results){
+        if(err){
+            console.log(err);
+            response.failed(res,"注册失败",results);
+        }else{
+            response.success(res,"注册成功",{});
+        }
+    });
 }

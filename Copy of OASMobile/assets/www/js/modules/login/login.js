@@ -30,7 +30,7 @@ define("modules/login/login",['util','superObject','messageManager','socketManag
                         console.log(data);
                         if(data.flag){
                             util.$ls("host",name);
-                            socket = new Socket("localhost",5000,function(socket){
+                            socket = new Socket(serverConfig.ip,5000,function(socket){
                                 socket.emit("login",{user:{name:name}});
                             });
                         }
@@ -40,13 +40,8 @@ define("modules/login/login",['util','superObject','messageManager','socketManag
                     }
                 })
             });
-            $(document).on("click","#regBtn",function(){
-                var name = $("#username").val(),
-                    pwd = $("#password").val();
-                var url = remoteServer + "/register";
-                var data = {
-
-                }
+            $(document).on("click","#toReg",function(){
+                changeHash("#register");
             });
         }
     });
