@@ -8,7 +8,7 @@ define("modules/humans/humans",['util','superObject','globalManager','messageMan
         data:{},
         initialize:function(html,data){
             global.currentPage = "humans";
-            this.data = JSON.parse(util.$ls("humanspage"));//data;
+            this.data = relativeManager.getAll(currentCate);//data;
             $("#content").html(html);
             this.renderHumans();
 
@@ -57,6 +57,7 @@ define("modules/humans/humans",['util','superObject','globalManager','messageMan
                             console.log(data);
                             if(data && data.flag == 1){
                                 $this.remove();
+                                relativeManager.modify(currentCate,receiver,reply);
                             }
                         },
                         error:function(err){
@@ -76,7 +77,7 @@ define("modules/humans/humans",['util','superObject','globalManager','messageMan
                 }else if(record.status == 0 && record.relativeFlag == 1){
                     requestStr += '<div class="relative reply-add-request" data-id="'+record.relative_id+'" data-name="'+record.relative_name+'">' +
                         '<div class="photo" style="background-image: ../'+record.image+'"><div class="waiting">等待验证</div></div>'+record.relative_name+'</div>'
-                }else{
+                }else if(record.status == 1){
                     humanStr += '<div class="relative" data-id="'+record.relative_id+'" data-name="'+record.relative_name+'"><div class="photo" style="background-image: ../'+record.image+'">' +
                         '</div>'+record.relative_name+'</div>';
                 }

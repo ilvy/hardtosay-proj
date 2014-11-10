@@ -159,24 +159,24 @@ Socket.prototype.onApology = function(){
         switch (global.currentPage){
             case "relative":
                 //TODO 对应关系显示消息提示      //bug 消息缺少关系字段
-                var noteTitle = data["sender"]+"发来一条消息",
-                    noteContent = data["message"];
-                cordova.exec(function(data){
-                    console.log(data);
-                },function(err){
-
-                },"Newstip","showNewstip",[noteTitle,noteContent]);
+//                var noteTitle = data["sender"]+"发来一条消息",
+//                    noteContent = data["message"];
+//                cordova.exec(function(data){
+//                    console.log(data);
+//                },function(err){
+//
+//                },"Newstip","showNewstip",[noteTitle,noteContent]);
                 $("."+data.relative).addClass("remind-tag");
                 break;
             case "humans":
                 //TODO 对应头像显示消息提示
-                var noteTitle = data["sender"]+"发来一条消息",
-                    noteContent = data["message"];
-                cordova.exec(function(data){
-                    console.log(data);
-                },function(err){
-
-                },"Newstip","showNewstip",[noteTitle,noteContent]);
+//                var noteTitle = data["sender"]+"发来一条消息",
+//                    noteContent = data["message"];
+//                cordova.exec(function(data){
+//                    console.log(data);
+//                },function(err){
+//
+//                },"Newstip","showNewstip",[noteTitle,noteContent]);
                 $("[data-id='"+data.sender+"'] .photo").addClass("remind-tag");
                 break;
             case "message":

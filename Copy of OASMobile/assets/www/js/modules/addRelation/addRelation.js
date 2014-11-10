@@ -33,13 +33,24 @@ define("modules/addRelation/addRelation",['util','superObject'],function(){
                     success:function(data){
                         console.log(data);
                         if(data.flag == 1){
+                            var user = $this.parents('.search-record').data("user");
+                            user = user?JSON.parse(user):null;
+                            if(user){
+                                user.status = 0;
+                                user.host_id = util.$ls("host");
+                                user.receiver = user.user_id;
+                                user.relative = _this.data.category;
+                                user.relativeFlag = 1;
+                                user.relative_id = user.user_id;
+                                relativeManager.add(_this.data.category,user);
+                            }
                             $this.val("请求等待").removeClass("add-att-btn");
                         }
                     },
                     error:function(err){
                         console.log(err);
                     }
-                })
+                });
             });
         },
         searchRelations:function(){
@@ -66,7 +77,7 @@ define("modules/addRelation/addRelation",['util','superObject'],function(){
             var listStr = "";
             for(var i = 0; i < data.length; i++){
                 var record = data[i];
-                listStr += '<div class="search-record" data-userid="'+record.user_id+'"><div class="sr-head-icon sr-row"></div><div class="sr-name sr-row">'+record.name+'</div>' +
+                listStr += '<div class="search-record" data-user="'+JSON.stringify(record)+'" data-userid="'+record.user_id+'"><div class="sr-head-icon sr-row"></div><div class="sr-name sr-row">'+record.name+'</div>' +
                     '<div class="sr-desc sr-row"><input type="button" class="add-attention add-att-btn" value="加关注"/></div></div></div>';
             }
             $(".search-list").html(listStr);

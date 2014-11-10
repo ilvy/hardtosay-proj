@@ -126,7 +126,7 @@ msgManager = {
         util.$ls("message",this.$message);
     },
     getMessageByHost:function(){
-        this.$message = JSON.parse(util.$ls("message"));
+        this.$message = util.$ls("message")?JSON.parse(util.$ls("message")):{};
         if(!this.$message){
             this.$message = {};
         }
@@ -155,7 +155,7 @@ var relativeManager = {
         util.$ls("humansData",$humansData);
     },
     add:function(cate,msgList){
-        var $humansData = JSON.parse(util.$ls("humansData"));
+        var $humansData = this.getByHost();//JSON.parse(util.$ls("humansData"));
         if(!$humansData){
             $humansData = {};
         }
@@ -176,7 +176,7 @@ var relativeManager = {
      * @param obj
      */
     addRelativeSuccess:function(cate,receiver,obj){
-        var $humansData = JSON.parse(util.$ls("humansData"));
+        var $humansData = this.getByHost();//JSON.parse(util.$ls("humansData"));
         if(!$humansData || !$humansData[cate]){
             return;
         }
@@ -189,19 +189,37 @@ var relativeManager = {
         }
         util.$ls("humansData",$humansData);
     },
-    getAll:function(){
-        var $humansData = JSON.parse(util.$ls("humansData"));
+    getAll:function(category){
+        var $humansData = this.getByHost();//JSON.parse(util.$ls("humansData"));
         if(!$humansData){
             $humansData = {};
         }
-        return $humansData;
+        return $humansData[category];
+    },
+    modify:function(cate,receiver,reply){
+        var $humansData = this.getByHost();//JSON.parse(util.$ls("humansData"));
+        if(!$humansData || !$humansData[cate]){
+            return;
+        }
+        var $data = $humansData[cate];
+        for(var i = 0; i < $data.length; i++){
+            if($data[i]["receiver"] = receiver){
+                if(reply == 1){
+                    $data[i]["receiver"].status = 1;
+                }else{
+                    $data[i]["receiver"].status = 2;
+                }
+                break;
+            }
+        }
+        util.$ls("humansData",$humansData);
     },
     getByHost:function(){
-        this.$humansDatas = JSON.parse(util.$ls("humansData"));
-        if(!this.$humansDatas){
-            this.$humansDatas = {};
-        }
-        var host = util.$ls("host");
-        return this.$humansDatas[host];
+        return this.$humansDatas = util.$ls("humansData")?JSON.parse(util.$ls("humansData")):{};
+//        if(!this.$humansDatas){
+//            this.$humansDatas = {};
+//        }
+//        var host = util.$ls("host");
+//        return this.$humansDatas[host];
     }
 }
