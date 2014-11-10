@@ -26,7 +26,7 @@
       <file leaf-file-name="to.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/node_modules/formidable-upload/lib/processors/to.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="10" selection-start="316" selection-end="316" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1558">
+            <state line="13" column="10" selection-start="316" selection-end="316" vertical-scroll-proportion="0.0" vertical-offset="247" max-vertical-offset="1558">
               <folding />
             </state>
           </provider>
@@ -35,7 +35,7 @@
       <file leaf-file-name="path.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/.WebStorm7/system/extLibs/nodejs-v0.10.26-src/core-modules-sources/lib/path.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="443" column="8" selection-start="13199" selection-end="13199" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="9006">
+            <state line="443" column="8" selection-start="13199" selection-end="13199" vertical-scroll-proportion="0.0" vertical-offset="8417" max-vertical-offset="9367">
               <folding />
             </state>
           </provider>
@@ -70,7 +70,7 @@
       <file leaf-file-name="register.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/httpAction/register.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="0" selection-start="451" selection-end="451" vertical-scroll-proportion="0.6551724" vertical-offset="0" max-vertical-offset="493">
+            <state line="18" column="1" selection-start="453" selection-end="453" vertical-scroll-proportion="0.47632313" vertical-offset="0" max-vertical-offset="718">
               <folding />
             </state>
           </provider>
@@ -106,7 +106,7 @@
       <file leaf-file-name="protocolConfig.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/socket/protocolConfig.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="0" selection-start="290" selection-end="290" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="361">
+            <state line="13" column="0" selection-start="290" selection-end="290" vertical-scroll-proportion="0.0" vertical-offset="247" max-vertical-offset="361">
               <folding />
             </state>
           </provider>
@@ -182,7 +182,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -253,6 +252,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -262,7 +262,7 @@
     <property name="options.lastSelected" value="preferences.sourceCode.CSS" />
     <property name="SearchEverywhereHistory" value="" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/exp.js" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="FullScreen" value="false" />
     <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
@@ -276,6 +276,14 @@
     </key>
   </component>
   <component name="RunManager" selected="Node.js.app.js">
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
+      <option name="filePath" />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
+      <method />
+    </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -286,23 +294,15 @@
       <option name="showConsoleOnStdOut" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
-      <option name="VMOptions" />
-      <option name="arguments" />
-      <option name="filePath" />
-      <option name="scope" value="ALL" />
-      <option name="testName" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" singleton="true" config-file="">
-      <envs />
-      <method />
-    </configuration>
     <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
       <setting name="configLocationType" value="CONFIG_FILE" />
       <setting name="settingsFile" value="" />
       <setting name="serverType" value="INTERNAL" />
       <setting name="preferredDebugBrowser" value="CHROME" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" singleton="true" config-file="">
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
@@ -373,7 +373,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29175475" sideWeight="0.8885077" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3001346" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3001346" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23283984" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -617,9 +617,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config/config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="48" selection-start="199" selection-end="199" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
-          <folding />
-        </state>
+        <state line="11" column="48" selection-start="199" selection-end="199" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/mongodb/lib/mongodb/command_cursor.js">
@@ -688,16 +686,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/express/node_modules/connect/node_modules/multiparty/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="83" column="26" selection-start="2038" selection-end="2038" vertical-scroll-proportion="0.14769976" vertical-offset="1516" max-vertical-offset="11856">
-          <folding />
-        </state>
+        <state line="83" column="26" selection-start="2038" selection-end="2038" vertical-scroll-proportion="0.14769976" vertical-offset="1516" max-vertical-offset="11856" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/express/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="29" selection-start="151" selection-end="151" vertical-scroll-proportion="0.26760563" vertical-offset="0" max-vertical-offset="1805">
-          <folding />
-        </state>
+        <state line="5" column="29" selection-start="151" selection-end="151" vertical-scroll-proportion="0.26760563" vertical-offset="0" max-vertical-offset="1805" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/httpAction/relation.js">
@@ -709,37 +703,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/formidable-upload/node_modules/formidable/lib/incoming_form.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="118" column="48" selection-start="3102" selection-end="3102" vertical-scroll-proportion="4.247253" vertical-offset="696" max-vertical-offset="10621">
-          <folding />
-        </state>
+        <state line="118" column="48" selection-start="3102" selection-end="3102" vertical-scroll-proportion="4.247253" vertical-offset="696" max-vertical-offset="10621" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/formidable-upload/node_modules/imguri/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="149" selection-end="149" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="209">
-          <folding />
-        </state>
+        <state line="5" column="0" selection-start="149" selection-end="149" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="209" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/formidable-upload/node_modules/formidable/lib/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="41" selection-start="101" selection-end="101" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="171">
-          <folding />
-        </state>
+        <state line="1" column="41" selection-start="101" selection-end="101" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="171" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/formidable-upload/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="36" selection-start="51" selection-end="51" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="171">
-          <folding />
-        </state>
+        <state line="2" column="36" selection-start="51" selection-end="51" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="171" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/formidable-upload/node_modules/imguri/node_modules/request/node_modules/qs/lib/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="16" selection-start="196" selection-end="196" vertical-scroll-proportion="0.6062176" vertical-offset="13" max-vertical-offset="399">
-          <folding />
-        </state>
+        <state line="13" column="16" selection-start="196" selection-end="196" vertical-scroll-proportion="0.6062176" vertical-offset="13" max-vertical-offset="399" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/image/me.png">
@@ -759,9 +743,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/formidable-upload/lib/processors/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="26" selection-start="60" selection-end="60" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="266">
-          <folding />
-        </state>
+        <state line="3" column="26" selection-start="60" selection-end="60" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="266" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/exp.js">
@@ -808,9 +790,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/npm-debug.log">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="206" column="22" selection-start="13985" selection-end="13985" vertical-scroll-proportion="0.6879271" vertical-offset="3612" max-vertical-offset="4085">
-          <folding />
-        </state>
+        <state line="206" column="22" selection-start="13985" selection-end="13985" vertical-scroll-proportion="0.6879271" vertical-offset="3612" max-vertical-offset="4085" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/index.js">
@@ -877,7 +857,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/httpAction/register.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="0" selection-start="451" selection-end="451" vertical-scroll-proportion="0.6551724" vertical-offset="0" max-vertical-offset="493">
+        <state line="18" column="1" selection-start="453" selection-end="453" vertical-scroll-proportion="0.47632313" vertical-offset="0" max-vertical-offset="718">
           <folding />
         </state>
       </provider>
