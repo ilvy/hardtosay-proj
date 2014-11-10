@@ -109,6 +109,7 @@
         <plugin name="ShowMsg" value="com.example.hardtosay.ShowMsg"/>
         <plugin name="SetAlias" value="com.example.hardtosay.SetAlias"/>
         <plugin name="PluginTest" value="com.example.hardtosay.PluginTest"/>
+        <plugin name="Newstip" value="com.example.hardtosay.Newstip"/>
     </plugins>
    
 </widget>

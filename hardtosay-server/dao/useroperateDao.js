@@ -46,12 +46,13 @@ exports.selectUsersByKey = function(position,callback){
                         })());
                     }
                     async.parallel(funs,function(err,results){
+                        var resData = [];
                         for(var i = 0; i < results.length; i++){
-                            if(results[i] == null){
-                                results.splice(i,1);
+                            if(results[i] != null){
+                                resData.push(results[i]);
                             }
                         }
-                        callback(err,results);
+                        callback(err,resData);
                     });
                 }
             }
@@ -141,4 +142,27 @@ exports.tagNewRelation = function(position,cb){
  */
 exports.tagOldRelation = function(position,cb){
     dbOperator.update("relative",{relative_id:position.sender,host_id:position.receiver},{$set:{isNewRelative:0}},cb);
+}
+
+exports.register = function(position,callback){
+    var funs = [
+        function isExistUser(cb){
+            dbOperator.select("user",{user_id:position.user_id},function(err,results){
+                cb(err,results);
+            })
+        },
+        function addUser(existUsers,cb){
+            if(existUsers.length == 0){
+                dbOperator.save("user",position,callback);
+                cb(null,{result:"注册成功"});
+            }else{
+                callback(null,{code:11,msg:"用户名重复"});
+                cb(null,{result:"注册失败"});
+            }
+
+        }
+    ];
+    async.waterfall(funs,function(err,results){
+        console.log(results);
+    })
 }

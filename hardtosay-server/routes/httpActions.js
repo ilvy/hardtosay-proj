@@ -7,6 +7,7 @@
  */
 var session = require("../socket/session"),
     login = require("./httpAction/login").login,
+    register = require("./httpAction/register").register,
     relation = require("./httpAction/relation"),
     fs = require("fs"),
     path = require("path"),
@@ -31,6 +32,7 @@ exports.router = function(app){
     app.get("/search",relation.search);
     app.get("/addRelation",relation.addRelation);
     app.get("/replyAddRelationRequest",relation.replyAddRelationRequest);
+    app.post("/register",register);
     app.post("/uploadHeadImg",function(req,res){
         console.log(req.files);
         var ext = path.extname(req.files.file.name);

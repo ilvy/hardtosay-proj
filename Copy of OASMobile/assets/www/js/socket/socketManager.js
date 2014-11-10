@@ -159,14 +159,35 @@ Socket.prototype.onApology = function(){
         switch (global.currentPage){
             case "relative":
                 //TODO 对应关系显示消息提示      //bug 消息缺少关系字段
+                var noteTitle = data["sender"]+"发来一条消息",
+                    noteContent = data["message"];
+                cordova.exec(function(data){
+                    console.log(data);
+                },function(err){
+
+                },"Newstip","showNewstip",[noteTitle,noteContent]);
                 $("."+data.relative).addClass("remind-tag");
                 break;
             case "humans":
                 //TODO 对应头像显示消息提示
+                var noteTitle = data["sender"]+"发来一条消息",
+                    noteContent = data["message"];
+                cordova.exec(function(data){
+                    console.log(data);
+                },function(err){
+
+                },"Newstip","showNewstip",[noteTitle,noteContent]);
                 $("[data-id='"+data.sender+"'] .photo").addClass("remind-tag");
                 break;
             case "message":
                 var msglistStr = "";
+//                var noteTitle = data["sender"]+"发来一条消息",
+//                    noteContent = data["message"];
+//                cordova.exec(function(data){
+//                    console.log(data);
+//                },function(err){
+//
+//                },"Newstip","showNewstip",[noteTitle,noteContent]);
                 msglistStr += ' <div class="message-block left" style="height:initial;overflow:initial;"><div class="ms-content edit-finish-block msg-display"' +
                     ' data-type="'+data["type"]+'" message_id="'+data["message_id"]+'">' +
                     util.filterMessage(data['message']?data['message']:"")+'</div><div class="msg_reply_btn_group"><div class="msg_reply_btn reply_access"><span class="icon-heart-empty"></span></div>' +
@@ -245,6 +266,7 @@ var protocolConfig = {
     logout:"logout",
     addRelation:"addRelation"
 };
+
 
 
 $("#logout").bind("click",function(){

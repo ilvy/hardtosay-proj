@@ -449,4 +449,33 @@ body{
     float: right;
 }
 
+@media screen and (max-width: 360px) {
+    .search-input{
+        width: 80%;
+        font-size: 16px;
+    }
+    .search-group .icon-search{
+        font-size: 24px;
+    }
+
+}
+
+@media screen and (min-width: 360px) and (max-width: 768px) {
+    .search-input{
+        width: 85%;
+        font-size: 24px;
+    }
+    .search-group .icon-search{
+        font-size: 26px;
+    }
+    #search-user{
+        font-size: 24px;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width:920px) {
+
+}
+
+
 /*************end addRelation****************/

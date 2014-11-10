@@ -80,8 +80,9 @@ public class MainActivity extends DroidGap {
 				.build());
 		super.onCreate(savedInstanceState);
 		docPlugin.deviceMac = getLocalMacAddress();
-		super.setIntegerProperty("splashscreen", R.drawable.splash);
-		super.loadUrl("file:///android_asset/www/index.html", 1500);
+//		super.setIntegerProperty("splashscreen", R.drawable.splash);
+//		super.loadUrl("file:///android_asset/www/index.html", 1500);
+		super.loadUrl("file:///android_asset/www/index.html");
 	}
 
 	protected void onNewIntent(Intent intent){
