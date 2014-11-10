@@ -139,6 +139,7 @@ Socket.prototype.onAddRelation = function(){
                 break;
         }
         relativeManager.add(data.relative,data);
+//        relativeManager.modify(data.relative,data.)
     });
 }
 

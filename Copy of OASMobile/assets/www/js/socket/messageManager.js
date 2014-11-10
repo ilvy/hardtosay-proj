@@ -184,6 +184,7 @@ var relativeManager = {
         for(var i = 0; i < $data.length; i++){
             if($data[i]["receiver"] = receiver){
                 $data[i]["receiver"] = obj;
+                $data[i]["status"] = obj.status;
                 break;
             }
         }
@@ -205,9 +206,9 @@ var relativeManager = {
         for(var i = 0; i < $data.length; i++){
             if($data[i]["receiver"] = receiver){
                 if(reply == 1){
-                    $data[i]["receiver"].status = 1;
+                    $data[i].status = 1;
                 }else{
-                    $data[i]["receiver"].status = 2;
+                    $data[i].status = 2;
                 }
                 break;
             }
