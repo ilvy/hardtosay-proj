@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="js/libs/jquery.js"></script>
+    <style>
+        body{
+            margin: 0 0;
+            padding: 0 0;
+        }
+        .head-img-upload{
+            width: 1000px;
+            height: 600px;
+            background-color: rgba(102,108,105,0.6);
+            position: relative;
+        }
+        .photo-frame{
+            width: 200px;
+            height: 200px;
+            border: 1px solid #ffffff;
+            position: absolute;
+            top: calc(50% - 100px);
+            left: calc(50% - 100px);
+            z-index: 100;
+        }
+        /*.photo-frame{*/
+            /*width: 50px;*/
+            /*height: 50px;*/
+            /*border: 1px solid #ffffff;*/
+            /*position: absolute;*/
+            /*top: calc(50% - 25px);*/
+            /*left: calc(50% - 25px);*/
+            /*z-index: 100;*/
+        /*}*/
+        .photo-carrier{
+            position: absolute;
+            /*width:300px;height:300px;*/
+            /*background: url("./images/lips.jpg") center no-repeat;*/
+            /*background-size: 400px;*/
+            /*z-index: 10;*/
+        }
+    </style>
+</head>
+
+<body>
+    <div class="head-img-upload">
+        <div class="photo-frame">
+
+        </div>
+        <div class="photo-carrier" onselectstart="return false;" style=''>
+            <img src="./images/self.jpg"/>
+        </div>
+
+    </div>
+</body>
+<script>
+    $.fn.drag = function(imgSrc,cb){
+        var $selector = $this = $(this);
+        var selector = $this.selector;
+        var naturalW = $(selector+" img")[0].naturalWidth,
+            naturalH = $(selector+" img")[0].naturalHeight;
+        var isDragging = false,
+                mousePos = {},
+                objectPos = {};
+//        function setSrc(){
+            if(naturalH > naturalW){
+                $(selector+" img").attr("src",imgSrc).attr("width",$(".photo-frame").width());
+            }else{
+                $(selector+" img").attr("src",imgSrc).attr("width",400);
+            }
+//        };
+        $(document).on("mousedown",function(event){
+            isDragging = true;
+            mousePos.x = event.clientX;
+            mousePos.y = event.clientY;
+            objectPos.x = $selector.position().left;
+            objectPos.y = $selector.position().top;
+        });
+        $(document).bind("mousemove",function(event){
+            event.preventDefault();
+//            var $selector = $(selector);
+            if(isDragging){
+                var x_offset = event.clientX - mousePos.x,
+                        y_offset = event.clientY - mousePos.y;
+                objectPos.x += x_offset;
+                objectPos.y += y_offset;
+                $selector.css({
+                    top:objectPos.y,
+                    left:objectPos.x
+                });
+                mousePos.x = event.clientX;
+                mousePos.y = event.clientY;
+            }
+
+        });
+        $(document).on("mouseup",function(){
+            isDragging = false;
+        });
+
+    }
+    $(document).ready(function(){
+        $(".photo-carrier").drag('./images/self.jpg');
+    })
+
+
+
+</script>
+</html>
