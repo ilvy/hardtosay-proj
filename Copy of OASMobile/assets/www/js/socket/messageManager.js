@@ -223,3 +223,24 @@ var relativeManager = {
 //        return this.$humansDatas[host];
     }
 }
+
+var dataManager = {
+    getAsJSON:function(user_id,key){
+        var data = util.$ls(key)?JSON.parse(util.$ls(key)):{};
+        if(data[user_id]){
+            return data[user_id];
+        }else{
+            return 0;
+        }
+//        return data[user_id]?data[user_id]:0;
+    },
+    addAsJSON:function(user_id,key,obj){
+        var data = util.$ls(key)?JSON.parse(util.$ls(key)):{};
+        if(!data[user_id]){
+            data[user_id] = {};
+        }
+        data[user_id] = obj;
+        util.$ls(key,data);
+        return true;
+    }
+}

@@ -5,5 +5,6 @@
 var global = {
     currentTalker:null,
     currentPage:null,
-    modules:[]
+    modules:[],
+    headerImgPos:null
 };

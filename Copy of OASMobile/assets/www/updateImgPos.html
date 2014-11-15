@@ -15,12 +15,12 @@
             position: relative;
         }
         .photo-frame{
-            width: 200px;
-            height: 200px;
+            width: 100px;
+            height: 100px;
             border: 1px solid #ffffff;
             position: absolute;
-            top: calc(50% - 100px);
-            left: calc(50% - 100px);
+            top: calc(50% - 50px);
+            left: calc(50% - 50px);
             z-index: 100;
         }
         /*.photo-frame{*/
@@ -48,10 +48,14 @@
 
         </div>
         <div class="photo-carrier" onselectstart="return false;" style=''>
-            <img src="./images/self.jpg"/>
+            <img src="http://192.168.50.216:5000/image/test_1416020952195.jpg"/>
         </div>
 
     </div>
+    <input type="button" value="确定" id="fixImg"/>
+<!--<div style='background: url("./images/lips.jpg") no-repeat;background-size: 100px;width: 200px;height: 200px;'>-->
+
+</div>
 </body>
 <script>
     $.fn.drag = function(imgSrc,cb){
@@ -59,14 +63,17 @@
         var selector = $this.selector;
         var naturalW = $(selector+" img")[0].naturalWidth,
             naturalH = $(selector+" img")[0].naturalHeight;
+        var fixPox = {};
         var isDragging = false,
                 mousePos = {},
                 objectPos = {};
 //        function setSrc(){
-            if(naturalH > naturalW){
+            if(naturalH > naturalW){//top 按比例即可
+                fixPox.type = 2;
                 $(selector+" img").attr("src",imgSrc).attr("width",$(".photo-frame").width());
             }else{
-                $(selector+" img").attr("src",imgSrc).attr("width",400);
+                fixPox.type = 1;
+                $(selector+" img").attr("src",imgSrc).attr("width",200);
             }
 //        };
         $(document).on("mousedown",function(event){
@@ -97,10 +104,33 @@
             isDragging = false;
         });
 
+        $("#fixImg").on("click",function(){
+            var framePos = $(".photo-frame").offset();
+            var imgPos = $(".photo-carrier").offset();
+            fixPox.baseSize = 50;
+            var ratio = Number($(".photo-frame").width()) / 50;
+            fixPox.left = (framePos.left - imgPos.left) / ratio,
+            fixPox.top = (framePos.top - imgPos.top) / ratio;
+            fixPox.user_id = "test1";
+            fixPox.path = '';
+            var url = 'http://192.168.50.216:5000/updateImgPosition';
+            $.ajax({
+                url:url,
+                type:'post',
+                data:fixPox,
+                success:function(data){
+                    console.log(data);
+                },
+                error:function(err){
+
+                }
+            });
+        });
     }
     $(document).ready(function(){
-        $(".photo-carrier").drag('./images/self.jpg');
-    })
+        $(".photo-carrier").drag('http://192.168.50.216:5000/image/test_1416020952195.jpg');
+    });
+
 
 
 

@@ -20,6 +20,25 @@ define("modules/relative/relative",['util','superObject','draw','touchUtil','glo
                 _this.drawSvgLines();
             });
             this.addBindListener();
+            this.renderHeadImg();
+        },
+        renderHeadImg:function(){
+            var name = util.$ls("host");
+            var headImgObj = dataManager.getAsJSON(name,"headImg");
+            if(!headImgObj || headImgObj == null || headImgObj == 'null' || !headImgObj.path){
+                return;
+            }else{
+                //            $(function(){
+                var ratio = $(".me").outerWidth() / headImgObj.baseSize;
+                $(".me").css({
+                    backgroundImage:'url('+remoteServer+'/'+headImgObj.path+')',
+                    backgroundSize:headImgObj.baseSize * ratio,
+                    'background-position-y':-headImgObj.top * ratio+"px",
+                    'background-position-x':-headImgObj.left * ratio+"px",
+                    backgroundRepeat:'no-repeat'
+                });
+//            });
+            }
         },
         addBindListener:function(){//bindListener 需要重复监听
             var _this = this;

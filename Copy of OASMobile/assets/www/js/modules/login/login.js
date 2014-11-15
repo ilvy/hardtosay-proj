@@ -27,8 +27,10 @@ define("modules/login/login",['util','superObject','messageManager','socketManag
                     data:data,
                     type:"get",
                     success:function(data){
-                        console.log(data);
+                        console.log("flag:"+data.flag);
                         if(data.flag){
+                            var headImg = data.results;
+                            dataManager.addAsJSON(name,"headImg",headImg);//用户头像数据
                             util.$ls("host",name);
                             socket = new Socket(serverConfig.ip,5000,function(socket){
                                 socket.emit("login",{user:{name:name}});

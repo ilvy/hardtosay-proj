@@ -3,7 +3,9 @@
  */
 
 var path = require("path"),
-    upload = require("formidable-upload");
+    upload = require("formidable-upload"),
+    dbOperator = require("../../db/dbOperator"),
+    response = require("../response");
 
 exports.uploadImg = function(req,res){
     console.log(req.files);
@@ -17,10 +19,25 @@ exports.uploadImg = function(req,res){
 //                console.log(file);
                 console.log("success");
             }
-            res.send("http://192.168.50.216:3000/image/"+imageName+ext);
+            res.send("image/"+imageName+ext);
         })
 }
 
 exports.updateImgPosition = function(req,res){
-
+    var body = req.body;
+    var imagePos = {
+        user_id:body.user_id,
+        baseSize:body.baseSize,
+        left:body.left,
+        top:body.top,
+        type:body.type,
+        path:body.path
+    }
+    dbOperator.save('image',imagePos,function(err,results){
+        if(err){
+            console.log(err);
+        }else{
+            response.success(res,"确定头像位置成功",{});
+        }
+    });
 }

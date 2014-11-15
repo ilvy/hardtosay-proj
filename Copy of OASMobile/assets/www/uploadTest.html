@@ -3,8 +3,8 @@
 <head>
     <title></title>
     <script src="./js/libs/jquery.js"></script>
-    <script src="./js/phoneGap/cordova.js"></script>
-    <!--<script src="./js/libs/ajaxupload.js"></script>-->
+    <!--<script src="./js/phoneGap/cordova.js"></script>-->
+    <script src="./js/libs/ajaxupload.js"></script>
 </head>
 <body>
     <!--<input type="button" value="上传" id="upload"/>-->
@@ -14,18 +14,20 @@
     <!--<img  src="http://192.168.50.216:3000/image/test_1415346903425.jpg" width="300" height="300"/>-->
 </body>
 <script>
-//    $(function(){
-//        new AjaxUpload("#upload",{
-//            action:"http://192.168.50.216:5000/uploadHeadImg",
-//            name:'file',
-//            onSubmit:function(file,ext){
-//                console.log(file +" "+ ext);
-//            },
-//            onComplete:function(file,res){
-//                console.log(res);
-//            }
-//        })
-//    })
+    $(function(){
+        new AjaxUpload("#upload",{
+            action:"http://192.168.50.216:5000/uploadHeadImg",
+            name:'file',
+            onSubmit:function(file,ext){
+                console.log(file +" "+ ext);
+
+            },
+            onComplete:function(file,res){
+                console.log(res);
+                $("#imgDiv").html('<img  src="'+res.response+'" width="300" height="300"/>');
+            }
+        })
+    })
 
     function upload(imgUrl){
         var options = new FileUploadOptions();
@@ -65,8 +67,9 @@
     }
     function success(data){
         console.log("upload success :"+data.response);
-        $("#imgTest")[0].src = data.response;
-        $("#imgDiv").html('<img  src="'+data.response+'" width="300" height="300"/>');
+        var url = 'http://192.168.50.216:5000/'+data.response;
+        $("#imgTest")[0].src = url;
+        $("#imgDiv").html('<img  src="'+url+'" width="300" height="300"/>');
     }
     function fail(){
         console.log("upload fail :");

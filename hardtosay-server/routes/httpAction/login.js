@@ -18,36 +18,36 @@ exports.login = function(req,res){
     var data = req.query;
     var user = data.user;
     if(user){
-        var funs = [isExistUser(data)];
-        async.series(funs,function(err,results){
+        var funs = [
+            isExistUser(data),
+            function getHostHeader(users,cb){
+                dbOperator.select("image",{user_id:user.name,status:1},function(err,results){
+                    if(err){
+                        console.log(err);
+                    }else{
+                        session.authority(user.name,user);//session记录用户登录信息
+                        if(users && users.length > 0){
+                            response.success(res,"login success",results.length?results[results.length - 1]:null);
+
+                        }else{
+                            response.failed(res,"login failed",{});
+                        }
+                    }
+                    cb(null,null);
+                });
+            }
+        ];
+        async.waterfall(funs,function(err,results){
             if(err){
                 return;
             }else{
-                if(results[0] && results[0].length > 0){
-                    session.authority(user.name,user);//session记录用户登录信息
-                    response.success(res,"login success",{});
 
-                }else{
-                    response.failed(res,"login failed",{});
-                }
             }
 
         });
     }
 };
 
-/**
- *
- * @param req
- * @param res
- */
-exports.register = function(req,res){
-    var data = req.query;
-    var user = data.user;
-    if(user){
-
-    }
-}
 
 /**
  * 检查用户是否已经存在

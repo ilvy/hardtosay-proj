@@ -12,7 +12,8 @@ var session = require("../socket/session"),
     fs = require("fs"),
     path = require("path"),
     formidable = require("formidable"),
-    upload = require("formidable-upload");
+    upload = require("formidable-upload"),
+    uploadImg = require("./httpAction/upload");
 //    uploader = upload().accept(/image*/)
 //        .to(["public",'image'],'test').imguri();
 
@@ -33,20 +34,22 @@ exports.router = function(app){
     app.get("/addRelation",relation.addRelation);
     app.get("/replyAddRelationRequest",relation.replyAddRelationRequest);
     app.post("/register",register);
-    app.post("/uploadHeadImg",function(req,res){
-        console.log(req.files);
-        var ext = path.extname(req.files.file.name);
-        var imageName = "test_"+new Date().getTime();
-        upload().accept(/image*/)
-            .to(["public",'image'],imageName).imguri().exec(req.files.file,function(err,file){
-            if(err){
-                console.log(err);
-            }else{
-                console.log(file);
-            }
-            res.send("http://192.168.50.216:3000/image/"+imageName+ext);
-        })
-    });//uploader.middleware("imagefile")
+    app.post("/uploadHeadImg",uploadImg.uploadImg);
+    app.post("/updateImgPosition",uploadImg.updateImgPosition);
+//    app.post("/uploadHeadImg",function(req,res){
+//        console.log(req.files);
+//        var ext = path.extname(req.files.file.name);
+//        var imageName = "test_"+new Date().getTime();
+//        upload().accept(/image*/)
+//            .to(["public",'image'],imageName).imguri().exec(req.files.file,function(err,file){
+//            if(err){
+//                console.log(err);
+//            }else{
+//                console.log(file);
+//            }
+//            res.send("http://192.168.50.216:5000/image/"+imageName+ext);
+//        })
+//    });//uploader.middleware("imagefile")
 //    app.post("/uploadHeadImg",function(req,res){
 //        var form = new formidable.IncomingForm();
 //        form.uploadDir = './image';
