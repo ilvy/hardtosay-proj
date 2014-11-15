@@ -221,6 +221,10 @@ var relativeManager = {
 //        }
 //        var host = util.$ls("host");
 //        return this.$humansDatas[host];
+    },
+    getAllRelativeIds:function(cate){
+        var $humansData = this.getByHost();
+
     }
 }
 

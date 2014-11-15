@@ -44,7 +44,7 @@
       <file leaf-file-name="socket.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/socket/socket.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="76" column="33" selection-start="2170" selection-end="2170" vertical-scroll-proportion="0.63448274" vertical-offset="1076" max-vertical-offset="5947">
+            <state line="74" column="67" selection-start="2115" selection-end="2115" vertical-scroll-proportion="0.5689655" vertical-offset="1076" max-vertical-offset="5947">
               <folding />
             </state>
           </provider>
@@ -828,7 +828,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/socket/socket.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="76" column="33" selection-start="2170" selection-end="2170" vertical-scroll-proportion="0.63448274" vertical-offset="1076" max-vertical-offset="5947">
+        <state line="74" column="67" selection-start="2115" selection-end="2115" vertical-scroll-proportion="0.5689655" vertical-offset="1076" max-vertical-offset="5947">
           <folding />
         </state>
       </provider>
