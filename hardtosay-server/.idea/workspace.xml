@@ -35,7 +35,16 @@
       <file leaf-file-name="relation.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/httpAction/relation.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="59" selection-start="823" selection-end="823" vertical-scroll-proportion="0.0" vertical-offset="513" max-vertical-offset="3591">
+            <state line="37" column="27" selection-start="1148" selection-end="1148" vertical-scroll-proportion="0.0" vertical-offset="399" max-vertical-offset="3591">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="socket.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/socket/socket.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="76" column="33" selection-start="2170" selection-end="2170" vertical-scroll-proportion="0.63448274" vertical-offset="1076" max-vertical-offset="5947">
               <folding />
             </state>
           </provider>
@@ -90,15 +99,6 @@
         <entry file="file://$PROJECT_DIR$/routes/httpAction/register.js">
           <provider selected="true" editor-type-id="text-editor">
             <state line="69" column="13" selection-start="1959" selection-end="1959" vertical-scroll-proportion="0.0" vertical-offset="1040" max-vertical-offset="1501">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="login.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/routes/httpAction/login.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="13" selection-start="1234" selection-end="1234" vertical-scroll-proportion="0.6987952" vertical-offset="413" max-vertical-offset="1311">
               <folding />
             </state>
           </provider>
@@ -298,6 +298,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="image" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hardtosay-server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hardtosay-server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="config" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -407,7 +425,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1448" y="-8" width="1456" height="916" extended-state="7" />
+    <frame x="-1448" y="-8" width="1456" height="916" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -415,7 +433,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18957011" sideWeight="0.8885077" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.43550447" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2247765" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3231162" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -745,11 +763,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/image/test_1416020952195.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/httpActions.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="37" column="63" selection-start="1475" selection-end="1475" vertical-scroll-proportion="0.8391167" vertical-offset="171" max-vertical-offset="1957">
@@ -771,13 +784,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/socket/socket.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="242" column="21" selection-start="7454" selection-end="7454" vertical-scroll-proportion="-0.24242425" vertical-offset="4718" max-vertical-offset="5947">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/response.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="20" column="54" selection-start="314" selection-end="314" vertical-scroll-proportion="0.0" vertical-offset="151" max-vertical-offset="646">
@@ -785,21 +791,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/image/test_1416045349313.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db/dbOperator.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="60" column="36" selection-start="1501" selection-end="1510" vertical-scroll-proportion="0.0" vertical-offset="1009" max-vertical-offset="3078">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/httpAction/relation.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="59" selection-start="823" selection-end="823" vertical-scroll-proportion="0.0" vertical-offset="513" max-vertical-offset="3591">
           <folding />
         </state>
       </provider>
@@ -820,7 +814,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/httpAction/login.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="13" selection-start="1234" selection-end="1234" vertical-scroll-proportion="0.6987952" vertical-offset="413" max-vertical-offset="1311">
+        <state line="32" column="67" selection-start="1117" selection-end="1117" vertical-scroll-proportion="0.0" vertical-offset="185" max-vertical-offset="1311">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/httpAction/relation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="27" selection-start="1148" selection-end="1148" vertical-scroll-proportion="0.0" vertical-offset="399" max-vertical-offset="3591">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/socket/socket.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="76" column="33" selection-start="2170" selection-end="2170" vertical-scroll-proportion="0.63448274" vertical-offset="1076" max-vertical-offset="5947">
           <folding />
         </state>
       </provider>
