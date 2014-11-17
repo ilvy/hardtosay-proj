@@ -7,7 +7,9 @@ var protocolConfig = require("../../socket/protocolConfig"),
     async = require("async"),
     response = require("../response"),
     session = require("../../socket/session").session,
-    userOperate = require("../../dao/useroperateDao");
+    userOperate = require("../../dao/useroperateDao"),
+    mongodb = require("mongodb"),
+    DBRef = mongodb.DBRef;
 
 /**
  * 注册：提交用户账号，密码，上传用户头像，其他都在用户信息完善界面完成
@@ -42,25 +44,59 @@ exports.register = function(req,res){
                 dbOperator.update("image",{user_id:data.user_id,status:1},{$set:{status:0}},function(err,results){
                     cb(err,results);
                 })
-            }
-        ];
-    }
-    funs.push(
-        (function(){
-            return function saveNewImg(cb){
-                dbOperator.save('image',imagePos,function(err,results){
-                    if(err){
-                        console.log(err);
-                    }else{
-//                    response.success(res,"确定头像位置成功",{});
-                        console.log('确定头像位置成功');
-                    }
-                    cb(err,results);
-                });
-            }
-        })()
-        );
-    async.series(funs,function(err,results){
+            },
+            (function(){
+                return function saveNewImg(delResults,cb){
+                    dbOperator.save('image',imagePos,function(err,results){
+                        if(err){
+                            console.log(err);
+                        }else{
+    //                    response.success(res,"确定头像位置成功",{});
+                            console.log('确定头像位置成功');
+                        }
+                        cb(err,results);
+                    });
+                }
+            })(),
+            //添加headimg
+            function addRefToRelative(saveResults,cb){
+                if(saveResults && saveResults.length){
+                    dbOperator.update("relative",{relative_id:data.user_id},{$set:{image:new DBRef("image",saveResults[0]._id)}},function(err,results){
+                        if(err){
+                            console.log(err);
+                        }else{
+
+                        }
+                        cb(err,saveResults);
+                    })
+                }
+                cb(null,saveResults)
+            },
+            function addRefToUser(saveResults,cb){
+                if(saveResults && saveResults.length){
+                    dbOperator.update("user",{user_id:data.user_id},{$set:{image:new DBRef("image",saveResults[0]._id)}},function(err,results){
+                        if(err){
+                            console.log(err);
+                        }else{
+
+                        }
+                        cb(err,saveResults);
+                    });
+                    cb(null,saveResults);
+                }
+            }];
+        async.series(funs,function(err,results){
+            userOperate.register(data,function(err,results){
+                if(err){
+                    console.log(err);
+                    response.failed(res,"注册失败",results);
+                }else{
+                    response.success(res,"注册成功",{});
+                }
+            });
+        });
+    }else{
+//        async.series(funs,function(err,results){
         userOperate.register(data,function(err,results){
             if(err){
                 console.log(err);
@@ -69,6 +105,8 @@ exports.register = function(req,res){
                 response.success(res,"注册成功",{});
             }
         });
-    });
+//        });
+    }
+
 
 }

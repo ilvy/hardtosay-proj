@@ -224,7 +224,12 @@ var relativeManager = {
     },
     getAllRelativeIds:function(cate){
         var $humansData = this.getByHost();
-
+        var data = $humansData[cate];
+        var user_ids = [];
+        for(var i = 0; i < data.length; i++){
+            user_ids.push(data[i].user_id);
+        }
+        return user_ids;
     }
 }
 

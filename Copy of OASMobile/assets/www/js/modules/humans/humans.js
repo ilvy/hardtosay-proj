@@ -66,19 +66,36 @@ define("modules/humans/humans",['util','superObject','globalManager','messageMan
                     })
                 });
         },
+//        backgroundImage:'url('+remoteServer+'/'+headImgObj.path+')',
+//        backgroundSize:headImgObj.baseSize * ratio,
+//        'background-position-y':-headImgObj.top * ratio+"px",
+//        'background-position-x':-headImgObj.left * ratio+"px",
+//        backgroundRepeat:'no-repeat'
         renderHumans:function(){
             var data = this.data,record;
             var humanStr = "",requestStr = "";
+            var ratio;
             for(var i = 0; i < data.length; i++){
                 record = data[i];
+                if(typeof record.image == 'object'){
+                    var imageObj = record.image;
+                    if(!ratio){
+                        ratio = 66 / imageObj.baseSize; //TODO 头像框大小不能定死
+                    }
+                    var headImgStyle = 'background-image:'+remoteServer+"/"+imageObj.path+';background-size:'+imageObj.baseSize * ratio+';background-position-y：'
+                            +(-imageObj.top * ratio)+"px;background-position-x:"+(-imageObj.left * ratio)+'px;background-repeat:no-repeat';
+                }else{
+                    headImgStyle = 'background-image: ../'+record.image+'';
+                }
                 if(record.status == 0 && record.relativeFlag == -1){
                     requestStr += '<div class="relative reply-add-request" data-id="'+record.relative_id+'" data-name="'+record.relative_name+'">' +
-                        '<div class="photo" style="background-image: ../'+record.image+'"><div class="newRelation"></div></div>'+record.relative_name+'</div>';
+                        '<div class="photo" style="'+headImgStyle+'"><div class="newRelation"></div></div>'+record.relative_name+'</div>';
                 }else if(record.status == 0 && record.relativeFlag == 1){
                     requestStr += '<div class="relative reply-add-request" data-id="'+record.relative_id+'" data-name="'+record.relative_name+'">' +
-                        '<div class="photo" style="background-image: ../'+record.image+'"><div class="waiting">等待验证</div></div>'+record.relative_name+'</div>'
+                        '<div class="photo" style="'+headImgStyle+'"><div class="waiting">等待验证</div></div>'+record.relative_name+'</div>'
                 }else if(record.status == 1){
-                    humanStr += '<div class="relative" data-id="'+record.relative_id+'" data-name="'+record.relative_name+'"><div class="photo" style="background-image: ../'+record.image+'">' +
+                    humanStr += '<div class="relative" data-id="'+record.relative_id+'" data-name="'+record.relative_name+'">' +
+                        '<div class="photo" style="'+headImgStyle+'">' +
                         '</div>'+record.relative_name+'</div>';
                 }
 

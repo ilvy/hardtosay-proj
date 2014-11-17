@@ -72,17 +72,48 @@ function socketLogin(socket){
         }
         response.socket(userName,socket);
         var position = {host_id:userName};
+        var funs = [
+            function selectRelatives(cb){
+
+            },
+            function getHeadImgs(results,cb){
+                if(results && results.length > 0){
+                    var user_ids = [];
+                    for(var i = 0; i < results.length; i++){
+                        user_ids.push(results[i].relative_id);
+                    }
+                }
+            }
+        ];
         userOperate.selectRelatives(position,function(err,results){
             if(err){
                 console.log(err);
             }else{
-                response.send(userName,protocolConfig.LOGIN,{
-                    flag:1,
-                    msg:"socket 登录成功!",
-                    data:results
-                });
+//                cb(err,results);
+                var getImageFuns = [];
+                for(var i in results){
+                    if(typeof results[i].image == 'object'){
+                        getImageFuns.push((function(){
+                            var k = i;
+                            return function(cb){
+                                dbOperator.dereference(results[k].image,function(err,imageObj){
+                                    results[k].image = imageObj;
+                                    cb(null,null);
+                                });
+                            }
+                        })());
+
+                    }
+                }
+                async.parallel(getImageFuns,function(err,results1){
+                    response.send(userName,protocolConfig.LOGIN,{
+                        flag:1,
+                        msg:"socket 登录成功!",
+                        data:results
+                    });
+                })
             }
-        })
+        });
     });
 }
 
