@@ -56,6 +56,18 @@
         <!--</div>-->
     </section>
 
+    <div id="updateImgPos">
+        <div class="head-img-upload">
+            <div class="photo-frame">
+
+            </div>
+            <div class="photo-carrier" onselectstart="return false;" style=''>
+                <img src=""/>
+            </div>
+
+        </div>
+        <input type="button" value="确定" id="fixImg"/>
+    </div>
     <footer>
 
     </footer>
@@ -67,7 +79,7 @@
 
 </script>
 <!--<script src="./js/draw.js"></script>-->
-<!--<script src="./js/touchUtil.js"></script>-->
+<script src="./js/touchUtil.js"></script>
 <script src="./js/libs/socket.io.js"></script>
 <!--<script src="./js/socket/socketManager.js"></script>-->
 <script src="./js/plugins/wheel-menu-master/jquery.wheelmenu.js"></script>
@@ -83,7 +95,8 @@
         superObject:'./js/libs/entity/superObject',
         draw:'./js/draw.js',
         touchUtil:'./js/utils/touchUtil.js',
-        globalManager:'./js/socket/globalManager.js'
+        globalManager:'./js/socket/globalManager.js',
+        lightPlugins:'./js/plugins/lightPlugins.js'
 
     };
     var history = [];
@@ -94,7 +107,7 @@
     }
 
     var serverConfig = {
-        ip:"localhost",//"192.168.1.104",//
+        ip:"192.168.50.216",//"192.168.1.104",//
         port:5000
     }
 

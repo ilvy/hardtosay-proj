@@ -222,5 +222,35 @@ var relativeManager = {
 //        }
 //        var host = util.$ls("host");
 //        return this.$humansDatas[host];
+    },
+    getAllRelativeIds:function(cate){
+        var $humansData = this.getByHost();
+        var data = $humansData[cate];
+        var user_ids = [];
+        for(var i = 0; i < data.length; i++){
+            user_ids.push(data[i].user_id);
+        }
+        return user_ids;
+    }
+}
+
+var dataManager = {
+    getAsJSON:function(user_id,key){
+        var data = util.$ls(key)?JSON.parse(util.$ls(key)):{};
+        if(data[user_id]){
+            return data[user_id];
+        }else{
+            return 0;
+        }
+//        return data[user_id]?data[user_id]:0;
+    },
+    addAsJSON:function(user_id,key,obj){
+        var data = util.$ls(key)?JSON.parse(util.$ls(key)):{};
+        if(!data[user_id]){
+            data[user_id] = {};
+        }
+        data[user_id] = obj;
+        util.$ls(key,data);
+        return true;
     }
 }

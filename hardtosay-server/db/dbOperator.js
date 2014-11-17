@@ -115,6 +115,21 @@ function select(table_name,position,extraPos,callback){
     });
 }
 
+/**
+ *
+ * @param dbref
+ * @param cb
+ */
+function dereference(dbref,cb){
+    pool.acquire(function(err,db){
+        if(err){
+
+        }else{
+            db.dereference(dbref,cb);
+
+        }
+    });
+}
 
 function selectMessagewidthReply(position,sortPos,callback){
     pool.acquire(function(err,db){
@@ -155,3 +170,4 @@ exports.save = save;
 exports.select = select;
 exports.update = update;
 exports.selectMessagewidthReply = selectMessagewidthReply;
+exports.dereference = dereference;

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="js/libs/jquery.js"></script>
+    <style>
+        body{
+            margin: 0 0;
+            padding: 0 0;
+        }
+        .head-img-upload{
+            width: 1000px;
+            height: 600px;
+            background-color: rgba(102,108,105,0.6);
+            position: relative;
+        }
+        .photo-frame{
+            width: 100px;
+            height: 100px;
+            border: 1px solid #ffffff;
+            position: absolute;
+            top: calc(50% - 50px);
+            left: calc(50% - 50px);
+            z-index: 100;
+        }
+        /*.photo-frame{*/
+            /*width: 50px;*/
+            /*height: 50px;*/
+            /*border: 1px solid #ffffff;*/
+            /*position: absolute;*/
+            /*top: calc(50% - 25px);*/
+            /*left: calc(50% - 25px);*/
+            /*z-index: 100;*/
+        /*}*/
+        .photo-carrier{
+            position: absolute;
+            /*width:300px;height:300px;*/
+            /*background: url("./images/lips.jpg") center no-repeat;*/
+            /*background-size: 400px;*/
+            /*z-index: 10;*/
+        }
+    </style>
+</head>
+
+<body>
+    <div class="head-img-upload">
+        <div class="photo-frame">
+
+        </div>
+        <div class="photo-carrier" onselectstart="return false;" style=''>
+            <img src="http://192.168.50.216:5000/image/test_1416020952195.jpg"/>
+        </div>
+
+    </div>
+    <input type="button" value="确定" id="fixImg"/>
+<!--<div style='background: url("./images/lips.jpg") no-repeat;background-size: 100px;width: 200px;height: 200px;'>-->
+
+</div>
+</body>
+<script>
+    $.fn.drag = function(imgSrc,cb){
+        var $selector = $this = $(this);
+        var selector = $this.selector;
+        var naturalW = $(selector+" img")[0].naturalWidth,
+            naturalH = $(selector+" img")[0].naturalHeight;
+        var fixPox = {};
+        var isDragging = false,
+                mousePos = {},
+                objectPos = {};
+//        function setSrc(){
+            if(naturalH > naturalW){//top 按比例即可
+                fixPox.type = 2;
+                $(selector+" img").attr("src",imgSrc).attr("width",$(".photo-frame").width());
+            }else{
+                fixPox.type = 1;
+                $(selector+" img").attr("src",imgSrc).attr("width",200);
+            }
+//        };
+        $(document).on("mousedown",function(event){
+            isDragging = true;
+            mousePos.x = event.clientX;
+            mousePos.y = event.clientY;
+            objectPos.x = $selector.position().left;
+            objectPos.y = $selector.position().top;
+        });
+        $(document).bind("mousemove",function(event){
+            event.preventDefault();
+//            var $selector = $(selector);
+            if(isDragging){
+                var x_offset = event.clientX - mousePos.x,
+                        y_offset = event.clientY - mousePos.y;
+                objectPos.x += x_offset;
+                objectPos.y += y_offset;
+                $selector.css({
+                    top:objectPos.y,
+                    left:objectPos.x
+                });
+                mousePos.x = event.clientX;
+                mousePos.y = event.clientY;
+            }
+
+        });
+        $(document).on("mouseup",function(){
+            isDragging = false;
+        });
+
+        $("#fixImg").on("click",function(){
+            var framePos = $(".photo-frame").offset();
+            var imgPos = $(".photo-carrier").offset();
+            fixPox.baseSize = 50;
+            var ratio = Number($(".photo-frame").width()) / 50;
+            fixPox.left = (framePos.left - imgPos.left) / ratio,
+            fixPox.top = (framePos.top - imgPos.top) / ratio;
+            fixPox.user_id = "test1";
+            fixPox.path = '';
+            var url = 'http://192.168.50.216:5000/updateImgPosition';
+            $.ajax({
+                url:url,
+                type:'post',
+                data:fixPox,
+                success:function(data){
+                    console.log(data);
+                },
+                error:function(err){
+
+                }
+            });
+        });
+    }
+    $(document).ready(function(){
+        $(".photo-carrier").drag('http://192.168.50.216:5000/image/test_1416020952195.jpg');
+    });
+
+
+
+
+</script>
+</html>
