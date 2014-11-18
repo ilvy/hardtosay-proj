@@ -126,7 +126,7 @@ function dereference(dbref,cb){
 
         }else{
             db.dereference(dbref,cb);
-
+            pool.release(db);
         }
     });
 }

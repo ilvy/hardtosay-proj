@@ -32,10 +32,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="relation.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="relation.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/httpAction/relation.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="25" selection-start="1092" selection-end="1092" vertical-scroll-proportion="0.0" vertical-offset="2337" max-vertical-offset="3591">
+            <state line="44" column="12" selection-start="1309" selection-end="1309" vertical-scroll-proportion="0.19428572" vertical-offset="734" max-vertical-offset="3591">
               <folding />
             </state>
           </provider>
@@ -44,7 +44,7 @@
       <file leaf-file-name="upload.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/httpAction/upload.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="41" selection-start="318" selection-end="318" vertical-scroll-proportion="0.0" vertical-offset="95" max-vertical-offset="912">
+            <state line="10" column="0" selection-start="249" selection-end="249" vertical-scroll-proportion="0.0" vertical-offset="53" max-vertical-offset="912">
               <folding />
             </state>
           </provider>
@@ -71,7 +71,16 @@
       <file leaf-file-name="useroperateDao.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dao/useroperateDao.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="0" selection-start="333" selection-end="333" vertical-scroll-proportion="0.0" vertical-offset="82" max-vertical-offset="3287">
+            <state line="26" column="30" selection-start="879" selection-end="879" vertical-scroll-proportion="0.0" vertical-offset="289" max-vertical-offset="3287">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dbOperator.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db/dbOperator.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="146" column="41" selection-start="4001" selection-end="4001" vertical-scroll-proportion="0.0" vertical-offset="2451" max-vertical-offset="3382">
               <folding />
             </state>
           </provider>
@@ -98,19 +107,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="socket.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="socket.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/socket/socket.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="103" column="30" selection-start="3219" selection-end="3219" vertical-scroll-proportion="0.60437375" vertical-offset="1653" max-vertical-offset="6536">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/user.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="2" selection-start="107" selection-end="107" vertical-scroll-proportion="0.0" vertical-offset="133" max-vertical-offset="247">
+            <state line="90" column="18" selection-start="2593" selection-end="2593" vertical-scroll-proportion="0.0" vertical-offset="1030" max-vertical-offset="6536">
               <folding />
             </state>
           </provider>
@@ -147,8 +147,8 @@
         <option value="$PROJECT_DIR$/routes/httpAction/upload.js" />
         <option value="$PROJECT_DIR$/routes/httpAction/login.js" />
         <option value="$PROJECT_DIR$/routes/httpAction/register.js" />
-        <option value="$PROJECT_DIR$/db/dbOperator.js" />
         <option value="$PROJECT_DIR$/socket/socket.js" />
+        <option value="$PROJECT_DIR$/db/dbOperator.js" />
       </list>
     </option>
   </component>
@@ -334,7 +334,7 @@
     <property name="options.lastSelected" value="preferences.sourceCode.CSS" />
     <property name="SearchEverywhereHistory" value="" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Copy of OASMobile/assets/www" />
     <property name="FullScreen" value="false" />
     <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
@@ -348,6 +348,14 @@
     </key>
   </component>
   <component name="RunManager" selected="Node.js.app.js">
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
+      <option name="filePath" />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
+      <method />
+    </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -358,23 +366,15 @@
       <option name="showConsoleOnStdOut" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
-      <option name="VMOptions" />
-      <option name="arguments" />
-      <option name="filePath" />
-      <option name="scope" value="ALL" />
-      <option name="testName" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" singleton="true" config-file="">
-      <envs />
-      <method />
-    </configuration>
     <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
       <setting name="configLocationType" value="CONFIG_FILE" />
       <setting name="settingsFile" value="" />
       <setting name="serverType" value="INTERNAL" />
       <setting name="preferredDebugBrowser" value="CHROME" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" singleton="true" config-file="">
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
@@ -435,11 +435,11 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18957011" sideWeight="0.8885077" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44061303" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18957011" sideWeight="0.8885077" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23499362" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3231162" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3231162" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -507,16 +507,6 @@
           <option name="timeStamp" value="112" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/routes/httpAction/login.js</url>
-          <line>24</line>
-          <option name="timeStamp" value="113" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/routes/httpAction/login.js</url>
-          <line>58</line>
-          <option name="timeStamp" value="114" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/routes/httpAction/register.js</url>
           <line>50</line>
           <option name="timeStamp" value="115" />
@@ -542,12 +532,42 @@
           <option name="timeStamp" value="120" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/socket/socket.js</url>
-          <line>108</line>
-          <option name="timeStamp" value="121" />
+          <url>file://$PROJECT_DIR$/dao/useroperateDao.js</url>
+          <line>118</line>
+          <option name="timeStamp" value="122" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/routes/httpAction/relation.js</url>
+          <line>113</line>
+          <option name="timeStamp" value="123" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/dao/useroperateDao.js</url>
+          <line>26</line>
+          <option name="timeStamp" value="126" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/routes/httpAction/relation.js</url>
+          <line>35</line>
+          <option name="timeStamp" value="129" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/routes/httpAction/relation.js</url>
+          <line>48</line>
+          <option name="timeStamp" value="130" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/routes/httpAction/relation.js</url>
+          <line>56</line>
+          <option name="timeStamp" value="131" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/routes/httpAction/relation.js</url>
+          <line>90</line>
+          <option name="timeStamp" value="132" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="122" />
+      <option name="time" value="133" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -787,13 +807,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dao/useroperateDao.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="0" selection-start="333" selection-end="333" vertical-scroll-proportion="0.0" vertical-offset="82" max-vertical-offset="3287">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/response.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="20" column="54" selection-start="314" selection-end="314" vertical-scroll-proportion="0.0" vertical-offset="151" max-vertical-offset="646">
@@ -801,30 +814,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/httpAction/relation.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="25" selection-start="1092" selection-end="1092" vertical-scroll-proportion="0.0" vertical-offset="2337" max-vertical-offset="3591">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/httpAction/upload.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="41" selection-start="318" selection-end="318" vertical-scroll-proportion="0.0" vertical-offset="95" max-vertical-offset="912">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/mongodb/lib/mongodb/connection/base.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="230" column="40" selection-start="5938" selection-end="5938" vertical-scroll-proportion="0.5045593" vertical-offset="4204" max-vertical-offset="9728">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/dbOperator.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="122" column="9" selection-start="3273" selection-end="3273" vertical-scroll-proportion="-3.92" vertical-offset="2220" max-vertical-offset="3382">
           <folding />
         </state>
       </provider>
@@ -841,14 +833,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/httpAction/login.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="0" selection-start="674" selection-end="674" vertical-scroll-proportion="0.33333334" vertical-offset="342" max-vertical-offset="1311">
+        <state line="24" column="0" selection-start="674" selection-end="674" vertical-scroll-proportion="0.0" vertical-offset="319" max-vertical-offset="1311">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/httpAction/upload.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="0" selection-start="249" selection-end="249" vertical-scroll-proportion="0.0" vertical-offset="53" max-vertical-offset="912">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/dbOperator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="146" column="41" selection-start="4001" selection-end="4001" vertical-scroll-proportion="0.0" vertical-offset="2451" max-vertical-offset="3382">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/socket/socket.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="103" column="30" selection-start="3219" selection-end="3219" vertical-scroll-proportion="0.60437375" vertical-offset="1653" max-vertical-offset="6536">
+        <state line="90" column="18" selection-start="2593" selection-end="2593" vertical-scroll-proportion="0.0" vertical-offset="1030" max-vertical-offset="6536">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dao/useroperateDao.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="30" selection-start="879" selection-end="879" vertical-scroll-proportion="0.0" vertical-offset="289" max-vertical-offset="3287">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/httpAction/relation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="12" selection-start="1309" selection-end="1309" vertical-scroll-proportion="0.19428572" vertical-offset="734" max-vertical-offset="3591">
           <folding />
         </state>
       </provider>

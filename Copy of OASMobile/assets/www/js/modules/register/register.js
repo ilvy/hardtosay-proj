@@ -82,6 +82,16 @@ define("modules/register/register",['util','superObject','draw','touchUtil','glo
                 console.log("upload success :"+data.response);
                 var url = remoteServer + "/" +data.response;
                 $("#updateImgPos").css("display","block");
+                var wW = $(window).width(),
+                    wH = $(window).height();
+                $(".photo-frame").css({
+                    top:(wH - $(".photo-frame").height()) / 2,
+                    left:(wW - $(".photo-frame").width()) / 2
+                });
+                $(".photo-carrier").css({
+                    top:(wH - $(".photo-carrier").height()) / 2,
+                    left:(wW - $(".photo-carrier").width()) / 2
+                });
                 $(".photo-carrier img").attr("src",url);
                 $(".photo-carrier").drag(data.response);
             }
