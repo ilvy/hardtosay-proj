@@ -80,10 +80,10 @@ body{
     height: 100px;
     border: 1px solid #ffffff;
     position: absolute;
-    top: -webkit-calc(50% - 50px);
-    top: calc(50% - 50px);
-    left: -webkit-calc(50% - 50px);
-    left: calc(50% - 50px);
+    /*top: -webkit-calc(50% - 50px);*/
+    /*top: calc(50% - 50px);*/
+    /*left: -webkit-calc(50% - 50px);*/
+    /*left: calc(50% - 50px);*/
     z-index: 100;
 }
 /*.photo-frame{*/
