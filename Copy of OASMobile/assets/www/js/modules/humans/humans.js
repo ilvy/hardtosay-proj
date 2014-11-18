@@ -82,7 +82,7 @@ define("modules/humans/humans",['util','superObject','globalManager','messageMan
                     if(!ratio){
                         ratio = 66 / imageObj.baseSize; //TODO 头像框大小不能定死
                     }
-                    var headImgStyle = 'background-image:'+remoteServer+"/"+imageObj.path+';background-size:'+imageObj.baseSize * ratio+';background-position-y：'
+                    var headImgStyle = 'background-image:url("'+remoteServer+"/"+imageObj.path+'");background-size:'+imageObj.baseSize * ratio+'px;background-position-y：'
                             +(-imageObj.top * ratio)+"px;background-position-x:"+(-imageObj.left * ratio)+'px;background-repeat:no-repeat';
                 }else{
                     headImgStyle = 'background-image: ../'+record.image+'';
