@@ -182,7 +182,7 @@ var relativeManager = {
         }
         var $data = $humansData[cate];
         for(var i = 0; i < $data.length; i++){
-            if($data[i]["receiver"] = receiver){
+            if($data[i]["relative_id"] == receiver){
                 $data[i]["receiver"] = obj;
                 $data[i]["status"] = obj.status;
                 break;
@@ -204,7 +204,7 @@ var relativeManager = {
         }
         var $data = $humansData[cate];
         for(var i = 0; i < $data.length; i++){
-            if($data[i]["receiver"] = receiver){
+            if($data[i]["relative_id"] == receiver){
                 if(reply == 1){
                     $data[i].status = 1;
                 }else{
