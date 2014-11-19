@@ -41,6 +41,9 @@ define("modules/humans/humans",['util','superObject','globalManager','messageMan
                     }
                 });
             });
+            $("#content").on("click",'.waiting',function(event){
+                util.stopPropagation(event);
+            });
             //TODO 回复同意或者拒绝，暂时直接点击同意
             $("#content").off(".newRelation")
                 .on("click",".newRelation",function(event){

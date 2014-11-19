@@ -35,4 +35,5 @@ Icon
 .Spotlight-V100
 .Trashes
 
+# webstorm .idea file dir
 .idea/
