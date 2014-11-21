@@ -80,7 +80,18 @@ define("modules/addRelation/addRelation",['util','superObject'],function(){
             var listStr = "";
             for(var i = 0; i < data.length; i++){
                 var record = data[i];
-                listStr += '<div class="search-record " data-user="'+i+'" data-userid="'+record.user_id+'"><div class="sr-head-icon sr-row"></div><div class="sr-name sr-row">'+record.name+'</div>' +
+                if(typeof record.image == 'object'){
+                    var imageObj = record.image;
+                    if(!ratio){
+                        ratio = 66 / imageObj.baseSize; //TODO 头像框大小不能定死
+                    }
+                    var headImgStyle = 'background-image:url('+remoteServer+"/"+imageObj.path+');background-size:'+imageObj.baseSize * ratio+'px;background-position-y：'
+                        +(-imageObj.top * ratio)+"px;background-position-x:"+(-imageObj.left * ratio)+'px;background-repeat:no-repeat';
+                }else{
+                    headImgStyle = 'background-image: url(./'+record.image+')';
+                }
+                listStr += '<div class="search-record " data-user="'+i+'" data-userid="'+record.user_id+'"><div class="sr-head-icon sr-row" style="'+headImgStyle+'">' +
+                    '</div><div class="sr-name sr-row">'+record.name+'</div>' +
                     '<div class="sr-desc sr-row"><input type="button" class="add-attention add-att-btn" value="加关注"/></div></div></div>';
             }
             $(".search-list").html(listStr);

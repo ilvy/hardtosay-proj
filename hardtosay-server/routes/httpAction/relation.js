@@ -22,14 +22,59 @@ exports.search = function(req,res){
         searck_key:search_key,
         sender:sender
     }
-    uopDao.selectUsersByKey(position,function(err,results){
+    var selectUsersFuns = [
+        function selectUsersByKey(cb){
+            uopDao.selectUsersByKey(position,function(err,results){
+                if(err){
+                    console.log("selectUsersByKey failed:"+err);
+//                    response.failed(res,"查询失败");
+                    cb(err,null);
+                    return;
+                }
+                cb(null,results);
+//                response.success(res,"用户查询",results);
+            });
+        },
+        function dereference(results,outcb){
+            if(results && results.length){
+                var getImageFuns = [];
+                for(var i in results){
+                    if(typeof results[i].image == 'object'){
+                        getImageFuns.push((function(){
+                            var k = i;
+                            return function(cb){
+                                dbOperator.dereference(results[k].image,function(err,imageObj){
+                                    if(err){
+                                        cb(err,null);
+                                        return;
+                                    }
+                                    results[k].image = imageObj;
+                                    cb(null,null);
+                                });
+                            }
+                        })());
+                    }
+                }
+                async.parallel(getImageFuns,function(err,results1){
+                    if(err){
+                        cb(err,null);
+                        return;
+                    }
+                    outcb(null,results);
+                })
+            }
+        }
+    ];
+    async.waterfall(selectUsersFuns,function(err,results){
         if(err){
             console.log("selectUsersByKey failed:"+err);
             response.failed(res,"查询失败");
             return;
         }
+        cb(null,results);
         response.success(res,"用户查询",results);
-    });
+    })
+
 }
 
 exports.addRelation = function(req,res){

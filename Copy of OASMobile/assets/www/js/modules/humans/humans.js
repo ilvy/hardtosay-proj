@@ -88,7 +88,7 @@ define("modules/humans/humans",['util','superObject','globalManager','messageMan
                     var headImgStyle = 'background-image:url('+remoteServer+"/"+imageObj.path+');background-size:'+imageObj.baseSize * ratio+'px;background-position-y：'
                             +(-imageObj.top * ratio)+"px;background-position-x:"+(-imageObj.left * ratio)+'px;background-repeat:no-repeat';
                 }else{
-                    headImgStyle = 'background-image: ../'+record.image+'';
+                    headImgStyle = 'background-image: ./'+record.image+'';
                 }
                 if(record.status == 0 && record.relativeFlag == -1){
                     requestStr += '<div class="relative reply-add-request" data-id="'+record.relative_id+'" data-name="'+record.relative_name+'">' +
