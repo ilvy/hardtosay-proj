@@ -55,7 +55,7 @@ exports.login = function(req,res){
  */
 var isExistUser = function(data){
     return function(cb){
-        dbOperator.select("user",{name:data.user.name},function(err,results){
+        dbOperator.select("user",{user_id:data.user.name},function(err,results){
             cb(err,results);
         });
     }
