@@ -109,6 +109,18 @@ body{
     top: 10px;
 }
 
+#uploading-mask{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url("../images/loading.GIF");
+    background-repeat: no-repeat;
+    background-position: center;
+    display: none;
+}
+
 /********** end updateImgPos Div **************/
 
 
@@ -126,7 +138,7 @@ body{
 }
 .search-input{
     border: white;
-    border-bottom: 1px solid;
+    /*border-bottom: 1px solid;*/
     position: relative;
 }
 
@@ -509,20 +521,56 @@ body{
     float: right;
 }
 
+.search-group{
+    border-bottom: 1px solid;
+    position: relative;
+}
+.search-group:before{
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-top: 3px #000000 solid;
+    border-right: 0px #000000 solid;
+    border-bottom: 3px #000000 solid;
+    border-left: 1px #000000 solid;
+    bottom: 0px;
+    left: 0;
+}
+.search-group:after{
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-top: 3px #000000 solid;
+    border-right: 0px #000000 solid;
+    border-bottom: 3px #000000 solid;
+    border-left: 1px #000000 solid;
+    bottom: 0px;
+    right: 0;
+}
+
+#search-user{
+    float: right;
+    margin-right: 3px;
+}
+
 @media screen and (max-width: 360px) {
     .search-input{
-        width: 80%;
+        /*width: 80%;*/
         font-size: 16px;
     }
     .search-group .icon-search{
         font-size: 24px;
     }
-
+    #search-user{
+        font-size: 16px;
+    }
 }
 
-@media screen and (min-width: 360px) and (max-width: 768px) {
+@media screen and (min-width: 361px) and (max-width: 768px) {
     .search-input{
-        width: 85%;
+        /*width: 85%;*/
         font-size: 24px;
     }
     .search-group .icon-search{
@@ -539,3 +587,26 @@ body{
 
 
 /*************end addRelation****************/
+
+/*******************start 适配 global************************/
+.cell-xs-1{width: 8.33333%;}.cell-xs-2{width: 16.66667%;}.cell-xs-3{width: 25%;}.cell-xs-4{width: 33.33333%;}.cell-xs-5{width: 41.66667%;}.cell-xs-6{width: 50%;}
+.cell-xs-7{width: 58.33333%;}.cell-xs-8{width: 66.6666667%;}.cell-xs-9{width: 75%;}.cell-xs-10{width: 83.33333%;}.cell-xs-11{width: 91.66667%;}.cell-xs-12{width: 100%;}
+
+@media screen and (min-width: 361px) and (max-width: 768px) {
+    .cell-sm-1{width: 8.33333%;}.cell-sm-2{width: 16.66667%;}.cell-sm-3{width: 25%;}.cell-sm-4{width: 33.33333%;}.cell-sm-5{width: 41.66667%;}.cell-sm-6{width: 50%;}
+    .cell-sm-7{width: 58.33333%;}.cell-sm-8{width: 66.6666667%;}.cell-sm-9{width: 75%;}.cell-sm-10{width: 83.33333%;}.cell-sm-11{width: 91.66667%;}.cell-sm-12{width: 100%;}
+}
+
+@media screen and (min-width: 769px) and (max-width: 992px) {
+    .cell-md-1{width: 8.33333%;}.cell-md-2{width: 16.66667%;}.cell-md-3{width: 25%;}.cell-md-4{width: 33.33333%;}.cell-md-5{width: 41.66667%;}.cell-md-6{width: 50%;}
+    .cell-md-7{width: 58.33333%;}.cell-md-8{width: 66.6666667%;}.cell-md-9{width: 75%;}.cell-md-10{width: 83.33333%;}.cell-md-11{width: 91.66667%;}.cell-md-12{width: 100%;}
+}
+
+.show-grid [class^=cell-]{
+    padding-top: 10px;
+}
+
+/*.border-box,*{*/
+    /*box-sizing: border-box;*/
+/*}*/
+/*******************end 适配 global************************/

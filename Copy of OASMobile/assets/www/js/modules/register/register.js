@@ -43,6 +43,7 @@ define("modules/register/register",['util','superObject','draw','touchUtil','glo
             });
         },
         upload:function(imgUrl){
+            var _this = this;
             var options = new FileUploadOptions();
 
             options.fileKey = "file";//用于设置参数，对应form表单里控件的name属性，这是关键，废了一天时间，完全是因为这里，这里的参数名字，和表单提交的form对应
@@ -78,6 +79,16 @@ define("modules/register/register",['util','superObject','draw','touchUtil','glo
 
             ft.upload(imgUrl, uri, success, fail, options);
 
+            ft.onprogress = function(progressEvent){//上传进度
+                var loaded = Number(progressEvent.loaded),
+                    total = progressEvent.total;
+                if(progressEvent.lengthComputable){
+                    _this.uploadingProgress(loaded / total);
+                }else{
+                    _this.uploadingProgress(1)
+                }
+            }
+
             function success(data){
                 console.log("upload success :"+data.response);
                 var url = remoteServer + "/" +data.response;
@@ -112,6 +123,13 @@ define("modules/register/register",['util','superObject','draw','touchUtil','glo
             },function(err){
                 console.log(err);
             },option);
+        },
+        uploadingProgress:function(status){
+            if(status == 1){
+                $("#uploading-mask").css("display","none");
+            }else{
+                $("#uploading-mask").css("display","block");
+            }
         }
     });
     return function(html){
