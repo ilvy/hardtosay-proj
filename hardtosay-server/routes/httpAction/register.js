@@ -54,46 +54,25 @@ exports.register = function(req,res){
     //                    response.success(res,"确定头像位置成功",{});
                             console.log('确定头像位置成功');
                         }
+                        data.image = new DBRef("image",results[0]._id);
                         cb(err,results);
                     });
                 }
             })(),
-            //添加headimg
-            function addRefToRelative(saveResults,cb){
-                if(saveResults && saveResults.length){
-                    dbOperator.update("relative",{relative_id:data.user_id},{$set:{image:new DBRef("image",saveResults[0]._id)}},function(err,results){
-                        if(err){
-                            console.log(err);
-                        }else{
+            function register(saveResults,cb){
+                userOperate.register(data,function(err,results){
+                    if(err){
+                        console.log(err);
+                        response.failed(res,"注册失败",results);
+                    }else{
+                        response.success(res,"注册成功",{});
+                    }
+                });
+                cb(null,null);
+            }
+        ];
+        async.waterfall(funs,function(err,results){
 
-                        }
-                        cb(err,saveResults);
-                    })
-                }
-                cb(null,saveResults)
-            },
-            function addRefToUser(saveResults,cb){
-                if(saveResults && saveResults.length){
-                    dbOperator.update("user",{user_id:data.user_id},{$set:{image:new DBRef("image",saveResults[0]._id)}},function(err,results){
-                        if(err){
-                            console.log(err);
-                        }else{
-
-                        }
-                        cb(err,saveResults);
-                    });
-                    cb(null,saveResults);
-                }
-            }];
-        async.series(funs,function(err,results){
-            userOperate.register(data,function(err,results){
-                if(err){
-                    console.log(err);
-                    response.failed(res,"注册失败",results);
-                }else{
-                    response.success(res,"注册成功",{});
-                }
-            });
         });
     }else{
 //        async.series(funs,function(err,results){

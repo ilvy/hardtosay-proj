@@ -30,9 +30,15 @@ define("modules/relative/relative",['util','superObject','draw','touchUtil','glo
             }else{
                 //            $(function(){
                 var ratio = $(".me").outerWidth() / headImgObj.baseSize;
+                var bgSize = "";
+                if(headImgObj.type == 2){
+                    bgSize = headImgObj.baseSize * ratio;
+                }else if(headImgObj.type == 1){
+                    bgSize = headImgObj.baseSize * 2 * ratio;
+                }
                 $(".me").css({
                     backgroundImage:'url('+remoteServer+'/'+headImgObj.path+')',
-                    backgroundSize:headImgObj.baseSize * ratio,
+                    backgroundSize:bgSize,
                     'background-position-y':-headImgObj.top * ratio+"px",
                     'background-position-x':-headImgObj.left * ratio+"px",
                     backgroundRepeat:'no-repeat'

@@ -4,20 +4,26 @@
 $.fn.drag = function(imgSrc,cb){
     var $selector = $this = $(this);
     var selector = $this.selector;
-    var naturalW = $(selector+" img")[0].naturalWidth,
-        naturalH = $(selector+" img")[0].naturalHeight;
+    var image = new Image();
+    image.src = remoteServer+"/"+imgSrc;
     var fixPos = {};
     var isDragging = false,
         mousePos = {},
         objectPos = {};
+    $(image).load(function(){
+        var naturalW = image.width,//$(selector+" img")[0].naturalWidth,
+            naturalH = image.height;//$(selector+" img")[0].naturalHeight;
 //        function setSrc(){
-    if(naturalH >= naturalW){//top 按比例即可
-        fixPos.type = 2;
-        $(selector+" img").attr("src",remoteServer+"/"+imgSrc).attr("width",$(".photo-frame").width());
-    }else{
-        fixPos.type = 1;
-        $(selector+" img").attr("src",remoteServer+"/"+imgSrc).attr("width",200);
-    }
+//        navigator.notification.alert("set img:H-"+naturalH+"W:"+naturalW,function(){});
+        if(naturalH >= naturalW){//top 按比例即可
+            fixPos.type = 2;
+            $(selector+" img").attr("src",remoteServer+"/"+imgSrc).attr("width",$(".photo-frame").width());
+        }else{
+            fixPos.type = 1;
+            $(selector+" img").attr("src",remoteServer+"/"+imgSrc).attr("width",200);
+        }
+    });
+
 //        };
     $(document).on(touchEvent.touchstart,function(event){
         isDragging = true;
@@ -56,9 +62,11 @@ $.fn.drag = function(imgSrc,cb){
     /**
      * #fixImg：确认按钮
      */
-    $("#fixImg").on("click",function(){
+    $("#fixImg").off("click")
+        .on("click",function(){
         var framePos = $(".photo-frame").offset();
         var imgPos = $(".photo-carrier").offset();
+        navigator.notification.alert("set img:framePos-"+framePos.left+"imgPos:"+imgPos.left,function(){});
         fixPos.baseSize = 50;
         var ratio = Number($(".photo-frame").width()) / 50;
         fixPos.left = (framePos.left - imgPos.left) / ratio,

@@ -85,13 +85,14 @@ define("modules/register/register",['util','superObject','draw','touchUtil','glo
                 if(progressEvent.lengthComputable){
                     _this.uploadingProgress(loaded / total);
                 }else{
-                    _this.uploadingProgress(1)
+
                 }
             }
 
             function success(data){
                 console.log("upload success :"+data.response);
                 var url = remoteServer + "/" +data.response;
+                _this.uploadingProgress(1)
                 $("#updateImgPos").css("display","block");
                 var wW = $(window).width(),
                     wH = $(window).height();
@@ -106,8 +107,12 @@ define("modules/register/register",['util','superObject','draw','touchUtil','glo
                 $(".photo-carrier img").attr("src",url);
                 $(".photo-carrier").drag(data.response);
             }
-            function fail(){
+            function fail(){//TODO 提示上传失败
                 console.log("upload fail :");
+                _this.uploadingProgress(1);
+                navigator.notification.alert("上传图片失败,请重试！",function(){
+
+                },"上传失败","OK");
             }
         },
         getPicture:function(){

@@ -37,3 +37,6 @@ Icon
 
 # webstorm .idea file dir
 .idea/
+
+# ignore images
+image/
