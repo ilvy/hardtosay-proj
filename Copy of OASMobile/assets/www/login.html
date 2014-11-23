@@ -31,6 +31,9 @@
     background-repeat-x:no-repeat;background-repeat-y:no-repeat;background-position-x:-80%;   ">
 
     </div>
+    <div id="test">
+
+    </div>
     <footer>
 
     </footer>
@@ -40,24 +43,31 @@
 <script src="./js/libs/socket.io.js"></script>
 <script src="./js/socket/socketManager.js"></script>
 <script>
-    var socket = new Socket("127.0.0.1",5000);
-    socket.onEvent();
+//    var socket = new Socket("127.0.0.1",5000);
+//    socket.onEvent();
+//
+//    document.getElementById("loginBtn").addEventListener("click",function(){
+//        var username = document.getElementById("username").value;
+//        alert(username);
+//        var user = {};
+//        user.name = username;
+//        socket.sendMessage("login",{user:user,protocal:"login"});
+////        if(username){
+////            cordova.exec(function(success){
+////                alert(success);
+////            },function(failed){
+////                alert(failed);
+////            },"SetAlias","setAlias",username);
+////        }
+//
+////        window.location.href = "relative.html";
+//    })
+    var image = new Image();
+    image.src = './images/me.png';
+$("#test").append(image);
+$(image).load(function(){
+    alert("h:"+image.naturalHeight+";w:"+image.naturalWidth);
+})
 
-    document.getElementById("loginBtn").addEventListener("click",function(){
-        var username = document.getElementById("username").value;
-        alert(username);
-        var user = {};
-        user.name = username;
-        socket.sendMessage("login",{user:user,protocal:"login"});
-//        if(username){
-//            cordova.exec(function(success){
-//                alert(success);
-//            },function(failed){
-//                alert(failed);
-//            },"SetAlias","setAlias",username);
-//        }
-
-//        window.location.href = "relative.html";
-    })
 </script>
 </html>

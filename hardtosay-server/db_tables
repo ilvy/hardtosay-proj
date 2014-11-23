@@ -1,4 +1,4 @@
-user:(user_id,name,pwd)
+user:(user_id,name,pwd,image:DBRef('image'))
 
 relative:(host_id,host_name,relative_id,relative_name,image,relative,status,relativeFlag,isNewRelative)
  status:是否加关系成功（0：未回复，1：已同意，2：拒绝），relativeFlag:1表示发送方，-1表示接收方，isNewRelative:是否新增关系(0:非新增，1：新增)
@@ -6,3 +6,5 @@ relative:(host_id,host_name,relative_id,relative_name,image,relative,status,rela
 message:(type,sender,receiver,message,time,status)
 reply(id,message_id,type,reply,sender,receiver,time) type:protocol
 ack(id,message_id,interval)interval:发送失败后需要执行的定时器
+image(user_id,baseSize,left,top,type,path,status)    注意：baseSize:图片截取框的基准尺寸
+                                                           type:根据图片原始尺寸长宽比来进行分类
