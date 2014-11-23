@@ -256,6 +256,15 @@ Socket.prototype.isActiveProtocol = function(protocol){
     return false;
 }
 
+function onDeviceReady(){
+//        alert(cordova.exec);
+    cordova.exec(function(success){
+        alert(success);
+    },function(failed){
+        alert("failed:"+failed)
+    },"PluginTest","testPlugin",[]);
+}
+
 /**
  * 协议配置管理
  */

@@ -34,6 +34,13 @@ define("modules/login/login",['util','superObject','messageManager','socketManag
                             util.$ls("host",name);
                             socket = new Socket(serverConfig.ip,5000,function(socket){
                                 socket.emit("login",{user:{name:name}});
+                                if(typeof cordova != "undefined"){
+                                    cordova.exec(function(success){
+                                        alert(success);
+                                    },function(failed){
+                                        alert(failed);
+                                    },"SetAlias","setAlias",name);
+                                }
                             });
                         }
                     },

@@ -71,7 +71,7 @@ exports.search = function(req,res){
             response.failed(res,"查询失败");
             return;
         }
-        cb(null,results);
+//        cb(null,results);
         response.success(res,"用户查询",results);
     })
 
