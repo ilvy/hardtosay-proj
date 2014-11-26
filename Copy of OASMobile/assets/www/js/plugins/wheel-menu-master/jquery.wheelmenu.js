@@ -37,8 +37,10 @@
     this.stop(true,true);
     this.each(function(index) {
       angle = (settings.angle[0] + (step * index)) * (Math.PI/180); 
-      var x = Math.round(width/2 + radius * Math.cos(angle) - $(this).find("a").outerWidth()/2),
-          y = Math.round(height/2 + radius * Math.sin(angle) - $(this).find("a").outerHeight()/2);
+      var x = Math.round(width/2 + radius * Math.cos(angle) - $(this).find(".wheel-item").outerWidth()/2),
+          y = Math.round(height/2 + radius * Math.sin(angle) - $(this).find(".wheel-item").outerHeight()/2);
+//      var x = Math.round(width/2 + radius * Math.cos(angle) - $(this).find("a").outerWidth()/2),
+//          y = Math.round(height/2 + radius * Math.sin(angle) - $(this).find("a").outerHeight()/2);
       $(this).animateRotate(360).css({
           position: 'absolute',
           opacity: 0,
@@ -76,8 +78,10 @@
     this.stop(true,true);
     this.each(function(index) {
       angle = (settings.angle[0] + (step * index)) * (Math.PI/180); 
-      var x = Math.round(width/2 + radius * Math.cos(angle) - $(this).find("a").outerWidth()/2),
-          y = Math.round(height/2 + radius * Math.sin(angle) - $(this).find("a").outerHeight()/2);
+      var x = Math.round(width/2 + radius * Math.cos(angle) - $(this).find(".wheel-item").outerWidth()/2),
+          y = Math.round(height/2 - radius * Math.sin(angle) - $(this).find(".wheel-item").outerHeight()/2);
+//      var x = Math.round(width/2 + radius * Math.cos(angle) - $(this).find("a").outerWidth()/2),
+//          y = Math.round(height/2 + radius * Math.sin(angle) - $(this).find("a").outerHeight()/2);
       $(this).css({
           position: 'absolute',
           left: x + 'px',
@@ -140,15 +144,18 @@
       settings.angle = el.attr('data-angle')
     }
     
-    settings = predefineAngle(settings);
-	  var radius = 60;//el.width() / 3,
+    settings = predefineAngle(settings,el.find(".item").length);
+	  var radius = 60;//el.width() / 3,//70;//
       fields = el.find(".item"),
       container = el,
       width = container.innerWidth(),
       height = container.innerHeight(),
-      angle =  0,
-      step = (settings.angle[1] - settings.angle[0]) / fields.length;
-     
+      angle =  0;
+      if(el.data("angle") =='RA'){
+          step = (settings.angle[1] - settings.angle[0]) / (fields.length - 1);
+      }else{
+          step = (settings.angle[1] - settings.angle[0]) / fields.length;
+      }
      
       switch (settings.animation) { 
         case 'fade': 
@@ -180,7 +187,7 @@
   };
   
 	
-	function predefineAngle (settings) {
+	function predefineAngle (settings,itemNum) {
 	  var convert = false
 	  if ($.type(settings.angle) == "string") {
 	    try {
@@ -220,6 +227,13 @@
           case 'all':
             settings.angle = [0,360]
             break;
+          case 'RA'://角度差是直角
+              if(itemNum == 2){
+                  settings.angle = [270,360];
+              }else{
+//                  settings.angle = [0,180];
+              }
+          break;
         }
 	    } 
     }

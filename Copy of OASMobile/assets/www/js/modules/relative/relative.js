@@ -90,6 +90,7 @@ define("modules/relative/relative",['util','superObject','draw','touchUtil','glo
                         break;
                     case "message":
                         changeHash("#humans");
+                        $("body > .spare-input").remove();
                         break;
                     case "addRelation":
                         changeHash("relative");

@@ -39,12 +39,19 @@ define("modules/message/message",['util','superObject','messageManager','socketM
                     var $this = $(this);
                     var action = $this.data("action");
                     $(".spare-input").data("action",action).removeClass("spare-input").appendTo($(".msg-list"));
-                    $('<div class="message-block spare-input right"><div class="ms-content" contenteditable="true"></div></div>').appendTo($("body"));
+                    $('<div class="message-block spare-input right"><div class="ms-content" contenteditable="true"></div><div class="cancel-edit">' +
+                        '<i class="icon-remove-circle"></i></div></div>').appendTo($("body"));
                     $("html,body").animate({
                         scrollTop:$("body").height()
                     },1000);
                     $("#add-ms-btn").click().css("display","none");
                     $("#send-btn").css("display","block");
+                });
+                $("#content").on("click",".cancel-edit",function(){
+                    var $this = $(this);
+                    $this.parents(".message-block").remove();
+                    $("#add-ms-btn").css("display","block");
+                    $("#send-btn").css("display","none");
                 });
                 /*
                  *发送消息

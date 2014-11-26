@@ -8,6 +8,9 @@ body{
     width: 100%;
     background: #f45110;
     min-height: 50px;
+    position: fixed;
+    top: 0;
+    z-index: 10;
 }
 .logo{
     display: inline-block;
@@ -196,6 +199,7 @@ body{
 .content{
     width: 100%;
     position: relative;
+    top: 50px;
 }
 
 .me{
@@ -368,11 +372,12 @@ body{
     display: none;
 }
 .cancel-edit{
-    width: 16px;
-    height: 16px;
+    width: 23px;
+    height: 23px;
     position: absolute;
     right: 5px;
     top: 5px;
+    font-size: 22px;
 }
 #send-btn{
     width: 48px;
@@ -386,6 +391,10 @@ body{
     border-radius: 48px;
     background-color: #cecece;
     display: none;
+}
+
+#send-btn div{
+    margin-top: 10px;
 }
 
 .exlamation:before{
