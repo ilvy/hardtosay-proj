@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 14-10-31.
  */
-define("modules/register/register",['util','superObject','draw','touchUtil','globalManager','lightPlugins'],function(){
+define("modules/register/register",['util','superObject','draw','touchUtil','globalManager','lightPlugins','callpGPlugins'],function(){
     var register = superObject.extend({
 
         initialize:function(html){
@@ -36,7 +36,8 @@ define("modules/register/register",['util','superObject','draw','touchUtil','glo
 
             });
             $("#content").on("click","#upload",function(){
-                _this.getPicture();
+//                _this.getPicture();
+                picturePlugins.getPicture();
             });
             $(".back-btn").bind("click",function(){
                 changeHash("#login");

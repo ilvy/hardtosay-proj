@@ -11,14 +11,17 @@ $.fn.drag = function(imgSrc,cb){
         mousePos = {},
         objectPos = {};
     $(image).load(function(){
+        console.log("img load");
         var naturalW = image.width,//$(selector+" img")[0].naturalWidth,
             naturalH = image.height;//$(selector+" img")[0].naturalHeight;
 //        function setSrc(){
 //        navigator.notification.alert("set img:H-"+naturalH+"W:"+naturalW,function(){});
         if(naturalH >= naturalW){//top 按比例即可
+            console.log("naturalH >= naturalW");
             fixPos.type = 2;
             $(selector+" img").attr("src",remoteServer+"/"+imgSrc).attr("width",$(".photo-frame").width());
         }else{
+            console.log("naturalH lt naturalW");
             fixPos.type = 1;
             $(selector+" img").attr("src",remoteServer+"/"+imgSrc).attr("width",200);
         }
@@ -75,5 +78,11 @@ $.fn.drag = function(imgSrc,cb){
         fixPos.path = imgSrc;
         global.headerImgPos = fixPos;
         $("#updateImgPos").css("display","none");
+            console.log(cb);
+        if(cb){
+            console.log(cb);
+            global.headerImgPos.user_id = util.$ls("host");
+            cb();
+        }
     });
 }

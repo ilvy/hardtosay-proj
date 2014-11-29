@@ -1,7 +1,8 @@
 /**
  * Created by Administrator on 14-10-10.
  */
-define("modules/relative/relative",['util','superObject','draw','touchUtil','globalManager','messageManager','socketManager'],function(){
+define("modules/relative/relative",['util','superObject','draw','touchUtil','globalManager',
+    'messageManager','socketManager','lightPlugins','callpGPlugins'],function(){
 
     var relative = superObject.extend({
         data:{},
@@ -49,6 +50,38 @@ define("modules/relative/relative",['util','superObject','draw','touchUtil','glo
         addBindListener:function(){//bindListener 需要重复监听
             var _this = this;
             $(".relation-node").touch(touchEvent.click,function(event){
+                if(event.$this.hasClass('me')){
+                    navigator.notification.confirm("更换头像",function(index){
+                        if(index == 1){
+                            picturePlugins.getPicture(function(){
+                                console.log(global.headerImgPos);
+                                console.log(global.headerImgPos.path);
+                                var url = remoteServer + '/updateImgPosition';
+                                $.ajax({
+                                    url:url,
+                                    type:"post",
+                                    data:global.headerImgPos,
+                                    success:function(results){
+                                        var msg = "上传成功";
+                                        if(results.flag != 1){
+                                            msg = "上传失败";
+                                        }else{
+                                            var newImagePos = results.results;
+                                            var name = util.$ls("host");
+                                            var headImgObj = dataManager.addAsJSON(name,"headImg",newImagePos);
+                                            _this.renderHeadImg();
+                                        }
+                                        navigator.notification.alert(msg,function(){},"更换头像",["确定"]);
+                                    },
+                                    error:function(err){
+                                        console.log(err);
+                                    }
+                                });
+                            });
+                        }
+                    },"个人信息",["确定","取消"]);
+                    return;
+                }
                 var category = event.$this.data("cate_en");
                 $("."+category).removeClass("remind-tag");//移除右上角的提示红点
 //                var humansData = relativeManager.getAll();
@@ -58,6 +91,9 @@ define("modules/relative/relative",['util','superObject','draw','touchUtil','glo
                 changeHash("#humans");
             });
             $(".relation-node").touch(touchEvent.longtouch,function(event){
+                if(event.$this.hasClass('me')){
+                    return;
+                }
                 currentCate = event.$this.data("cate_en");
                 changeHash("#addRelation",{category:event.$this.data("cate_en")});
             });

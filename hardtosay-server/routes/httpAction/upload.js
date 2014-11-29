@@ -6,7 +6,9 @@ var path = require("path"),
     upload = require("formidable-upload"),
     dbOperator = require("../../db/dbOperator"),
     response = require("../response"),
-    async = require("async");
+    async = require("async"),
+    mongodb = require("mongodb"),
+    DBRef = mongodb.DBRef;
 
 exports.uploadImg = function(req,res){
     console.log(req.files);
@@ -49,6 +51,7 @@ exports.updateImgPosition = function(req,res){
                 dbOperator.save('image',imagePos,function(err,results){
                     if(err){
                         console.log(err);
+                        response.failed(res,"上传失败",results[0]);
                     }else{
                         //                    response.success(res,"确定头像位置成功",{});
                         console.log('确定头像位置成功');
@@ -60,9 +63,10 @@ exports.updateImgPosition = function(req,res){
         //添加headimg
         function addRefToRelative(saveResults,cb){
             if(saveResults && saveResults.length){
-                dbOperator.update("relative",{relative_id:data.user_id},{$set:{image:new DBRef("image",saveResults[0]._id)}},function(err,results){
+                dbOperator.update("relative",{relative_id:saveResults[0].user_id},{$set:{image:new DBRef("image",saveResults[0]._id)}},function(err,results){
                     if(err){
                         console.log(err);
+                        response.failed(res,"上传失败",saveResults[0]);
                     }else{
 
                     }
@@ -73,11 +77,12 @@ exports.updateImgPosition = function(req,res){
         },
         function addRefToUser(saveResults,cb){
             if(saveResults && saveResults.length){
-                dbOperator.update("user",{user_id:data.user_id},{$set:{image:new DBRef("image",saveResults[0]._id)}},function(err,results){
+                dbOperator.update("user",{user_id:saveResults[0].user_id},{$set:{image:new DBRef("image",saveResults[0]._id)}},function(err,results){
                     if(err){
                         console.log(err);
+                        response.failed(res,"上传失败",saveResults[0]);
                     }else{
-
+                        response.success(res,"上传成功",saveResults[0]);
                     }
                     cb(err,saveResults);
                 });
@@ -86,9 +91,9 @@ exports.updateImgPosition = function(req,res){
         }];
     async.waterfall(funs,function(err,results){
         if(err){
-            response.failed(res,"上传失败",results);
+//            response.failed(res,"上传失败",results);
         }else{
-            response.success(res,"上传成功",results);
+//            response.success(res,"上传成功",results[0]);
         }
     });
 }
