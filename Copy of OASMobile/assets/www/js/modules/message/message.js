@@ -59,6 +59,7 @@ define("modules/message/message",['util','superObject','messageManager','socketM
                 $("#content").on("click","#send-btn",function(){
                     var $content = $("#msg-list .message-block:last .ms-content");
                     var contents = $content.html();
+                    $content.siblings(".cancel-edit").remove();
 //                    var contents = $content.contents().filter(function(){
 //                        return this.nodeType == 3;
 //                    }).text();
