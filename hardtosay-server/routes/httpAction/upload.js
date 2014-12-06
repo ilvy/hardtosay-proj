@@ -34,7 +34,8 @@ exports.updateImgPosition = function(req,res){
         left:body.left,
         top:body.top,
         type:body.type,
-        path:body.path
+        path:body.path,
+        status:1
     }
     /**
      * 覆盖原头像

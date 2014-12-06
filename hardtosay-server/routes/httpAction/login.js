@@ -28,7 +28,6 @@ exports.login = function(req,res){
                         session.authority(user.name,user);//session记录用户登录信息
                         if(users && users.length > 0){
                             response.success(res,"login success",results.length?results[results.length - 1]:null);
-
                         }else{
                             response.failed(res,"login failed",{});
                         }
